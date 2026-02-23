@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+0<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -458,6 +458,14 @@
             color: var(--neon-yellow);
             transition: all 0.3s;
         }
+		
+		.voice-btn.playing { 
+    background: var(--neon-blue); 
+    color: black; 
+    box-shadow: 0 0 20px var(--neon-blue); 
+    border-color: white; 
+}
+
         .submit-fanart-btn:hover {
             background: var(--neon-yellow);
             color: black;
@@ -665,6 +673,45 @@
                     </div>
                 </div>
             </div>
+			
+			<!-- MULTI-LANGUAGE VOICE SAMPLES (3 COLUMNS) -->
+<div class="tech-card p-6">
+    <div class="section-title"><i class="fas fa-microphone-alt"></i> <span data-key="voice-title">Introduction Voice Samples</span></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- THAI VOICE -->
+        <button onclick="playExplicitVoice('th')" id="vbtn-th" class="voice-btn p-5 flex flex-col items-center justify-center rounded-lg gap-3 group">
+            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30 group-hover:bg-blue-500 group-hover:text-black transition-all">
+                <i class="fas fa-play text-xs ml-1"></i>
+            </div>
+            <div class="text-center">
+                <span class="block font-bold text-xs uppercase tracking-widest text-blue-400">Thai</span>
+                <span class="text-[9px] opacity-40 font-mono">intro_th.mp3</span>
+            </div>
+        </button>
+
+        <!-- ENGLISH VOICE -->
+        <button onclick="playExplicitVoice('en')" id="vbtn-en" class="voice-btn p-5 flex flex-col items-center justify-center rounded-lg gap-3 group">
+            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30 group-hover:bg-blue-500 group-hover:text-black transition-all">
+                <i class="fas fa-play text-xs ml-1"></i>
+            </div>
+            <div class="text-center">
+                <span class="block font-bold text-xs uppercase tracking-widest text-blue-400">English</span>
+                <span class="text-[9px] opacity-40 font-mono">intro_en.mp3</span>
+            </div>
+        </button>
+
+        <!-- JAPANESE VOICE -->
+        <button onclick="playExplicitVoice('jp')" id="vbtn-jp" class="voice-btn p-5 flex flex-col items-center justify-center rounded-lg gap-3 group">
+            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30 group-hover:bg-blue-500 group-hover:text-black transition-all">
+                <i class="fas fa-play text-xs ml-1"></i>
+            </div>
+            <div class="text-center">
+                <span class="block font-bold text-xs uppercase tracking-widest text-blue-400">Japanese</span>
+                <span class="text-[9px] opacity-40 font-mono">intro_jp.mp3</span>
+            </div>
+        </button>
+    </div>
+</div>
 
             <!-- DESIGN SHEET SECTION -->
             <div class="tech-card p-6">
@@ -794,6 +841,47 @@
         "food-4": "ココア ☕", "food-4-desc": "星明かりのような甘い温もり。", "goods-title": "グッズ"
             }
         };
+		
+		// 1. กำหนดที่อยู่ไฟล์เสียง (เปลี่ยนชื่อไฟล์ให้ตรงกับที่คุณอัดไว้)
+const voiceConfig = {
+    th: "IntroductVoiceTH.m4a",
+    en: "IntroductVoiceENG.m4a",
+    jp: "IntroductVoiceJP.m4a"
+};
+
+let currentAudio = null;
+
+function playExplicitVoice(lang) {
+    const filePath = voiceConfig[lang];
+    const btn = document.getElementById(`vbtn-${lang}`);
+    
+    // ล้างสถานะ 'กำลังเล่น' ของปุ่มทั้งหมดก่อน
+    document.querySelectorAll('.voice-btn').forEach(b => b.classList.remove('playing'));
+
+    if (currentAudio) {
+        // ถ้ากดปุ่มเดิมซ้ำในขณะที่เล่นอยู่ ให้หยุดเล่น
+        if (currentAudio.src.includes(filePath) && !currentAudio.paused) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            return;
+        }
+        currentAudio.pause();
+    }
+
+    // สร้างออบเจกต์เสียงใหม่
+    currentAudio = new Audio(filePath);
+    btn.classList.add('playing'); // เพิ่ม Class เพื่อเปลี่ยนสีปุ่ม
+
+    currentAudio.play().catch(err => {
+        console.error("ไม่พบไฟล์เสียงในโฟลเดอร์ audio/ กรุณาตรวจสอบชื่อไฟล์", err);
+        btn.classList.remove('playing');
+    });
+
+    // เมื่อเสียงจบ ให้เอาสถานะไฟสว่างออก
+    currentAudio.onended = () => {
+        btn.classList.remove('playing');
+    };
+}
 
         function initVisitorCounter() {
             let count = localStorage.getItem('kuroi_visitor_count') || 1024;
