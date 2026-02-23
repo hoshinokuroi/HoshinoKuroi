@@ -9,12 +9,13 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Maitree:wght@400;700&family=Rajdhani:wght@500;700&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
-        :root {
-            --neon-blue: #00d2ff;
-            --cyber-dark: #020617;
-            --card-bg: rgba(15, 23, 42, 0.8);
-            --accent-blue: #3b82f6;
-        }
+:root {
+    --neon-blue: #00d2ff;
+    --cyber-dark: #020617;
+    --card-bg: rgba(15, 23, 42, 0.8);
+    --accent-blue: #3b82f6;
+    --neon-yellow: #ffff00; 
+}
 
         body::before {
             content: "";
@@ -197,6 +198,20 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         }
 
+        #visitor-counter {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--neon-blue);
+    padding: 4px 12px;
+    font-family: 'JetBrains Mono';
+    font-size: 10px;
+    color: var(--neon-blue);
+    z-index: 100;
+}
+
+
         .slider-container {
             position: relative;
             width: 100%;
@@ -360,6 +375,19 @@
             border: 2px solid var(--neon-blue);
             box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
         }
+        .submit-fanart-btn {
+    background: rgba(255, 255, 0, 0.1);
+    border: 1px solid var(--neon-yellow);
+    color: var(--neon-yellow);
+    transition: all 0.3s;
+}
+
+.submit-fanart-btn:hover {
+    background: var(--neon-yellow);
+    color: black;
+    box-shadow: 0 0 20px var(--neon-yellow);
+}
+
     </style>
 </head>
 <body class="p-4 md:p-8 lg:p-12">
@@ -511,6 +539,10 @@
                         <a href="https://marshmallow-qa.com/zncxf2lkkb4cmet" target="_blank" class="p-3 bg-pink-500/10 border border-pink-500/30 text-center hover:bg-pink-500 hover:text-black transition-all">
                             <i class="fas fa-comment-dots mb-1 block"></i><span class="text-[10px] font-bold">MARSHMALLOW</span>
                         </a>
+                        <a href="URL_LINK_HERE" target="_blank" class="submit-fanart-btn p-3 text-center transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-paint-brush"></i>
+                            <span class="text-[10px] font-bold">SUBMIT YOUR FANART</span>
+                        </a>
                     </div>
                 </div>
                 <div class="tech-card p-6">
@@ -562,6 +594,8 @@
                 </div>
             </div>
 
+            <div id="visitor-counter">ACCESS_LOG: <span id="view-count">000000</span></div>
+
         </div>
     </div>
 
@@ -605,6 +639,14 @@
             }
         };
 
+        function initVisitorCounter() {
+    let count = localStorage.getItem('kuroi_visitor_count') || 1024;
+    count = parseInt(count) + 1;
+    localStorage.setItem('kuroi_visitor_count', count);
+    document.getElementById('view-count').innerText = count.toString().padStart(6, '0');
+}
+
+        
         function openFullImage(url) {
             const lb = document.getElementById('lightbox');
             const lbImg = document.getElementById('lightbox-img');
@@ -780,6 +822,7 @@
 </body>
 
 </html>
+
 
 
 
