@@ -4,18 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOSHINO KUROI | OFFICIAL PROFILE</title>
+    
+    <!-- SEO & Social Sharing -->
+    <meta name="description" content="Official Profile of Hoshino Kuroi - Space Fennec Explorer VTuber">
+    <meta property="og:title" content="HOSHINO KUROI | OFFICIAL PROFILE">
+    <meta property="og:description" content="Explore the journey of the Space Fennec across the galaxy.">
+    <meta property="og:image" content="HoshinoKLogo.png">
+    <meta name="twitter:card" content="summary_large_image">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Maitree:wght@400;700&family=Rajdhani:wght@500;700&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
-:root {
-    --neon-blue: #00d2ff;
-    --cyber-dark: #020617;
-    --card-bg: rgba(15, 23, 42, 0.8);
-    --accent-blue: #3b82f6;
-    --neon-yellow: #ffff00; 
-}
+        :root {
+            --neon-blue: #00d2ff;
+            --cyber-dark: #020617;
+            --card-bg: rgba(15, 23, 42, 0.8);
+            --accent-blue: #3b82f6;
+            --neon-yellow: #ffff00; 
+        }
+
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
 
         body::before {
             content: "";
@@ -40,6 +51,27 @@
             overflow-x: hidden;
             cursor: none; 
         }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--cyber-dark);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        .loader-ring {
+            width: 80px; height: 80px;
+            border: 2px solid rgba(0, 210, 255, 0.1);
+            border-top: 2px solid var(--neon-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         #bg-canvas {
             position: fixed;
@@ -199,18 +231,40 @@
         }
 
         #visitor-counter {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    border: 1px solid var(--neon-blue);
-    padding: 4px 12px;
-    font-family: 'JetBrains Mono';
-    font-size: 10px;
-    color: var(--neon-blue);
-    z-index: 100;
-}
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--neon-blue);
+            padding: 4px 12px;
+            font-family: 'JetBrains Mono';
+            font-size: 10px;
+            color: var(--neon-blue);
+            z-index: 100;
+        }
 
+        /* Back to Top */
+        #back-to-top {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: none;
+            z-index: 101;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            clip-path: polygon(50% 0%, 100% 50%, 100% 100%, 0 100%, 0 50%);
+        }
+        #back-to-top.visible { opacity: 1; visibility: visible; }
+        #back-to-top:hover { background: var(--neon-blue); color: black; box-shadow: 0 0 15px var(--neon-blue); }
 
         .slider-container {
             position: relative;
@@ -320,7 +374,6 @@
             object-fit: cover;
         }
 
-        /* FanArt Grid Styles */
         .fanart-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -376,21 +429,26 @@
             box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
         }
         .submit-fanart-btn {
-    background: rgba(255, 255, 0, 0.1);
-    border: 1px solid var(--neon-yellow);
-    color: var(--neon-yellow);
-    transition: all 0.3s;
-}
-
-.submit-fanart-btn:hover {
-    background: var(--neon-yellow);
-    color: black;
-    box-shadow: 0 0 20px var(--neon-yellow);
-}
+            background: rgba(255, 255, 0, 0.1);
+            border: 1px solid var(--neon-yellow);
+            color: var(--neon-yellow);
+            transition: all 0.3s;
+        }
+        .submit-fanart-btn:hover {
+            background: var(--neon-yellow);
+            color: black;
+            box-shadow: 0 0 20px var(--neon-yellow);
+        }
 
     </style>
 </head>
 <body class="p-4 md:p-8 lg:p-12">
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-ring"></div>
+        <p class="mt-4 font-mono text-xs text-blue-400 animate-pulse tracking-widest uppercase">Initializing Fennec_OS...</p>
+    </div>
+
     <div id="custom-cursor"><div class="cursor-ring"></div></div>
     <canvas id="bg-canvas"></canvas>
 
@@ -401,6 +459,11 @@
     </div>
 
     <div id="lightbox" onclick="closeFullImage()"><img id="lightbox-img" src="" alt="Full View"></div>
+
+    <!-- Back to Top -->
+    <button id="back-to-top" onclick="window.scrollTo(0,0)" title="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <div class="fixed top-4 right-4 z-50 flex gap-2">
         <button onclick="setGlobalLang('th')" id="gbtn-th" class="px-4 py-1 text-xs border border-blue-500 bg-blue-500 text-black font-bold rounded">TH</button>
@@ -460,7 +523,7 @@
             <div class="tech-card p-6">
                 <div class="section-title"><i class="fas fa-trophy text-yellow-500"></i> <span data-key="awards">Awards & Achievements</span></div>
                 <div class="group cursor-zoom-in" onclick="openFullImage('REALITYPOSTER.jpg')">
-                    <img src="REALITYPOSTER.jpg" class="w-full h-48 object-cover border border-blue-500/30 rounded brightness-90 group-hover:brightness-110 transition-all" alt="Award Image">
+                    <img src="REALITYPOSTER.jpg" class="w-full h-48 object-cover border border-blue-500/30 rounded brightness-90 group-hover:brightness-110 transition-all" alt="Award Image" loading="lazy">
                     <div class="absolute bottom-4 right-4 bg-black/70 px-3 py-1 text-[10px] font-bold text-blue-400 uppercase tracking-widest z-20" data-key="click_hint">Click to expand image</div>
                     <div class="mt-2 text-center">
                         <p class="text-xs font-bold text-blue-400 uppercase tracking-widest" data-key="award-name">REALITY Official Award 渋谷ポスターイベント【11位】</p>
@@ -513,18 +576,17 @@
                 <div class="lg:col-span-5 tech-card overflow-hidden">
                     <div class="bg-blue-500 text-black px-4 py-1 text-[10px] font-bold">VIDEO SHOWCASE</div>
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/uvWG-otglbg?si=APN3xIO23XcmCFRr" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/uvWG-otglbg?si=APN3xIO23XcmCFRr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
 
-                        <!-- DESIGN SHEET SECTION -->
+            <!-- DESIGN SHEET SECTION -->
             <div class="tech-card p-6">
                 <div class="section-title"><i class="fas fa-swatchbook"></i> <span data-key="designers">Design Sheet</span></div>
                 <div class="cursor-zoom-in group relative" onclick="openFullImage('HoshinoCarSheet.jpg')">
                     <div class="absolute inset-0 border-2 border-transparent group-hover:border-blue-500 transition-all z-10"></div>
-                    <!--  -->
-                    <img src="HoshinoCarSheet.jpg" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-all" alt="Character Design Sheet">
+                    <img src="HoshinoCarSheet.jpg" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-all" alt="Character Design Sheet" loading="lazy">
                     <div class="absolute bottom-4 right-4 bg-black/70 px-3 py-1 text-[10px] font-bold text-blue-400 uppercase tracking-widest z-20" data-key="click_hint">Click to expand image</div>
                 </div>
             </div>
@@ -533,13 +595,13 @@
                 <div class="tech-card p-6">
                     <div class="section-title"><i class="fas fa-hand-holding-heart"></i> <span data-key="interaction">Interaction</span></div>
                     <div class="grid grid-cols-2 gap-3">
-                        <a href="https://tipme.in.th/hoshino440tip" target="_blank" class="p-3 bg-blue-500/10 border border-blue-500/30 text-center hover:bg-blue-500 hover:text-black transition-all">
+                        <a href="https://tipme.in.th/hoshino440tip" target="_blank" rel="noopener noreferrer" class="p-3 bg-blue-500/10 border border-blue-500/30 text-center hover:bg-blue-500 hover:text-black transition-all">
                             <i class="fas fa-donate mb-1 block"></i><span class="text-[10px] font-bold">DONATION</span>
                         </a>
-                        <a href="https://marshmallow-qa.com/zncxf2lkkb4cmet" target="_blank" class="p-3 bg-pink-500/10 border border-pink-500/30 text-center hover:bg-pink-500 hover:text-black transition-all">
+                        <a href="https://marshmallow-qa.com/zncxf2lkkb4cmet" target="_blank" rel="noopener noreferrer" class="p-3 bg-pink-500/10 border border-pink-500/30 text-center hover:bg-pink-500 hover:text-black transition-all">
                             <i class="fas fa-comment-dots mb-1 block"></i><span class="text-[10px] font-bold">MARSHMALLOW</span>
                         </a>
-                        <a href="https://forms.gle/Qk2nEGb4q1baQoHt7" target="_blank" class="submit-fanart-btn p-3 text-center transition-all flex items-center justify-center gap-2">
+                        <a href="https://forms.gle/Qk2nEGb4q1baQoHt7" target="_blank" rel="noopener noreferrer" class="submit-fanart-btn p-3 text-center transition-all flex items-center justify-center gap-2">
                             <i class="fas fa-paint-brush"></i>
                             <span class="text-[10px] font-bold">SUBMIT YOUR FANART</span>
                         </a>
@@ -548,16 +610,17 @@
                 <div class="tech-card p-6">
                     <div class="section-title"><i class="fas fa-share-alt"></i> <span data-key="social-links">Social Links</span></div>
                     <div class="flex flex-wrap gap-4 justify-center">
-                        <a href="https://youtube.com/@hoshinokuroi440" target="_blank" class="social-link"><i class="fab fa-youtube text-red-500 text-xl"></i><span class="text-[8px]">youtube</span></a>
-                        <a href="https://www.twitch.tv/hoshino_kuroi" target="_blank" class="social-link"><i class="fab fa-twitch text-purple-500 text-xl"></i><span class="text-[8px]">Twitch</span></a>
-                        <a href="https://x.com/HoshinoKuroi" target="_blank" class="social-link"><i class="fab fa-twitter text-white text-xl"></i><span class="text-[8px]">X (Twitter)</span></a>
-                        <a href="https://www.tiktok.com/@hoshino440" target="_blank" class="social-link"><i class="fab fa-tiktok text-pink-400 text-xl"></i><span class="text-[8px]">Tiktok</span></a>
-                        <a href="https://www.facebook.com/HoshinoKuroiCh/" target="_blank" class="social-link"><i class="fab fa-facebook text-blue-600 text-xl"></i><span class="text-[8px]">Facebook</span></a>
-                        <a href="https://bsky.app/profile/hoshinokuroi.bsky.social" target="_blank" class="social-link"><i class="fas fa-cloud text-blue-400 text-xl"></i><span class="text-[8px]">BlueSky</span></a>
-                        <a href="https://www.instagram.com/hoshino_kuroi/" target="_blank" class="social-link"><i class="fab fa-instagram text-pink-500 text-xl"></i><span class="text-[8px]">Instargram</span></a>
-                        <a href="https://steamcommunity.com/id/Hoshino_Kuroi/" target="_blank" class="social-link"><i class="fab fa-steam text-slate-400 text-xl"></i><span class="text-[8px]">Steam</span></a>
-                        <a href="https://discord.gg/NQjyaZtxfx" target="_blank" class="social-link"><i class="fab fa-discord text-indigo-400 text-xl"></i><span class="text-[8px]">Discord Community</span></a>
-                        <a href="https://reality.app/profile/cfb2af20" target="_blank" class="social-link"><i class="fas fa-star text-yellow-500 text-xl"></i><span class="text-[8px]">REALITY</span></a>
+                        <!-- Standardize all social links with security attributes -->
+                        <a href="https://youtube.com/@hoshinokuroi440" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-youtube text-red-500 text-xl"></i><span class="text-[8px]">youtube</span></a>
+                        <a href="https://www.twitch.tv/hoshino_kuroi" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-twitch text-purple-500 text-xl"></i><span class="text-[8px]">Twitch</span></a>
+                        <a href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-twitter text-white text-xl"></i><span class="text-[8px]">X (Twitter)</span></a>
+                        <a href="https://www.tiktok.com/@hoshino440" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-tiktok text-pink-400 text-xl"></i><span class="text-[8px]">Tiktok</span></a>
+                        <a href="https://www.facebook.com/HoshinoKuroiCh/" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-facebook text-blue-600 text-xl"></i><span class="text-[8px]">Facebook</span></a>
+                        <a href="https://bsky.app/profile/hoshinokuroi.bsky.social" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fas fa-cloud text-blue-400 text-xl"></i><span class="text-[8px]">BlueSky</span></a>
+                        <a href="https://www.instagram.com/hoshino_kuroi/" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-instagram text-pink-500 text-xl"></i><span class="text-[8px]">Instargram</span></a>
+                        <a href="https://steamcommunity.com/id/Hoshino_Kuroi/" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-steam text-slate-400 text-xl"></i><span class="text-[8px]">Steam</span></a>
+                        <a href="https://discord.gg/NQjyaZtxfx" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-discord text-indigo-400 text-xl"></i><span class="text-[8px]">Discord Community</span></a>
+                        <a href="https://reality.app/profile/cfb2af20" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fas fa-star text-yellow-500 text-xl"></i><span class="text-[8px]">REALITY</span></a>
                     </div>
                 </div>
             </div>
@@ -567,31 +630,28 @@
                     <div class="section-title"><span data-key="designers">Designers</span></div>
                     <div class="space-y-4">
                         <div class="flex items-center gap-3">
-                            <img src="https://pbs.twimg.com/profile_images/2016109277442932740/eOz5WnYg_400x400.jpg" class="staff-avatar">
-                            <div><p class="font-bold text-blue-400">Live2D: Inumaru Atsuki</p><p class="opacity-50">Illust / Rigger</p><a href="https://x.com/Inumaru_Atsuki" class="text-[10px] text-blue-500 underline">@Inumaru_Atsuki</a></div>
+                            <img src="https://pbs.twimg.com/profile_images/2016109277442932740/eOz5WnYg_400x400.jpg" class="staff-avatar" alt="Inumaru Atsuki">
+                            <div><p class="font-bold text-blue-400">Live2D: Inumaru Atsuki</p><p class="opacity-50">Illust / Rigger</p><a href="https://x.com/Inumaru_Atsuki" target="_blank" rel="noopener noreferrer" class="text-[10px] text-blue-500 underline">@Inumaru_Atsuki</a></div>
                         </div>
                         <div class="flex items-center gap-3">
-                            <img src="https://pbs.twimg.com/profile_images/2010344295765848065/-ldiJ5q8_400x400.jpg" class="staff-avatar">
-                            <div><p class="font-bold text-blue-400">Logo: Hoshino Kuroi</p><p class="opacity-50">Self Illust / Design</p><a href="https://x.com/HoshinoKuroi" class="text-[10px] text-blue-500 underline">@HoshinoKuroi</a></div>
+                            <img src="https://pbs.twimg.com/profile_images/2010344295765848065/-ldiJ5q8_400x400.jpg" class="staff-avatar" alt="Hoshino Kuroi">
+                            <div><p class="font-bold text-blue-400">Logo: Hoshino Kuroi</p><p class="opacity-50">Self Illust / Design</p><a href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener noreferrer" class="text-[10px] text-blue-500 underline">@HoshinoKuroi</a></div>
                         </div>
                     </div>
                 </div>
                 <div class="tech-card p-6 text-xs">
                     <div class="section-title"><span data-key="special-thanks">Special Thanks</span></div>
                     <div class="space-y-3">
-                        <div class="flex items-center gap-3 opacity-80"><img src="https://pbs.twimg.com/profile_images/2016109277442932740/eOz5WnYg_400x400.jpg" class="staff-avatar w-8 h-8"><div><p class="font-bold">Atsuki | アツキ</p><p class="text-[10px] opacity-50"><a href="https://x.com/Inumaru_Atsuki" class="text-[10px] text-blue-500 underline">@Inumaru_Atsuki</a></p></div></div>
-                        <div class="flex items-center gap-3 opacity-80"><img src="https://pbs.twimg.com/profile_images/1455772138666094592/M_GXBVdj_400x400.jpg" class="staff-avatar w-8 h-8"><div><p class="font-bold">Gen</p><p class="text-[10px] opacity-50"><a href="https://x.com/genREALITY1" class="text-[10px] text-blue-500 underline">@genREALITY1</a></p></div></div>
-                        <div class="flex items-center gap-3 opacity-80"><img src="https://pbs.twimg.com/profile_images/1798231371510579200/V5VuJ1ux_400x400.jpg" class="staff-avatar w-8 h-8"><div><p class="font-bold">帆宮サイ (Boguu Sai)</p><p class="text-[10px] opacity-50"><a href="https://x.com/sai_boguu" class="text-[10px] text-blue-500 underline">@sai_boguu</a></p></div></div>
+                        <div class="flex items-center gap-3 opacity-80"><img src="https://pbs.twimg.com/profile_images/2016109277442932740/eOz5WnYg_400x400.jpg" class="staff-avatar w-8 h-8" alt="Atsuki"><div><p class="font-bold">Atsuki | アツキ</p><p class="text-[10px] opacity-50"><a href="https://x.com/Inumaru_Atsuki" target="_blank" rel="noopener noreferrer" class="text-[10px] text-blue-500 underline">@Inumaru_Atsuki</a></p></div></div>
+                        <div class="flex items-center gap-3 opacity-80"><img src="https://pbs.twimg.com/profile_images/1455772138666094592/M_GXBVdj_400x400.jpg" class="staff-avatar w-8 h-8" alt="Gen"><div><p class="font-bold">Gen</p><p class="text-[10px] opacity-50"><a href="https://x.com/genREALITY1" target="_blank" rel="noopener noreferrer" class="text-[10px] text-blue-500 underline">@genREALITY1</a></p></div></div>
+                        <div class="flex items-center gap-3 opacity-80"><img src="https://pbs.twimg.com/profile_images/1798231371510579200/V5VuJ1ux_400x400.jpg" class="staff-avatar w-8 h-8" alt="Boguu Sai"><div><p class="font-bold">帆宮サイ (Boguu Sai)</p><p class="text-[10px] opacity-50"><a href="https://x.com/sai_boguu" target="_blank" rel="noopener noreferrer" class="text-[10px] text-blue-500 underline">@sai_boguu</a></p></div></div>
                     </div>
                 </div>
             </div>
 
-            <!-- FANART GALLERY (MOVED TO BOTTOM & ADDED ARTIST CREDIT) -->
             <div class="tech-card p-6 mb-12">
                 <div class="section-title"><i class="fas fa-paint-brush"></i> <span data-key="fanart-gallery">FanArt Gallery</span></div>
-                <div class="fanart-grid" id="fanart-container">
-                    <!-- FanArt items with credits will be injected here -->
-                </div>
+                <div class="fanart-grid" id="fanart-container"></div>
             </div>
 
             <div id="visitor-counter">ACCESS_LOG: <span id="view-count">000000</span></div>
@@ -600,7 +660,6 @@
     </div>
 
     <script>
-        // FanArt Data with Credits
         const fanartData = [
             { url: 'HoshijinArt1.png', artist: '☀solar_drago🔥' },
             { url: 'HoshijinArt2.png', artist: '☀solar_drago🔥' },
@@ -632,7 +691,7 @@
             jp: {
                 "sub-title": "宇宙のフェネック探検家", "birthday": "誕生日", "october": "10月", "height": "身長", "age": "年齢", "years": "歳", "languages": "対応言語", "lang-th": "タイ語 (母国語)", "lang-jp": "日本語 (初級)", "lang-en": "英語 (初級)", "schedule": "週間配信スケジュール", "biography": "プロフィール", "likes": "好きなこと / 趣味", "dislikes": "苦手なもの", "goals": "今後の目標", "interaction": "応援とQ&A", "social-links": "SNSリンク", "designers": "制作・デザイン", "special-thanks": "スペシャルサンクス", "click_hint": "クリックして拡大", "fanart-gallery": "ファンアートギャラリー", "awards": "受賞歴และ実績", "award-name": "REALITY公式アワード 渋谷ポスターイベント【11位】",
                 "mon": "月", "tue": "火", "wed": "水", "thu": "木", "fri": "金", "sat": "土", "sun": "日", "off": "お休み 💤",
-                "bio": "「遥か彼方の星から、地球のゲームと美食を求めてやってきた！」 🦊🌌\n\n遠い銀河に浮かぶ惑星**「Starloid（スターロイド）」で生まれた一匹のフェネックギツネ。彼は好奇心に突き動かされ、「宇宙一の美食」**を探すために銀河中を旅していました。🍜✨\n\nしかし、偶然たどり着いた**「地球」で彼の運命は一変します。未知の美味しい料理はもちろん、何よりも彼を虜にしたのは「日本文化」と「ゲーム」**の世界でした。画面の中で繰り広げられる冒険に夢中になり、気づけば昼夜を忘れてコントローラーを握りしめる毎日に。🎮\n\n「この楽しさを、みんなと共有したい！」そう決意した彼は、ゲーマーVTuberとして新たな旅を始めました。美味しいものを食べ、大好きなゲームを楽しみながら、地球の皆さんと最高の時間を過ごしたいと思っています！🌏💖",
+                "bio": "「遥か彼方の星から、地球のゲームと美食を求めてやってきた！」 🦊🌌\n\n遠い銀河に浮かぶ惑星**「Starloid（スターロイド）」で生まれた一匹のフェネックギツネ。彼は好奇心に突き動かされ、「宇宙一の美食」**を探すために銀河中を旅していました。🍜✨\n\nしかし、偶然たどり着いた**「地球」で彼の運命は一変します。未知の美味しい料理はもちろん、何よりも彼を虜にしたのは「日本文化」และ「ゲーム」**の世界でした。画面の中で繰り広げられる冒険に夢中になり、気づけば昼夜を忘れてコントローラーを握りしめる毎日に。🎮\n\n「この楽しさを、みんなと共有したい！」そう決意した彼は、ゲーマーVTuberとして新たな旅を始めました。美味しいものを食べ、大好きなゲームを楽しみながら、地球の皆さんと最高の時間を過ごしたいと思っています！🌏💖",
                 "likes-items": ["美味しい食べ物", "邦楽", "ゲーム 🎮", "イラスト 🎨", "アニメ", "グルメ巡り 🍜", "猫とフェネック", "寝ること 💤"],
                 "dislikes-items": ["突然の大きな音", "雷 ⚡", "美味しくない食べ物"],
                 "goals-items": ["日本語を自然に話せるようになる！", "日本の配信者とたくさんコラボする！", "一生に一度は日本へ旅行する！", "YouTubeの銀の盾を手に入れる！"]
@@ -640,13 +699,12 @@
         };
 
         function initVisitorCounter() {
-    let count = localStorage.getItem('kuroi_visitor_count') || 1024;
-    count = parseInt(count) + 1;
-    localStorage.setItem('kuroi_visitor_count', count);
-    document.getElementById('view-count').innerText = count.toString().padStart(6, '0');
-}
+            let count = localStorage.getItem('kuroi_visitor_count') || 1024;
+            count = parseInt(count) + 1;
+            localStorage.setItem('kuroi_visitor_count', count);
+            document.getElementById('view-count').innerText = count.toString().padStart(6, '0');
+        }
 
-        
         function openFullImage(url) {
             const lb = document.getElementById('lightbox');
             const lbImg = document.getElementById('lightbox-img');
@@ -717,8 +775,8 @@
                         <p class="text-[9px] leading-tight opacity-70">${content}</p>
                     </div>`;
             });
-            document.querySelectorAll('[id^="gbtn-"]').forEach(b => b.className = "px-4 py-1 text-xs border border-blue-500 font-bold rounded");
-            document.getElementById(`gbtn-${lang}`).className = "px-4 py-1 text-xs border border-blue-500 bg-blue-500 text-black font-bold rounded";
+            document.querySelectorAll('[id^="gbtn-"]').forEach(b => b.className = "px-4 py-1 text-xs border border-blue-500 font-bold rounded cursor-none");
+            document.getElementById(`gbtn-${lang}`).className = "px-4 py-1 text-xs border border-blue-500 bg-blue-500 text-black font-bold rounded cursor-none";
             renderFanart(lang);
         }
 
@@ -737,7 +795,7 @@
                 container.innerHTML += `
                     <div class="fanart-item">
                         <div class="fanart-img-wrapper" onclick="openFullImage('${item.url}')">
-                            <img src="${item.url}" alt="Fanart by ${item.artist}">
+                            <img src="${item.url}" alt="Fanart by ${item.artist}" loading="lazy">
                         </div>
                         <div class="artist-credit">By: ${item.artist}</div>
                     </div>
@@ -791,11 +849,20 @@
             }
             requestAnimationFrame(animate);
         }
+
         const cursor = document.getElementById('custom-cursor');
+        const bttBtn = document.getElementById('back-to-top');
+
         window.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
             if (Math.random() > 0.7) particles.push(new Particle(e.clientX, e.clientY, Math.random() > 0.8, true));
         });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) bttBtn.classList.add('visible');
+            else bttBtn.classList.remove('visible');
+        });
+
         window.addEventListener('mousedown', (e) => {
             cursor.style.width = '20px'; cursor.style.height = '20px';
             const ripple = document.createElement('div'); ripple.className = 'click-ripple';
@@ -815,21 +882,17 @@
         window.addEventListener('resize', initCanvas);
         window.onload = () => {
             setGlobalLang('th');
+            initVisitorCounter();
             setInterval(() => moveSlide(1), 10000);
             initCanvas(); setupParticles(); animate(); updateTerminal();
+            
+            // Hide loading screen
+            setTimeout(() => {
+                const loader = document.getElementById('loading-screen');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }, 1500);
         };
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
