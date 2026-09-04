@@ -434,16 +434,19 @@
     </div>
 
     <!-- SECTION 1: HERO / FULL SCREEN FIRST PAGE (ตามไฟล์แนบ Header1.jpg ไม่มีขอบเหลือ เลื่อนตามไม่ได้) -->
-    <section class="hero-fullscreen-section">
-        <div class="absolute inset-0 z-0 w-full h-full">
-            <img src="Header1.png" alt="Hoshino Kuroi Header" class="w-full h-full object-cover">
-        </div>
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-center">
-            <a href="#main-content" class="inline-flex items-center justify-center w-12 h-12 rounded-full border border-cyan-400 bg-cyan-400/10 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all animate-pulse">
-                <i class="fas fa-chevron-down"></i>
-            </a>
-        </div>
-    </section>
+<section class="relative w-screen h-screen overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0 w-full h-full">
+        <img src="Header1.png" alt="Hoshino Kuroi Header" class="w-full h-full object-cover">
+    </div>
+    
+    <!-- Scroll Down Button (Responsive Positioning) -->
+    <div class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-10 text-center">
+        <a href="#main-content" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border border-cyan-400 bg-cyan-400/10 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all animate-pulse">
+            <i class="fas fa-chevron-down text-sm md:text-base"></i>
+        </a>
+    </div>
+</section>
 
     <!-- SECTION 2: MAIN PROFILE GRID -->
     <section id="main-content" class="scroll-section max-w-[1400px] mx-auto w-full px-4 md:px-8">
