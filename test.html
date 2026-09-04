@@ -44,9 +44,22 @@
             scroll-snap-type: y mandatory;
         }
 
+        /* สำหรับหน้าแรก: เต็มจอ Fixed ไม่ให้เลื่อนตาม และไม่มีขอบ */
+        .hero-fullscreen-section {
+            width: 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
         .scroll-section {
             min-height: 100vh;
             scroll-snap-align: start;
+            scroll-snap-stop: always;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -77,6 +90,8 @@
             overflow-x: hidden;
             cursor: none;
             transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 0;
         }
 
         /* --- LOADING SCREEN --- */
@@ -381,7 +396,7 @@
         .good-item:hover img { transform: scale(1.15); }
     </style>
 </head>
-<body class="p-4 md:p-8 lg:p-12">
+<body class="m-0 p-0">
     <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="loader-banner-container mb-6">
@@ -418,18 +433,15 @@
         <button onclick="setGlobalLang('jp')" id="gbtn-jp" class="lang-btn">🇯🇵 JP</button>
     </div>
 
-    <!-- SECTION 1: HERO / FULL SCREEN FIRST PAGE -->
-    <section class="scroll-section relative w-full h-screen flex items-center justify-center p-0 overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="Header1.png" alt="Hoshino Kuroi Hero Background" class="w-full h-full object-cover filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-black/40"></div>
+    <!-- SECTION 1: HERO / FULL SCREEN FIRST PAGE (ตามไฟล์แนบ Header1.jpg ไม่มีขอบเหลือ เลื่อนตามไม่ได้) -->
+    <section class="hero-fullscreen-section">
+        <div class="absolute inset-0 z-0 w-full h-full">
+            <img src="Header1.jpg" alt="Hoshino Kuroi Hero Background" class="w-full h-full object-cover">
         </div>
-        <div class="relative z-10 text-center max-w-4xl mx-auto px-4 mt-auto pb-16">
-            <div class="mt-8">
-                <a href="#main-content" class="inline-flex items-center justify-center w-12 h-12 rounded-full border border-cyan-400 bg-cyan-400/10 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all animate-pulse">
-                    <i class="fas fa-chevron-down"></i>
-                </a>
-            </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-center">
+            <a href="#main-content" class="inline-flex items-center justify-center w-12 h-12 rounded-full border border-cyan-400 bg-cyan-400/10 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all animate-pulse">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </div>
     </section>
 
