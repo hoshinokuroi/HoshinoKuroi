@@ -1,4 +1,4 @@
-0<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -15,53 +15,59 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Maitree:wght@400;700&family=Rajdhani:wght@500;700&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Maitree:wght@400;700&family=Rajdhani:wght@500;700&family=Noto+Sans+JP:wght@400;700;900&family=Yuji+Syuku&display=swap');
 
         :root {
             --neon-blue: #00d2ff;
-            --cyber-dark: #020617;
-            --card-bg: rgba(15, 23, 42, 0.8);
+            --cyber-dark: #030712;
+            --card-bg: rgba(11, 19, 43, 0.78);
             --accent-blue: #3b82f6;
-            --neon-yellow: #ffff00; 
+            --neon-yellow: #ffff00;
+            --torii-glow: rgba(0, 210, 255, 0.35);
         }
 
-		/* --- Goods Styling --- */
-.good-item {
-    transition: all 0.3s;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.good-item:last-child { border-bottom: none; }
-.good-item:hover { background: rgba(0, 210, 255, 0.08); }
+        /* --- Goods Styling --- */
+        .good-item {
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .good-item:last-child { border-bottom: none; }
+        .good-item:hover { 
+            background: rgba(0, 210, 255, 0.08); 
+            border-left: 2px solid var(--neon-blue);
+        }
 
-.good-img-container {
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
-    border: 1px solid rgba(0, 210, 255, 0.3);
-    overflow: hidden;
-    position: relative;
-}
-.good-img-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-.good-item:hover img { transform: scale(1.2); }
+        .good-img-container {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        .good-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .good-item:hover img { transform: scale(1.15); }
 
         /* Smooth Scroll */
         html { scroll-behavior: smooth; }
 
+        /* Scanline & Japanese Seigaiha / Cyber Wave Overlay */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-            background-size: 100% 4px, 3px 100%;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                radial-gradient(circle at 50% 50%, transparent 60%, rgba(2, 6, 23, 0.8) 100%);
+            background-size: 100% 4px, 100% 100%;
             z-index: 1000;
             pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.45;
         }
 
         body {
@@ -69,8 +75,9 @@
             color: #f1f5f9;
             font-family: 'Rajdhani', 'Maitree', 'Noto Sans JP', sans-serif;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(0, 210, 255, 0.1) 0%, transparent 40%);
+                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(0, 210, 255, 0.15) 0%, transparent 45%),
+                linear-gradient(to bottom, rgba(3, 7, 18, 0.95), rgba(3, 7, 18, 0.98));
             background-attachment: fixed;
             overflow-x: hidden;
             cursor: none; 
@@ -89,11 +96,12 @@
             transition: opacity 0.5s ease;
         }
         .loader-ring {
-            width: 80px; height: 80px;
+            width: 85px; height: 85px;
             border: 2px solid rgba(0, 210, 255, 0.1);
             border-top: 2px solid var(--neon-blue);
+            border-right: 2px solid var(--accent-blue);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -107,8 +115,8 @@
 
         #custom-cursor {
             position: fixed;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border: 1px solid var(--neon-blue);
             border-radius: 50%;
             pointer-events: none;
@@ -116,6 +124,7 @@
             transform: translate(-50%, -50%);
             transition: width 0.2s, height 0.2s;
             mix-blend-mode: screen;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
         }
         #custom-cursor::after {
             content: '';
@@ -131,7 +140,7 @@
             inset: -4px;
             border: 1px dashed var(--neon-blue);
             border-radius: 50%;
-            animation: rotate 4s linear infinite;
+            animation: rotate 6s linear infinite;
         }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
@@ -145,24 +154,24 @@
             transform: translate(-50%, -50%);
         }
         @keyframes ripple {
-            0% { width: 0; height: 0; opacity: 1; border-width: 4px; }
-            100% { width: 100px; height: 100px; opacity: 0; border-width: 1px; }
+            0% { width: 0; height: 0; opacity: 1; border-width: 3px; }
+            100% { width: 90px; height: 90px; opacity: 0; border-width: 1px; }
         }
 
         .cyber-terminal {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            width: 220px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid var(--neon-blue);
-            padding: 8px;
+            width: 240px;
+            background: rgba(3, 7, 18, 0.9);
+            border: 1px solid rgba(0, 210, 255, 0.4);
+            padding: 10px;
             font-family: 'JetBrains Mono';
             font-size: 9px;
             color: var(--neon-blue);
             z-index: 90;
-            clip-path: polygon(0 0, 90% 0, 100% 20%, 100% 100%, 0 100%);
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+            clip-path: polygon(0 0, 88% 0, 100% 18%, 100% 100%, 0 100%);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.15);
             display: none;
         }
         @media (min-width: 1280px) { .cyber-terminal { display: block; } }
@@ -175,16 +184,24 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+        /* Cyber-Wafuku Styled Cards */
         .tech-card {
             background: var(--card-bg);
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.25);
             position: relative;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
+        /* Cyber Corner Cuts */
         .tech-card::before {
-            content: ''; position: absolute; top: -1px; left: -1px; width: 10px; height: 10px;
+            content: ''; position: absolute; top: -1px; left: -1px; width: 12px; height: 12px;
             border-top: 2px solid var(--neon-blue); border-left: 2px solid var(--neon-blue);
+        }
+        .tech-card::after {
+            content: ''; position: absolute; bottom: -1px; right: -1px; width: 12px; height: 12px;
+            border-bottom: 2px solid var(--neon-blue); border-right: 2px solid var(--neon-blue);
         }
 
         .section-title {
@@ -199,28 +216,30 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            text-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
         }
 
         .schedule-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
             gap: 0.5rem;
         }
 
         .schedule-item {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 0.75rem;
             text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            border-radius: 2px;
         }
 
         .schedule-item.active {
             border-color: var(--neon-blue);
-            background: rgba(0, 210, 255, 0.1);
-            box-shadow: inset 0 0 10px rgba(0, 210, 255, 0.1);
+            background: rgba(0, 210, 255, 0.08);
+            box-shadow: inset 0 0 12px rgba(0, 210, 255, 0.15);
         }
 
         .platform-tag {
@@ -233,13 +252,14 @@
 
         .lang-progress {
             height: 4px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.08);
             overflow: hidden;
+            border-radius: 2px;
         }
 
         .lang-progress-fill {
             height: 100%;
-            background: var(--neon-blue);
+            background: linear-gradient(90deg, #3b82f6, var(--neon-blue));
             box-shadow: 0 0 8px var(--neon-blue);
         }
 
@@ -248,6 +268,7 @@
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
+            border-radius: 2px;
         }
 
         .video-container iframe {
@@ -258,13 +279,14 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(3, 7, 18, 0.85);
             border: 1px solid var(--neon-blue);
             padding: 4px 12px;
             font-family: 'JetBrains Mono';
             font-size: 10px;
             color: var(--neon-blue);
             z-index: 100;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
         }
 
         /* Back to Top */
@@ -274,7 +296,7 @@
             right: 20px;
             width: 40px;
             height: 40px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(3, 7, 18, 0.9);
             border: 1px solid var(--neon-blue);
             color: var(--neon-blue);
             display: flex;
@@ -301,11 +323,11 @@
             position: absolute;
             inset: 0;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
         .slide.active {
@@ -314,18 +336,18 @@
         }
 
         .slide img {
-            max-height: 92%;
+            max-height: 94%;
             object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3));
+            filter: drop-shadow(0 0 25px rgba(0, 210, 255, 0.25));
         }
 
         .slider-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(3, 7, 18, 0.6);
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.3);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -341,10 +363,11 @@
             background: var(--neon-blue);
             color: black;
             border-color: var(--neon-blue);
+            box-shadow: 0 0 12px var(--neon-blue);
         }
 
-        .slider-btn.prev { left: 10px; }
-        .slider-btn.next { right: 10px; }
+        .slider-btn.prev { left: 12px; }
+        .slider-btn.next { right: 12px; }
 
         .slider-dots {
             position: absolute;
@@ -366,13 +389,14 @@
 
         .dot.active {
             background: var(--neon-blue);
-            width: 20px;
+            width: 22px;
             border-radius: 10px;
+            box-shadow: 0 0 8px var(--neon-blue);
         }
 
         .social-link {
             transition: all 0.2s ease;
-            filter: grayscale(0.5);
+            filter: grayscale(0.4);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -381,26 +405,28 @@
 
         .social-link:hover {
             filter: grayscale(0);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
         .goal-item {
-            background: rgba(255,255,255,0.03);
-            border-left: 3px solid var(--accent-blue);
+            background: rgba(255,255,255,0.02);
+            border-left: 3px solid var(--neon-blue);
             padding: 0.75rem;
+            border-radius: 0 4px 4px 0;
         }
 
         .staff-avatar {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             border: 1px solid var(--neon-blue);
             object-fit: cover;
+            box-shadow: 0 0 8px rgba(0, 210, 255, 0.3);
         }
 
         .fanart-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             gap: 16px;
         }
         .fanart-item {
@@ -414,13 +440,13 @@
             border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
             cursor: zoom-in;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.4);
             position: relative;
         }
         .fanart-img-wrapper:hover {
             border-color: var(--neon-blue);
             transform: scale(1.02);
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.35);
             z-index: 10;
         }
         .fanart-img-wrapper img {
@@ -431,15 +457,15 @@
             color: var(--neon-blue);
             text-align: right;
             font-family: 'JetBrains Mono';
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         #lightbox {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
+            background: rgba(2, 6, 23, 0.95);
+            z-index: 10000;
             cursor: zoom-out;
             padding: 2rem;
             align-items: center;
@@ -450,26 +476,42 @@
             max-height: 90%;
             object-fit: contain;
             border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
+            box-shadow: 0 0 35px rgba(0, 210, 255, 0.3);
         }
         .submit-fanart-btn {
-            background: rgba(255, 255, 0, 0.1);
+            background: rgba(255, 255, 0, 0.08);
             border: 1px solid var(--neon-yellow);
             color: var(--neon-yellow);
             transition: all 0.3s;
         }
 		
+        .voice-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            transition: all 0.3s;
+        }
+        .voice-btn:hover {
+            background: rgba(0, 210, 255, 0.1);
+            border-color: var(--neon-blue);
+        }
 		.voice-btn.playing { 
-    background: var(--neon-blue); 
-    color: black; 
-    box-shadow: 0 0 20px var(--neon-blue); 
-    border-color: white; 
-}
+            background: var(--neon-blue); 
+            color: black; 
+            box-shadow: 0 0 20px var(--neon-blue); 
+            border-color: white; 
+        }
 
         .submit-fanart-btn:hover {
             background: var(--neon-yellow);
             color: black;
             box-shadow: 0 0 20px var(--neon-yellow);
+        }
+
+        /* Cyber-Wafuku Emblem Badge */
+        .wafuku-badge {
+            background: linear-gradient(135deg, rgba(0, 210, 255, 0.15), rgba(59, 130, 246, 0.05));
+            border: 1px solid rgba(0, 210, 255, 0.4);
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
         }
 
     </style>
@@ -478,14 +520,14 @@
     <!-- Loading Screen -->
     <div id="loading-screen">
         <div class="loader-ring"></div>
-        <p class="mt-4 font-mono text-xs text-blue-400 animate-pulse tracking-widest uppercase">Initializing Fennec_OS...</p>
+        <p class="mt-4 font-mono text-xs text-blue-400 animate-pulse tracking-widest uppercase">Initializing Fennec_OS // Space_Fox_Protocol...</p>
     </div>
 
     <div id="custom-cursor"><div class="cursor-ring"></div></div>
     <canvas id="bg-canvas"></canvas>
 
     <div class="cyber-terminal">
-        <div>> SYSTEM: ONLINE</div>
+        <div>> SYSTEM: ONLINE [KITSUNE_CORE]</div>
         <div id="terminal-log"></div>
         <div>> STATUS: EXPLORING <span class="terminal-cursor"></span></div>
     </div>
@@ -507,22 +549,26 @@
         
         <!-- LEFT COLUMN -->
         <div class="xl:col-span-4 flex flex-col gap-6">
-            <div class="tech-card p-4 flex justify-center bg-white/5">
-                <img src="HoshinoKLogo.png" alt="Official Logo" class="max-h-24 object-contain">
+            <div class="tech-card p-4 flex justify-center bg-white/5 relative overflow-hidden">
+                <div class="absolute -right-8 -top-8 text-7xl font-bold opacity-5 select-none pointer-events-none text-blue-400">狐星</div>
+                <img src="HoshinoKLogo.png" alt="Official Logo" class="max-h-24 object-contain relative z-10">
             </div>
 
-            <div class="tech-card aspect-[4/5] relative overflow-hidden bg-black">
-                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-transparent to-transparent z-20 pointer-events-none"></div>
+            <div class="tech-card aspect-[4/5] relative overflow-hidden bg-black/80">
+                <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent z-20 pointer-events-none"></div>
                 <div class="slider-container" id="character-slider">
                     <div class="slide active"><img src="HoshinoCT1.png" alt="Kuroi Pose 1"></div>
-                    <div class="slide"><img src="HoshinoCT2.png" class="opacity-70 scale-x-[-1]" alt="Kuroi Pose 2"></div>
-                    <div class="slide"><img src="HoshinoCT3.png" class="sepia brightness-75" alt="Kuroi Pose 3"></div>
+                    <div class="slide"><img src="HoshinoCT2.png" class="opacity-80 scale-x-[-1]" alt="Kuroi Pose 2"></div>
+                    <div class="slide"><img src="HoshinoCT3.png" class="sepia brightness-90" alt="Kuroi Pose 3"></div>
                 </div>
                 <button class="slider-btn prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
                 <button class="slider-btn next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
                 <div class="slider-dots" id="slider-dots"></div>
                 <div class="absolute bottom-6 left-6 z-30">
-                    <h2 class="text-4xl font-bold text-white tracking-tighter uppercase">Hoshino <span class="text-blue-500">Kuroi</span></h2>
+                    <div class="text-[10px] text-cyan-400 font-mono tracking-widest mb-1 flex items-center gap-1.5">
+                        <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> CYBER × 和風 SPACE FOX
+                    </div>
+                    <h2 class="text-4xl font-bold text-white tracking-tighter uppercase">Hoshino <span class="text-blue-400">Kuroi</span></h2>
                     <p class="text-blue-400 font-mono text-xs mt-1 uppercase tracking-widest" data-key="sub-title">Space Fennec Explorer</p>
                 </div>
             </div>
@@ -552,35 +598,35 @@
                 </div>
             </div>
 
-						<!-- FAVORITE FOOD MENU -->
+			<!-- FAVORITE FOOD MENU -->
             <div class="tech-card p-6">
                 <div class="section-title">
                     <i class="fas fa-utensils"></i>
                     <span data-key="fav-menu">Favorite Menu</span>
                 </div>
                 <div class="space-y-4">
-                    <div class="food-item p-2">
+                    <div class="food-item p-2 hover:bg-blue-500/5 transition rounded">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-bold" data-key="food-1">Salmon</span>
                             <span class="text-[10px] text-blue-400 font-mono">CODE: SLM-01</span>
                         </div>
                         <p class="text-[10px] opacity-60" data-key="food-1-desc">Fresh from the star-sea.</p>
                     </div>
-                    <div class="food-item p-2">
+                    <div class="food-item p-2 hover:bg-blue-500/5 transition rounded">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-bold" data-key="food-2">Udon</span>
                             <span class="text-[10px] text-blue-400 font-mono">CODE: UDN-02</span>
                         </div>
                         <p class="text-[10px] opacity-60" data-key="food-2-desc">Thick, chewy, and cosmic.</p>
                     </div>
-                    <div class="food-item p-2">
+                    <div class="food-item p-2 hover:bg-blue-500/5 transition rounded">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-bold" data-key="food-3">Beef Bowl</span>
                             <span class="text-[10px] text-blue-400 font-mono">CODE: GYU-03</span>
                         </div>
                         <p class="text-[10px] opacity-60" data-key="food-3-desc">The ultimate energy source.</p>
                     </div>
-                    <div class="food-item p-2">
+                    <div class="food-item p-2 hover:bg-blue-500/5 transition rounded">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-bold" data-key="food-4">Cocoa</span>
                             <span class="text-[10px] text-blue-400 font-mono">CODE: CCA-04</span>
@@ -592,7 +638,7 @@
 
             <div class="tech-card p-6">
                 <div class="section-title"><i class="fas fa-trophy text-yellow-500"></i> <span data-key="awards">Awards & Achievements</span></div>
-                <div class="group cursor-zoom-in" onclick="openFullImage('REALITYPOSTER.jpg')">
+                <div class="group cursor-zoom-in relative" onclick="openFullImage('REALITYPOSTER.jpg')">
                     <img src="REALITYPOSTER.jpg" class="w-full h-48 object-cover border border-blue-500/30 rounded brightness-90 group-hover:brightness-110 transition-all" alt="Award Image" loading="lazy">
                     <div class="absolute bottom-4 right-4 bg-black/70 px-3 py-1 text-[10px] font-bold text-blue-400 uppercase tracking-widest z-20" data-key="click_hint">Click to expand image</div>
                     <div class="mt-2 text-center">
@@ -602,26 +648,25 @@
             </div>
 			
 			<!-- OFFICIAL GOODS SECTION -->
-<div class="tech-card p-5">
-    <div class="section-title">
-        <i class="fas fa-shopping-cart"></i>
-        <span data-key="goods-title">Goods</span>
-    </div>
-    <div class="space-y-1">
-        <!-- Item 1: Line -->
-        <div class="good-item p-3 flex gap-4 items-center rounded-lg">
-            <div class="good-img-container">
-                <!-- ใส่ URL รูปสินค้าที่ src -->
-                <img src="GoodsLine.png" alt="Line Goods">
+            <div class="tech-card p-5">
+                <div class="section-title">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span data-key="goods-title">Goods</span>
+                </div>
+                <div class="space-y-1">
+                    <!-- Item 1: Line -->
+                    <div class="good-item p-3 flex gap-4 items-center rounded-lg">
+                        <div class="good-img-container">
+                            <img src="GoodsLine.png" alt="Line Goods">
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-[9px] text-blue-400 font-mono uppercase" data-key="cat-digital">Digital Content</p>
+                            <p class="text-sm font-bold leading-tight" data-key="good-1">Line Theme</p>
+                            <a href="https://store.line.me/themeshop/product/11be9ad5-4499-4331-8db7-0895c91bdcec/ja" target="_blank" rel="noopener noreferrer" class="inline-block mt-1 text-[10px] text-blue-300 hover:underline"><i class="fas fa-link mr-1"></i>Store Link</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="flex-1">
-                <p class="text-[9px] text-blue-400 font-mono uppercase" data-key="cat-digital">Digital Content</p>
-                <p class="text-sm font-bold leading-tight" data-key="good-1">Line Theme</p>
-                <a href="https://store.line.me/themeshop/product/11be9ad5-4499-4331-8db7-0895c91bdcec/ja" class="inline-block mt-1 text-[10px] text-blue-300 hover:underline"><i class="fas fa-link mr-1"></i>Store Link</a>
-            </div>
-        </div>
-    </div>
-</div>
 			
         </div>
 
@@ -629,12 +674,12 @@
         <div class="xl:col-span-8 flex flex-col gap-6">
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="tech-card p-4 bg-blue-500/10 border-l-4 border-l-blue-400">
-                    <p class="text-[10px] text-blue-400 font-mono uppercase tracking-widest">Art Tag</p>
+                <div class="tech-card p-4 bg-blue-500/10 border-l-4 border-l-cyan-400">
+                    <p class="text-[10px] text-cyan-400 font-mono uppercase tracking-widest">Art Tag</p>
                     <p class="text-xl font-bold">#HoshijinART</p>
                 </div>
-                <div class="tech-card p-4 bg-blue-500/10 border-l-4 border-l-blue-400">
-                    <p class="text-[10px] text-blue-400 font-mono uppercase tracking-widest">Fan Name</p>
+                <div class="tech-card p-4 bg-blue-500/10 border-l-4 border-l-cyan-400">
+                    <p class="text-[10px] text-cyan-400 font-mono uppercase tracking-widest">Fan Name</p>
                     <p class="text-xl font-bold">#HoshiKoro <span class="text-sm opacity-50 font-normal">/ #ホシコロ</span></p>
                 </div>
             </div>
@@ -667,7 +712,7 @@
                     <div class="space-y-3" id="goals-container"></div>
                 </div>
                 <div class="lg:col-span-5 tech-card overflow-hidden">
-                    <div class="bg-blue-500 text-black px-4 py-1 text-[10px] font-bold">VIDEO SHOWCASE</div>
+                    <div class="bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-4 py-1 text-[10px] font-bold tracking-wider">VIDEO SHOWCASE</div>
                     <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/uvWG-otglbg?si=APN3xIO23XcmCFRr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
@@ -675,51 +720,135 @@
             </div>
 			
 			<!-- MULTI-LANGUAGE VOICE SAMPLES (3 COLUMNS) -->
-<div class="tech-card p-6">
-    <div class="section-title"><i class="fas fa-microphone-alt"></i> <span data-key="voice-title">Introduction Voice Samples</span></div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- THAI VOICE -->
-        <button onclick="playExplicitVoice('th')" id="vbtn-th" class="voice-btn p-5 flex flex-col items-center justify-center rounded-lg gap-3 group">
-            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30 group-hover:bg-blue-500 group-hover:text-black transition-all">
-                <i class="fas fa-play text-xs ml-1"></i>
-            </div>
-            <div class="text-center">
-                <span class="block font-bold text-xs uppercase tracking-widest text-blue-400">Thai</span>
-                <span class="text-[9px] opacity-40 font-mono">intro_th.mp3</span>
-            </div>
-        </button>
-
-        <!-- ENGLISH VOICE -->
-        <button onclick="playExplicitVoice('en')" id="vbtn-en" class="voice-btn p-5 flex flex-col items-center justify-center rounded-lg gap-3 group">
-            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30 group-hover:bg-blue-500 group-hover:text-black transition-all">
-                <i class="fas fa-play text-xs ml-1"></i>
-            </div>
-            <div class="text-center">
-                <span class="block font-bold text-xs uppercase tracking-widest text-blue-400">English</span>
-                <span class="text-[9px] opacity-40 font-mono">intro_en.mp3</span>
-            </div>
-        </button>
-
-        <!-- JAPANESE VOICE -->
-        <button onclick="playExplicitVoice('jp')" id="vbtn-jp" class="voice-btn p-5 flex flex-col items-center justify-center rounded-lg gap-3 group">
-            <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30 group-hover:bg-blue-500 group-hover:text-black transition-all">
-                <i class="fas fa-play text-xs ml-1"></i>
-            </div>
-            <div class="text-center">
-                <span class="block font-bold text-xs uppercase tracking-widest text-blue-400">Japanese</span>
-                <span class="text-[9px] opacity-40 font-mono">intro_jp.mp3</span>
-            </div>
-        </button>
-    </div>
-</div>
-
-            <!-- DESIGN SHEET SECTION -->
             <div class="tech-card p-6">
-                <div class="section-title"><i class="fas fa-swatchbook"></i> <span data-key="designers">Design Sheet</span></div>
-                <div class="cursor-zoom-in group relative" onclick="openFullImage('HoshinoCarSheet.jpg')">
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-blue-500 transition-all z-10"></div>
-                    <img src="HoshinoCarSheet.jpg" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-all" alt="Character Design Sheet" loading="lazy">
-                    <div class="absolute bottom-4 right-4 bg-black/70 px-3 py-1 text-[10px] font-bold text-blue-400 uppercase tracking-widest z-20" data-key="click_hint">Click to expand image</div>
+                <div class="section-title"><i class="fas fa-microphone-alt"></i> <span data-key="voice-title">Introduction Voice Samples</span></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- THAI VOICE -->
+                    <button onclick="playExplicitVoice('th')" id="vbtn-th" class="voice-btn p-5 flex flex-col items-center justify-center rounded-lg gap-3 group">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30 group-hover:bg-blue-500 group-hover:text-black transition-all">
+                            <i class="fas fa-play text-xs ml-1"></i>
+                        </div>
+                        <div class="text-center">
+                            <span class="block font-bold text-xs uppercase tracking-widest text-blue-400">Thai</span>
+                            <span class="text-[9px] opacity-40 font-mono">intro_th.mp3</span>
+                        </div>
+                    </button>
+
+                    <!-- ENGLISH VOICE -->
+                    <button onclick="playExplicitVoice('en')" id="vbtn-en" class="voice-btn p-5 flex flex-col items-center justify-center rounded-lg gap-3 group">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30 group-hover:bg-blue-500 group-hover:text-black transition-all">
+                            <i class="fas fa-play text-xs ml-1"></i>
+                        </div>
+                        <div class="text-center">
+                            <span class="block font-bold text-xs uppercase tracking-widest text-blue-400">English</span>
+                            <span class="text-[9px] opacity-40 font-mono">intro_en.mp3</span>
+                        </div>
+                    </button>
+
+                    <!-- JAPANESE VOICE -->
+                    <button onclick="playExplicitVoice('jp')" id="vbtn-jp" class="voice-btn p-5 flex flex-col items-center justify-center rounded-lg gap-3 group">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30 group-hover:bg-blue-500 group-hover:text-black transition-all">
+                            <i class="fas fa-play text-xs ml-1"></i>
+                        </div>
+                        <div class="text-center">
+                            <span class="block font-bold text-xs uppercase tracking-widest text-blue-400">Japanese</span>
+                            <span class="text-[9px] opacity-40 font-mono">intro_jp.mp3</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==================================================== -->
+            <!-- CHARACTER DESIGN SHEET SECTION (2 CHANNELS / YOUTUBE) -->
+            <!-- ==================================================== -->
+            <div class="tech-card p-6">
+                <div class="section-title">
+                    <i class="fas fa-swatchbook"></i>
+                    <span data-key="designers">Character Design Sheet</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- DESIGN SHEET 1: CYBER WAFUKU FORM -->
+                    <div class="wafuku-badge p-4 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b border-cyan-500/20 pb-2 mb-3">
+                                <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">
+                                    <i class="fas fa-scroll mr-1.5"></i>Sheet 01 : Cyber Wafuku Model
+                                </span>
+                                <span class="text-[10px] font-mono text-blue-300/60">REV-01</span>
+                            </div>
+
+                            <!-- Image Sheet Preview -->
+                            <div class="cursor-zoom-in group relative mb-4 overflow-hidden rounded border border-blue-500/20" onclick="openFullImage('HoshinoCarSheet.jpg')">
+                                <img src="HoshinoCarSheet.jpg" class="w-full h-44 object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" alt="Character Design Sheet 1" loading="lazy">
+                                <div class="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 text-[9px] font-bold text-cyan-400 uppercase tracking-widest" data-key="click_hint">Click to expand image</div>
+                            </div>
+
+                            <!-- Youtube Showcase 1 -->
+                            <div class="mb-3">
+                                <p class="text-[10px] text-blue-400 font-mono mb-1.5 uppercase flex items-center gap-1.5">
+                                    <i class="fab fa-youtube text-red-500"></i> Video Showcase / Model Debut
+                                </p>
+                                <div class="video-container border border-blue-500/30">
+                                    <!-- Embedded Youtube Clip 1 -->
+                                    <iframe src="https://www.youtube.com/embed/uvWG-otglbg" title="Character Design Sheet 1 Showcase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Designer & Rigger Credit Tag 1 -->
+                        <div class="mt-2 p-2.5 bg-black/60 border border-blue-500/30 rounded font-mono text-xs flex flex-col gap-1">
+                            <div class="flex items-center gap-2 text-slate-200">
+                                <i class="fas fa-paint-brush text-cyan-400 text-xs"></i>
+                                <span>Designer : <strong class="text-cyan-300 font-bold">Inumaru Atsuki</strong></span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-200 border-t border-white/5 pt-1">
+                                <i class="fas fa-cogs text-blue-400 text-xs"></i>
+                                <span>Rigger : <strong class="text-blue-300 font-bold">Inumaru Atsuki</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DESIGN SHEET 2: SPACE EXPLORER FORM -->
+                    <div class="wafuku-badge p-4 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b border-cyan-500/20 pb-2 mb-3">
+                                <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">
+                                    <i class="fas fa-meteor mr-1.5"></i>Sheet 02 : Space Explorer Model
+                                </span>
+                                <span class="text-[10px] font-mono text-blue-300/60">REV-02</span>
+                            </div>
+
+                            <!-- Image Sheet Preview 2 -->
+                            <div class="cursor-zoom-in group relative mb-4 overflow-hidden rounded border border-blue-500/20" onclick="openFullImage('HoshinoCarSheet.jpg')">
+                                <img src="HoshinoCarSheet.jpg" class="w-full h-44 object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" alt="Character Design Sheet 2" loading="lazy">
+                                <div class="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 text-[9px] font-bold text-cyan-400 uppercase tracking-widest" data-key="click_hint">Click to expand image</div>
+                            </div>
+
+                            <!-- Youtube Showcase 2 -->
+                            <div class="mb-3">
+                                <p class="text-[10px] text-blue-400 font-mono mb-1.5 uppercase flex items-center gap-1.5">
+                                    <i class="fab fa-youtube text-red-500"></i> Video Showcase / Live2D Rigging
+                                </p>
+                                <div class="video-container border border-blue-500/30">
+                                    <!-- Embedded Youtube Clip 2 -->
+                                    <iframe src="https://www.youtube.com/embed/uvWG-otglbg" title="Character Design Sheet 2 Showcase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Designer & Rigger Credit Tag 2 -->
+                        <div class="mt-2 p-2.5 bg-black/60 border border-blue-500/30 rounded font-mono text-xs flex flex-col gap-1">
+                            <div class="flex items-center gap-2 text-slate-200">
+                                <i class="fas fa-paint-brush text-cyan-400 text-xs"></i>
+                                <span>Designer : <strong class="text-cyan-300 font-bold">Inumaru Atsuki</strong></span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-200 border-t border-white/5 pt-1">
+                                <i class="fas fa-cogs text-blue-400 text-xs"></i>
+                                <span>Rigger : <strong class="text-blue-300 font-bold">Inumaru Atsuki</strong></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -733,7 +862,7 @@
                         <a href="https://marshmallow-qa.com/zncxf2lkkb4cmet" target="_blank" rel="noopener noreferrer" class="p-3 bg-pink-500/10 border border-pink-500/30 text-center hover:bg-pink-500 hover:text-black transition-all">
                             <i class="fas fa-comment-dots mb-1 block"></i><span class="text-[10px] font-bold">MARSHMALLOW</span>
                         </a>
-                        <a href="https://forms.gle/Qk2nEGb4q1baQoHt7" target="_blank" rel="noopener noreferrer" class="submit-fanart-btn p-3 text-center transition-all flex items-center justify-center gap-2">
+                        <a href="https://forms.gle/Qk2nEGb4q1baQoHt7" target="_blank" rel="noopener noreferrer" class="submit-fanart-btn p-3 text-center transition-all flex items-center justify-center gap-2 col-span-2">
                             <i class="fas fa-paint-brush"></i>
                             <span class="text-[10px] font-bold">SUBMIT YOUR FANART</span>
                         </a>
@@ -742,7 +871,6 @@
                 <div class="tech-card p-6">
                     <div class="section-title"><i class="fas fa-share-alt"></i> <span data-key="social-links">Social Links</span></div>
                     <div class="flex flex-wrap gap-4 justify-center">
-                        <!-- Standardize all social links with security attributes -->
                         <a href="https://youtube.com/@hoshinokuroi440" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-youtube text-red-500 text-xl"></i><span class="text-[8px]">youtube</span></a>
                         <a href="https://www.twitch.tv/hoshino_kuroi" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-twitch text-purple-500 text-xl"></i><span class="text-[8px]">Twitch</span></a>
                         <a href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-twitter text-white text-xl"></i><span class="text-[8px]">X (Twitter)</span></a>
@@ -805,83 +933,78 @@
 
         const translations = {
             th: {
-                "sub-title": "Space Fennec Explorer", "birthday": "วันเกิด", "october": "ตุลาคม", "height": "ส่วนสูง", "age": "อายุ", "years": "ปี", "languages": "ภาษาที่พูดได้", "lang-th": "ภาษาไทย (Native)", "lang-jp": "ภาษาญี่ปุ่น (Basic)", "lang-en": "ภาษาอังกฤษ (Basic)", "schedule": "ตารางสตรีมประจำสัปดาห์", "biography": "ประวัติ", "likes": "ของที่ชอบ / งานอดิเรก", "dislikes": "ของที่ไม่ชอบ", "goals": "เป้าหมาย", "interaction": "การสนับสนุนและส่งคำถาม", "social-links": "โซเชีลลมีเดีย", "designers": "Character Sheet", "special-thanks": "ขอบคุณคนพิเศษ", "click_hint": "คลิกเพื่อขยายรูปภาพ", "fanart-gallery": "แกลเลอรีแฟนอาร์ต", "awards": "รางวัล", "award-name": "รางวัล Reality Official โปสเตอร์ชิบูยะ (ลำดับที่ 11)",
+                "sub-title": "Space Fennec Explorer", "birthday": "วันเกิด", "october": "ตุลาคม", "height": "ส่วนสูง", "age": "อายุ", "years": "ปี", "languages": "ภาษาที่พูดได้", "lang-th": "ภาษาไทย (Native)", "lang-jp": "ภาษาญี่ปุ่น (Basic)", "lang-en": "ภาษาอังกฤษ (Basic)", "schedule": "ตารางสตรีมประจำสัปดาห์", "biography": "ประวัติ", "likes": "ของที่ชอบ / งานอดิเรก", "dislikes": "ของที่ไม่ชอบ", "goals": "เป้าหมาย", "interaction": "การสนับสนุนและส่งคำถาม", "social-links": "โซเชีลลมีเดีย", "designers": "Character Design Sheet", "special-thanks": "ขอบคุณคนพิเศษ", "click_hint": "คลิกเพื่อขยายรูปภาพ", "fanart-gallery": "แกลเลอรีแฟนอาร์ต", "awards": "รางวัล", "award-name": "รางวัล Reality Official โปสเตอร์ชิบูยะ (ลำดับที่ 11)",
                 "mon": "จันทร์", "tue": "อังคาร", "wed": "พุธ", "thu": "พฤหัส", "fri": "ศุกร์", "sat": "เสาร์", "sun": "อาทิตย์", "off": "พักผ่อน 💤",
                 "bio": "จากดวงดาวสีคราม Starloid สู่การผจญภัยที่ไม่มีวันสิ้นสุดบนโลกใบนี้! 🌌✨ \n\n ณ กาแล็กซีอันไกลโพ้น จิ้งจอกทะเลทราย (Fennec fox) ผู้เปี่ยมไปด้วยความอยากรู้อยากเห็นได้ถือกำเนิดขึ้นบนดวงดาว Starloid เขาออกเดินทางข้ามจักรวาลด้วยยานลำจิ๋วเพื่อภารกิจสำคัญ: ตามหาอาหารที่อร่อยที่สุดในกาแล็กซี 🍜\n\nแต่จุดหมายปลายทางกลับหักเหเมื่อเขาลงจอดที่ดาว โลก ที่นี่ไม่ได้มีแค่ของอร่อย แต่เขายังได้พบกับขุมทรัพย์ทางจิตวิญญาณอย่าง วัฒนธรรมญี่ปุ่น และความตื่นเต้นของ โลกแห่งเกม ที่ทำให้เขานั่งจดจ่อได้ทั้งวันคืนจนลืมเวลานอน 🎮\n\nความหลงใหลนี้เองที่เปลี่ยนจากนักเดินทางพเนจร ให้กลายเป็น VTuber สายเกมเมอร์ ผู้คลั่งไคล้อาหารและอนิเมะ ตอนนี้เขาพร้อมแล้วที่จะแบ่งปันความสุข เสียงหัวเราะ และเรื่องราวสุดเพี้ยนจากการสำรวจโลกไปพร้อมกับทุกคน! 🦊🌏💖",
                 "likes-items": ["อาหารอร่อย", "เพลงญี่ปุ่น", "งานอดิเรก เล่นเกม 🎮", "วาดภาพ 🎨", "อนิเมะ", "กินของอร่อย 🍜", "แมว และ fennec fox", "นอน 💤"],
                 "dislikes-items": ["เสียงดังกระทันหัน", "ฟ้าร้องฟ้าผ่า ⚡", "อาหารไม่อร่อย"],
                 "goals-items": ["พูดญี่ปุ่นได้อย่างเป็นธรรมชาติ!", "คอลแลบกับสตรีมเมอร์ญี่ปุ่นเยอะๆ!", "ไปเที่ยวญี่ปุ่นสักครั้งในชีวิต!", "ได้โล่ Youtube มานอนกอด!"],"fav-menu": "เมนูโปรด",
-        "food-1": "แซลมอน 🍣", "food-1-desc": "สดใหม่จากทะเลดวงดาว",
-        "food-2": "อุด้ง 🍜", "food-2-desc": "เส้นเหนียวนุ่มสไตล์คอสมิก",
-        "food-3": "ข้าวหน้าเนื้อ 🍛", "food-3-desc": "แหล่งพลังงานที่ดีที่สุด",
-        "food-4": "โกโก้ ☕", "food-4-desc": "ความหวานอุ่นของแสงดาว","goods-title": "สินค้า"
+                "food-1": "แซลมอน 🍣", "food-1-desc": "สดใหม่จากทะเลดวงดาว",
+                "food-2": "อุด้ง 🍜", "food-2-desc": "เส้นเหนียวนุ่มสไตล์คอสมิก",
+                "food-3": "ข้าวหน้าเนื้อ 🍛", "food-3-desc": "แหล่งพลังงานที่ดีที่สุด",
+                "food-4": "โกโก้ ☕", "food-4-desc": "ความหวานอุ่นของแสงดาว","goods-title": "สินค้า"
             },
             en: {
-                "sub-title": "Space Fennec Explorer", "birthday": "Birthday", "october": "October", "height": "Height", "age": "Age", "years": "Years", "languages": "Languages", "lang-th": "THAI (Native)", "lang-jp": "JAPANESE (Basic)", "lang-en": "ENGLISH (Basic)", "schedule": "Weekly Schedule", "biography": "Biography", "likes": "Likes / Hobbies", "dislikes": "Dislikes", "goals": "Goals", "interaction": "Support and Q&A", "social-links": "Social Links", "designers": "Character Sheet", "special-thanks": "Special Thanks", "click_hint": "Click to expand image", "fanart-gallery": "FanArt Gallery", "awards": "Awards & Achievements", "award-name": "Reality Official Award Shibuya Poster (no.11)",
+                "sub-title": "Space Fennec Explorer", "birthday": "Birthday", "october": "October", "height": "Height", "age": "Age", "years": "Years", "languages": "Languages", "lang-th": "THAI (Native)", "lang-jp": "JAPANESE (Basic)", "lang-en": "ENGLISH (Basic)", "schedule": "Weekly Schedule", "biography": "Biography", "likes": "Likes / Hobbies", "dislikes": "Dislikes", "goals": "Goals", "interaction": "Support and Q&A", "social-links": "Social Links", "designers": "Character Design Sheet", "special-thanks": "Special Thanks", "click_hint": "Click to expand image", "fanart-gallery": "FanArt Gallery", "awards": "Awards & Achievements", "award-name": "Reality Official Award Shibuya Poster (no.11)",
                 "mon": "MON", "tue": "TUE", "wed": "WED", "thu": "THU", "fri": "FRI", "sat": "SAT", "sun": "SUN", "off": "OFF DAY 💤",
                 "bio": "A Galactic Traveler who fell in love with Earth's pixels and flavors! 🦊🌌\n\n Born on the distant planet Starloid, a curious little Fennec Fox set out on a grand cosmic odyssey. His original goal was simple: to taste every Galaxy-class delicacy hidden across the stars. 🍜✨\n\nHowever, his navigation system led him to a small blue planet called Earth. Instead of just filling his stomach, he filled his heart with Japanese culture and the captivating world of gaming. From the neon lights of Akihabara (in spirit!) to the endless challenges in virtual worlds, he found a new home. 🎮\n\nNow, he has traded his spaceship for a streaming setup! As a Gamer VTuber, he’s here to explore every digital realm, eat delicious snacks, and create unforgettable memories with his new earthly friends. Let’s level up together! 🌏✨",
                 "likes-items": ["Delicious Food", "Japanese Music", "Playing Games 🎮", "Digital Art 🎨", "Anime", "Tasting New Dishes 🍜", "Cats & Fennec Foxes", "Sleeping 💤"],
                 "dislikes-items": ["Sudden Loud Noises", "Thunder & Lightning ⚡", "Bad Tasting Food"],
                 "goals-items": ["Speak Japanese naturally!", "Collab with Japanese streamers!", "Visit Japan at least once!", "Earn a YouTube Play Button!"], "fav-menu": "Favorite Menu",
-        "food-1": "Salmon 🍣", "food-1-desc": "Fresh from the star-sea.",
-        "food-2": "Udon 🍜", "food-2-desc": "Thick, chewy, and cosmic.",
-        "food-3": "Beef Bowl 🍛", "food-3-desc": "The ultimate energy source.",
-        "food-4": "Cocoa ☕", "food-4-desc": "A sweet warmth of starlight.", "goods-title": "Googs"
+                "food-1": "Salmon 🍣", "food-1-desc": "Fresh from the star-sea.",
+                "food-2": "Udon 🍜", "food-2-desc": "Thick, chewy, and cosmic.",
+                "food-3": "Beef Bowl 🍛", "food-3-desc": "The ultimate energy source.",
+                "food-4": "Cocoa ☕", "food-4-desc": "A sweet warmth of starlight.", "goods-title": "Goods"
             },
             jp: {
-                "sub-title": "宇宙のフェネック探検家", "birthday": "誕生日", "october": "10月", "height": "身長", "age": "年齢", "years": "歳", "languages": "対応言語", "lang-th": "タイ語 (母国語)", "lang-jp": "日本語 (初級)", "lang-en": "英語 (初級)", "schedule": "週間配信スケジュール", "biography": "プロフィール", "likes": "好きなこと / 趣味", "dislikes": "苦手なもの", "goals": "今後の目標", "interaction": "応援とQ&A", "social-links": "SNSリンク", "designers": "Character Sheet", "special-thanks": "スペシャルサンクス", "click_hint": "クリックして拡大", "fanart-gallery": "ファンアートギャラリー", "awards": "受賞歴และ実績", "award-name": "REALITY公式アワード 渋谷ポスターイベント【11位】",
+                "sub-title": "宇宙のフェネック探検家", "birthday": "誕生日", "october": "10月", "height": "身長", "age": "年齢", "years": "歳", "languages": "対応言語", "lang-th": "タイ語 (母国語)", "lang-jp": "日本語 (初級)", "lang-en": "英語 (初級)", "schedule": "週間配信スケジュール", "biography": "プロフィール", "likes": "好きなこと / 趣味", "dislikes": "苦手なもの", "goals": "今後の目標", "interaction": "応援とQ&A", "social-links": "SNSリンク", "designers": "Character Design Sheet", "special-thanks": "スペシャルサンクス", "click_hint": "クリックして拡大", "fanart-gallery": "ファンアートギャラリー", "awards": "受賞歴และ実績", "award-name": "REALITY公式アワード 渋谷ポスターイベント【11位】",
                 "mon": "月", "tue": "火", "wed": "水", "thu": "木", "fri": "金", "sat": "土", "sun": "日", "off": "お休み 💤",
                 "bio": "「遥か彼方の星から、地球のゲームと美食を求めてやってきた！」 🦊🌌\n\n遠い銀河に浮かぶ惑星**「Starloid（スターロイド）」で生まれた一匹のフェネックギツネ。彼は好奇心に突き動かされ、「宇宙一の美食」**を探すために銀河中を旅していました。🍜✨\n\nしかし、偶然たどり着いた**「地球」で彼の運命は一変します。未知の美味しい料理はもちろん、何よりも彼を虜にしたのは「日本文化」และ「ゲーム」**の世界でした。画面の中で繰り広げられる冒険に夢中になり、気づけば昼夜を忘れてコントローラーを握りしめる毎日に。🎮\n\n「この楽しさを、みんなと共有したい！」そう決意した彼は、ゲーマーVTuberとして新たな旅を始めました。美味しいものを食べ、大好きなゲームを楽しみながら、地球の皆さんと最高の時間を過ごしたいと思っています！🌏💖",
                 "likes-items": ["美味しい食べ物", "邦楽", "ゲーム 🎮", "イラスト 🎨", "アニメ", "グルメ巡り 🍜", "猫とフェネック", "寝ること 💤"],
                 "dislikes-items": ["突然の大きな音", "雷 ⚡", "美味しくない食べ物"],
                 "goals-items": ["日本語を自然に話せるようになる！", "日本の配信者とたくさんコラボする！", "一生に一度は日本へ旅行する！", "YouTubeの銀の盾を手に入れる！"], "fav-menu": "お気に入りのメニュー",
-        "food-1": "サーモン 🍣", "food-1-desc": "星の海からの新鮮な恵み。",
-        "food-2": "うどん 🍜", "food-2-desc": "コズミックなコシのある麺。",
-        "food-3": "牛丼 🍛", "food-3-desc": "究極のエネルギー源。",
-        "food-4": "ココア ☕", "food-4-desc": "星明かりのような甘い温もり。", "goods-title": "グッズ"
+                "food-1": "サーモン 🍣", "food-1-desc": "星の海からの新鮮な恵み。",
+                "food-2": "うどん 🍜", "food-2-desc": "コズミックなコシのある麺。",
+                "food-3": "牛丼 🍛", "food-3-desc": "究極のエネルギー源。",
+                "food-4": "ココア ☕", "food-4-desc": "星明かりのような甘い温もり。", "goods-title": "グッズ"
             }
         };
 		
-		// 1. กำหนดที่อยู่ไฟล์เสียง (เปลี่ยนชื่อไฟล์ให้ตรงกับที่คุณอัดไว้)
-const voiceConfig = {
-    th: "IntroductVoiceTH.m4a",
-    en: "IntroductVoiceENG.m4a",
-    jp: "IntroductVoiceJP.m4a"
-};
+        const voiceConfig = {
+            th: "IntroductVoiceTH.m4a",
+            en: "IntroductVoiceENG.m4a",
+            jp: "IntroductVoiceJP.m4a"
+        };
 
-let currentAudio = null;
+        let currentAudio = null;
 
-function playExplicitVoice(lang) {
-    const filePath = voiceConfig[lang];
-    const btn = document.getElementById(`vbtn-${lang}`);
-    
-    // ล้างสถานะ 'กำลังเล่น' ของปุ่มทั้งหมดก่อน
-    document.querySelectorAll('.voice-btn').forEach(b => b.classList.remove('playing'));
+        function playExplicitVoice(lang) {
+            const filePath = voiceConfig[lang];
+            const btn = document.getElementById(`vbtn-${lang}`);
+            
+            document.querySelectorAll('.voice-btn').forEach(b => b.classList.remove('playing'));
 
-    if (currentAudio) {
-        // ถ้ากดปุ่มเดิมซ้ำในขณะที่เล่นอยู่ ให้หยุดเล่น
-        if (currentAudio.src.includes(filePath) && !currentAudio.paused) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-            return;
+            if (currentAudio) {
+                if (currentAudio.src.includes(filePath) && !currentAudio.paused) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    return;
+                }
+                currentAudio.pause();
+            }
+
+            currentAudio = new Audio(filePath);
+            btn.classList.add('playing');
+
+            currentAudio.play().catch(err => {
+                console.error("ไม่พบไฟล์เสียง กรุณาตรวจสอบชื่อไฟล์", err);
+                btn.classList.remove('playing');
+            });
+
+            currentAudio.onended = () => {
+                btn.classList.remove('playing');
+            };
         }
-        currentAudio.pause();
-    }
-
-    // สร้างออบเจกต์เสียงใหม่
-    currentAudio = new Audio(filePath);
-    btn.classList.add('playing'); // เพิ่ม Class เพื่อเปลี่ยนสีปุ่ม
-
-    currentAudio.play().catch(err => {
-        console.error("ไม่พบไฟล์เสียงในโฟลเดอร์ audio/ กรุณาตรวจสอบชื่อไฟล์", err);
-        btn.classList.remove('playing');
-    });
-
-    // เมื่อเสียงจบ ให้เอาสถานะไฟสว่างออก
-    currentAudio.onended = () => {
-        btn.classList.remove('playing');
-    };
-}
 
         function initVisitorCounter() {
             let count = localStorage.getItem('kuroi_visitor_count') || 1024;
@@ -931,7 +1054,7 @@ function playExplicitVoice(lang) {
                 if (t[key]) el.innerText = t[key];
             });
             document.getElementById('bio-text').innerText = t.bio;
-            updateList('likes-list', t['likes-items'], 'fa-check text-blue-400');
+            updateList('likes-list', t['likes-items'], 'fa-check text-cyan-400');
             updateList('dislikes-list', t['dislikes-items'], 'fa-minus text-red-400');
             const gc = document.getElementById('goals-container');
             gc.innerHTML = '';
@@ -955,7 +1078,7 @@ function playExplicitVoice(lang) {
                 }
                 sc.innerHTML += `
                     <div class="schedule-item ${isActive ? 'active' : ''}">
-                        <p class="text-[10px] font-bold text-blue-400 uppercase mb-2">${t[d]}</p>
+                        <p class="text-[10px] font-bold text-cyan-400 uppercase mb-2">${t[d]}</p>
                         ${platformIcons}
                         <p class="text-[9px] leading-tight opacity-70">${content}</p>
                     </div>`;
@@ -989,10 +1112,11 @@ function playExplicitVoice(lang) {
             container.innerHTML += `<div class="fanart-img-wrapper flex items-center justify-center bg-blue-500/5 border-dashed border-2 border-blue-500/20"><span class="text-[10px] opacity-40 uppercase font-bold text-center px-2">More soon</span></div>`;
         }
 
+        // Particle Canvas Background
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const icons = ['🦊', '🌌', '🍜', '🎮', '⭐', '✨'];
+        const icons = ['🦊', '🌌', '🍜', '🎮', '⭐', '✨', '⛩️'];
         function initCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         class Particle {
             constructor(x, y, isIcon = false, isTrail = false) {
@@ -1018,7 +1142,12 @@ function playExplicitVoice(lang) {
                 if (this.alpha <= 0) return;
                 ctx.globalAlpha = this.alpha;
                 if (this.isIcon) { ctx.font = '12px Arial'; ctx.fillText(this.icon, this.x, this.y); }
-                else { ctx.fillStyle = '#00d2ff'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+                else { 
+                    ctx.fillStyle = '#00d2ff'; 
+                    ctx.beginPath(); 
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); 
+                    ctx.fill(); 
+                }
             }
         }
         function setupParticles() {
@@ -1049,18 +1178,18 @@ function playExplicitVoice(lang) {
         });
 
         window.addEventListener('mousedown', (e) => {
-            cursor.style.width = '20px'; cursor.style.height = '20px';
+            cursor.style.width = '22px'; cursor.style.height = '22px';
             const ripple = document.createElement('div'); ripple.className = 'click-ripple';
             ripple.style.left = e.clientX + 'px'; ripple.style.top = e.clientY + 'px';
-            document.body.appendChild(ripple); setTimeout(() => ripple.remove(), 1000);
+            document.body.appendChild(ripple); setTimeout(() => ripple.remove(), 700);
         });
-        window.addEventListener('mouseup', () => { cursor.style.width = '30px'; cursor.style.height = '30px'; });
+        window.addEventListener('mouseup', () => { cursor.style.width = '32px'; cursor.style.height = '32px'; });
 
         let logIndex = 0;
-        const logLines = ["> INITIALIZING...", "> LOADING_FENNEC", "> KUROI_OS: READY"];
+        const logLines = ["> INITIALIZING...", "> SYNCING KITSUNE_OS...", "> COSMIC_LINK: ACTIVE", "> ALL SYSTEMS NOMINAL"];
         function updateTerminal() {
             const logEl = document.getElementById('terminal-log');
-            if (logIndex < logLines.length) { logEl.innerHTML += `<div>${logLines[logIndex]}</div>`; logIndex++; setTimeout(updateTerminal, 2000); }
+            if (logIndex < logLines.length) { logEl.innerHTML += `<div>${logLines[logIndex]}</div>`; logIndex++; setTimeout(updateTerminal, 1800); }
             else { logEl.innerHTML = ""; logIndex = 0; setTimeout(updateTerminal, 500); }
         }
 
@@ -1071,16 +1200,12 @@ function playExplicitVoice(lang) {
             setInterval(() => moveSlide(1), 10000);
             initCanvas(); setupParticles(); animate(); updateTerminal();
             
-            // Hide loading screen
             setTimeout(() => {
                 const loader = document.getElementById('loading-screen');
                 loader.style.opacity = '0';
                 setTimeout(() => loader.style.display = 'none', 500);
-            }, 1500);
+            }, 1200);
         };
     </script>
 </body>
 </html>
-
-
-
