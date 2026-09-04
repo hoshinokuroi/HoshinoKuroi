@@ -25,7 +25,6 @@
             --neon-purple: #a855f7;
             --accent-blue: #3b82f6;
             --border-color: rgba(0, 210, 255, 0.3);
-            --scanline-opacity: 0.25;
         }
 
         :root[data-theme="light"] {
@@ -36,62 +35,24 @@
             --neon-purple: #9333ea;
             --accent-blue: #0284c7;
             --border-color: rgba(2, 132, 199, 0.3);
-            --scanline-opacity: 0.05;
         }
 
-        html { 
-            scroll-behavior: smooth; 
-            scroll-snap-type: y mandatory;
-        }
-
-        /* สำหรับหน้าแรก: เต็มจอ Fixed ไม่ให้เลื่อนตาม และไม่มีขอบ */
-        .hero-fullscreen-section {
-            width: 100vw;
-            height: 100vh;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            position: relative;
-            overflow: hidden;
+        /* รีเซ็ตขอบและบังคับขนาดหน้าจอให้เต็ม 100% ไม่มีขอบเหลือ */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        .scroll-section {
-            min-height: 100vh;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            background-size: 100% 4px;
-            z-index: 1000;
-            pointer-events: none;
-            opacity: var(--scanline-opacity);
-        }
-
-        body {
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
             background-color: var(--bg-main);
             color: var(--text-main);
             font-family: 'Rajdhani', 'Maitree', 'Noto Sans JP', sans-serif;
-            background-image: 
-                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 45%),
-                radial-gradient(circle at 85% 75%, rgba(168, 85, 247, 0.1) 0%, transparent 45%);
-            background-attachment: fixed;
-            overflow-x: hidden;
-            cursor: none;
-            transition: background-color 0.3s, color 0.3s;
-            margin: 0;
-            padding: 0;
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
         }
 
         /* --- LOADING SCREEN --- */
@@ -116,11 +77,6 @@
             border-radius: 8px;
             overflow: hidden;
             background: #000;
-            animation: pulseGlow 2s infinite alternate;
-        }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 20px rgba(0, 210, 255, 0.3); }
-            100% { box-shadow: 0 0 50px rgba(0, 210, 255, 0.7); }
         }
         .loader-img-bw {
             position: absolute;
@@ -164,6 +120,33 @@
             width: 100%; height: 100%;
             z-index: -1;
             pointer-events: none;
+        }
+
+        /* แต่ละหน้าแบ่งสัดส่วนเต็มจอ และจัดเลเยอร์แบบลื่นไหล */
+        .scroll-section {
+            width: 100vw;
+            min-height: 100vh;
+            height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* หน้าแรกสุดล็อกเต็มจอ 100% ไม่มีขอบเหลือ และเลื่อนตามไม่ได้ */
+        .hero-section {
+            width: 100vw !important;
+            height: 100vh !important;
+            min-height: 100vh !important;
+            max-height: 100vh !important;
+            overflow: hidden !important;
+            position: relative;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
         }
 
         /* --- CUSTOM CURSOR --- */
@@ -396,7 +379,7 @@
         .good-item:hover img { transform: scale(1.15); }
     </style>
 </head>
-<body class="m-0 p-0">
+<body>
     <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="loader-banner-container mb-6">
@@ -433,24 +416,22 @@
         <button onclick="setGlobalLang('jp')" id="gbtn-jp" class="lang-btn">🇯🇵 JP</button>
     </div>
 
-    <!-- SECTION 1: HERO / FULL SCREEN FIRST PAGE  -->
-<section class="relative w-screen h-screen overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0 z-0 w-full h-full">
-        <img src="Header1.png" alt="Hoshino Kuroi Header" class="w-full h-full object-cover">
-    </div>
-    
-    <!-- Scroll Down Button (Responsive Positioning) -->
-    <div class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-10 text-center">
-        <a href="#main-content" class="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border border-cyan-400 bg-cyan-400/10 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all animate-pulse">
-            <i class="fas fa-chevron-down text-sm md:text-base"></i>
-        </a>
-    </div>
-</section>
+    <!-- SECTION 1: HERO / FULL SCREEN FIRST PAGE (ตามไฟล์แนบขนาดเต็มจอ 100% รองรับมือถือ ไม่มีขอบเหลือ เลื่อนตามไม่ได้) -->
+    <section class="hero-section">
+        <div class="absolute inset-0 z-0 w-full h-full">
+            <img src="Header1.png" alt="Hoshino Kuroi Header" class="w-full h-full object-cover object-center filter brightness-95">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#030712]/80 via-transparent to-black/20"></div>
+        </div>
+        <div class="relative z-10 w-full h-full flex flex-col justify-end items-center pb-12 px-4 text-center">
+            <a href="#main-content" class="inline-flex items-center justify-center w-12 h-12 rounded-full border border-cyan-400 bg-cyan-400/10 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all animate-pulse">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
 
     <!-- SECTION 2: MAIN PROFILE GRID -->
-    <section id="main-content" class="scroll-section max-w-[1400px] mx-auto w-full px-4 md:px-8">
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 relative z-10 w-full">
+    <section id="main-content" class="scroll-section p-4 md:p-8 lg:p-12">
+        <div class="max-w-[1400px] mx-auto w-full grid grid-cols-1 xl:grid-cols-12 gap-8 relative z-10">
             
             <!-- LEFT COLUMN -->
             <div class="xl:col-span-4 flex flex-col gap-6">
@@ -837,11 +818,13 @@
     </section>
 
     <!-- SECTION 3: FANART GALLERY (LAST PAGE) -->
-    <section class="scroll-section max-w-[1400px] mx-auto w-full px-4 md:px-8">
-        <div class="tech-card p-6 md:p-10 w-full h-full flex flex-col justify-center">
-            <div class="section-title text-xl mb-6"><i class="fas fa-paint-brush icon-bounce"></i> <span data-key="fanart-gallery">FanArt Gallery</span></div>
-            <p class="text-xs text-blue-300 font-mono mb-6">> คลังรวมผลงานศิลปะสุดพิเศษจากเหล่าแฟนคลับ (#HoshijinART)</p>
-            <div class="fanart-grid" id="fanart-container"></div>
+    <section class="scroll-section p-4 md:p-8 lg:p-12 flex items-center justify-center">
+        <div class="max-w-[1400px] mx-auto w-full h-full flex flex-col justify-center">
+            <div class="tech-card p-6 md:p-10 w-full flex flex-col justify-center">
+                <div class="section-title text-xl mb-6"><i class="fas fa-paint-brush icon-bounce"></i> <span data-key="fanart-gallery">FanArt Gallery</span></div>
+                <p class="text-xs text-blue-300 font-mono mb-6">> คลังรวมผลงานศิลปะสุดพิเศษจากเหล่าแฟนคลับ (#HoshijinART)</p>
+                <div class="fanart-grid" id="fanart-container"></div>
+            </div>
         </div>
         <div id="visitor-counter">ACCESS_LOG: <span id="view-count">000000</span></div>
     </section>
