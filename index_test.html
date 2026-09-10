@@ -768,6 +768,209 @@ body::before{opacity:.08!important;background-size:100% 8px!important}
 .section-profile .profile-composition>.grid:last-child>.lg\:col-span-5{display:grid;gap:clamp(1.5rem,2.5vw,2.5rem);}
 .section-profile .tech-card{padding:clamp(1.5rem,2.5vw,2.25rem);}
 @media(max-width:900px){.section-profile .profile-composition>.grid:last-child{grid-template-columns:1fr;}}
+
+
+/* ===== FULL SITE THEME SYNC — match the reference hero ===== */
+:root[data-theme="dark"]{
+  --jp-navy:#071b4a;
+  --jp-navy-2:#0b2f72;
+  --jp-blue:#315fa9;
+  --jp-sky:#6f94cf;
+  --jp-cyan:#4fc8ff;
+  --jp-cyan-soft:#bfeaff;
+  --jp-yellow:#ffd31d;
+  --jp-white:#f7fbff;
+  --jp-line:rgba(108,207,255,.34);
+  --jp-panel:rgba(8,29,74,.76);
+  --jp-panel-soft:rgba(18,58,123,.58);
+}
+body{
+  background:#061739!important;
+  background-image:
+    radial-gradient(circle at 78% 10%,rgba(115,87,204,.20),transparent 24%),
+    linear-gradient(180deg,#07183d 0%,#092454 36%,#061739 100%)!important;
+  color:#f5f9ff!important;
+}
+#bg-canvas{opacity:.22!important}
+
+/* Across the Star Field becomes a true continuation of the hero */
+.visual-showcase{
+  position:relative!important;
+  isolation:isolate;
+  overflow:hidden;
+  padding:clamp(90px,9vw,145px) clamp(28px,6vw,100px)!important;
+  background:
+    linear-gradient(180deg,rgba(38,84,151,.92),rgba(8,29,73,.96)),
+    #173e7c!important;
+  border-top:1px solid rgba(139,220,255,.35);
+  border-bottom:1px solid rgba(85,190,255,.25);
+}
+.visual-showcase:before{
+  content:"";position:absolute;inset:0;z-index:-2;opacity:.52;pointer-events:none;
+  background-image:
+    radial-gradient(circle at 0 100%,transparent 27px,rgba(231,240,255,.16) 28px 30px,transparent 31px),
+    radial-gradient(circle at 40px 100%,transparent 27px,rgba(231,240,255,.16) 28px 30px,transparent 31px);
+  background-size:80px 48px;background-position:0 0,0 24px;
+  mask-image:linear-gradient(90deg,#000,rgba(0,0,0,.78) 58%,transparent 96%);
+}
+.visual-showcase:after{
+  content:"✦";position:absolute;right:7%;top:15%;z-index:-1;font-size:52px;color:var(--jp-yellow);
+  -webkit-text-stroke:4px #fff;filter:drop-shadow(0 4px 0 rgba(10,43,105,.4));transform:rotate(12deg);
+}
+.visual-head{max-width:1320px;margin:0 auto clamp(34px,4vw,58px)!important;align-items:end!important}
+.visual-head h2{font-family:'Rajdhani','Noto Sans JP',sans-serif!important;font-weight:700!important;color:#fff!important;text-shadow:0 5px 20px rgba(1,18,56,.25)!important}
+.visual-head p{color:#dff6ff!important;letter-spacing:.18em!important}
+.visual-sheet-single{
+  width:min(1240px,100%)!important;padding:clamp(12px,1.5vw,22px)!important;
+  background:linear-gradient(145deg,rgba(7,26,67,.88),rgba(27,70,139,.66))!important;
+  border:1px solid rgba(139,220,255,.48)!important;
+  box-shadow:0 26px 60px rgba(0,15,52,.28),inset 0 0 0 1px rgba(255,255,255,.025)!important;
+  clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,28px 100%,0 calc(100% - 28px))!important;
+}
+.visual-sheet-single:before{content:"";position:absolute;inset:10px;border-left:2px solid var(--jp-yellow);border-top:1px solid rgba(111,211,255,.55);pointer-events:none}
+.visual-sheet-single img{background:#eaf2ff!important}
+.visual-sheet-single small{background:rgba(3,20,56,.9)!important;color:#e8f8ff!important;border-left-color:var(--jp-yellow)!important}
+
+/* Main content is no longer a black dashboard — it becomes editorial blue bands */
+#character-content.character-story{
+  max-width:none!important;margin:0!important;padding:0!important;background:#071a40!important;
+}
+.narrative-section{
+  margin:0!important;padding:clamp(92px,9vw,148px) max(5vw,32px)!important;
+  scroll-margin-top:88px!important;overflow:hidden;isolation:isolate;
+}
+.narrative-section::before{
+  content:""!important;position:absolute!important;inset:0!important;width:auto!important;height:auto!important;z-index:-3!important;
+  background:
+    radial-gradient(circle at 84% 12%,rgba(100,78,190,.20),transparent 28%),
+    linear-gradient(180deg,#071b46 0%,#0b2b64 100%)!important;
+}
+.narrative-section::after{
+  content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;opacity:.28;
+  background-image:
+    radial-gradient(circle at 0 100%,transparent 22px,rgba(220,238,255,.13) 23px 25px,transparent 26px),
+    radial-gradient(circle at 34px 100%,transparent 22px,rgba(220,238,255,.13) 23px 25px,transparent 26px);
+  background-size:68px 42px;background-position:0 0,0 21px;
+  mask-image:linear-gradient(90deg,rgba(0,0,0,.9),transparent 72%);
+}
+.narrative-section:nth-of-type(even)::before{
+  background:
+    radial-gradient(circle at 18% 18%,rgba(70,168,255,.14),transparent 26%),
+    linear-gradient(180deg,#0d3576 0%,#0a2454 100%)!important;
+}
+.narrative-section:nth-of-type(even)::after{mask-image:linear-gradient(270deg,rgba(0,0,0,.78),transparent 74%);opacity:.22}
+.narrative-body,.narrative-heading{width:min(1320px,100%);margin-left:auto;margin-right:auto}
+.narrative-heading{
+  position:relative!important;display:block!important;margin-bottom:clamp(46px,6vw,82px)!important;
+  padding-left:clamp(22px,3vw,44px)!important;
+}
+.narrative-heading:before{
+  content:"";position:absolute;left:0;top:7px;bottom:4px;width:3px;
+  background:linear-gradient(var(--jp-cyan),var(--jp-yellow));box-shadow:0 0 16px rgba(68,197,255,.55)
+}
+.narrative-heading:after{
+  content:"";position:absolute;left:0;bottom:-22px;width:min(520px,52vw);height:1px;
+  background:linear-gradient(90deg,var(--jp-cyan),rgba(79,200,255,.08));
+}
+.narrative-heading .narrative-eyebrow{
+  color:#8fddff!important;font-size:.68rem!important;letter-spacing:.24em!important;margin-bottom:12px!important;
+}
+.narrative-heading h2{
+  color:#fff!important;font-family:'Rajdhani','Noto Sans JP',sans-serif!important;font-size:clamp(3rem,6vw,6.8rem)!important;
+  font-weight:700!important;line-height:.82!important;letter-spacing:-.04em!important;text-shadow:0 6px 24px rgba(1,14,48,.22)!important;
+}
+
+/* panel language from the hero: glass blue, cyan lines, yellow micro accents */
+.character-story .tech-card,
+.character-story .wafuku-badge{
+  position:relative!important;border:1px solid rgba(111,209,255,.34)!important;border-radius:0!important;
+  background:linear-gradient(145deg,rgba(14,50,112,.76),rgba(5,24,65,.78))!important;
+  box-shadow:0 20px 55px rgba(0,10,42,.22),inset 0 0 0 1px rgba(255,255,255,.018)!important;
+  backdrop-filter:blur(10px)!important;
+  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))!important;
+}
+.character-story .tech-card:before,.character-story .wafuku-badge:before{
+  content:""!important;position:absolute!important;left:-1px!important;top:-1px!important;width:68px!important;height:3px!important;
+  border:0!important;background:linear-gradient(90deg,var(--jp-yellow),var(--jp-cyan),transparent)!important;
+}
+.character-story .tech-card:after,.character-story .wafuku-badge:after{
+  content:""!important;position:absolute!important;right:-1px!important;bottom:-1px!important;width:70px!important;height:1px!important;
+  border:0!important;background:linear-gradient(90deg,transparent,var(--jp-cyan))!important;
+}
+.character-story .tech-card:hover,.character-story .wafuku-badge:hover{
+  border-color:rgba(120,220,255,.62)!important;box-shadow:0 25px 70px rgba(0,13,52,.30),0 0 30px rgba(72,190,255,.08)!important;
+}
+.character-story .section-title{
+  color:#eaf9ff!important;font-family:'Rajdhani','Noto Sans JP',sans-serif!important;font-weight:700!important;font-size:.92rem!important;
+  letter-spacing:.08em!important;border-bottom:1px solid rgba(113,210,255,.28)!important;
+}
+.character-story .section-title:before{color:var(--jp-yellow)!important}
+.character-story p,.character-story li,.character-story span{color:inherit}
+.character-story .text-blue-400,.character-story .text-cyan-400,.character-story .text-cyan-300,.character-story .text-blue-300{color:#8bdfff!important}
+
+/* profile tags */
+.section-profile .profile-composition>.grid:first-child .tech-card{
+  background:linear-gradient(135deg,rgba(56,111,185,.62),rgba(14,48,107,.82))!important;
+  border-left:3px solid var(--jp-yellow)!important;
+  min-height:112px;display:flex;flex-direction:column;justify-content:center;
+}
+.section-profile #bio-text{font-size:clamp(.95rem,1.15vw,1.08rem)!important;line-height:1.95!important;color:#eef8ff!important}
+.section-profile #likes-list li,.section-profile #dislikes-list li{padding:.48rem 0;border-bottom:1px solid rgba(130,215,255,.12)}
+
+/* personality */
+.goal-item{background:rgba(70,125,202,.17)!important;border-left:3px solid var(--jp-yellow)!important;padding:1rem 1.1rem!important;border-radius:0!important}
+.goal-item:hover{background:rgba(81,157,235,.25)!important;transform:translateX(5px)!important}
+.lang-progress{height:8px!important;background:rgba(1,16,47,.58)!important;border:1px solid rgba(105,207,255,.16)!important}
+.lang-progress-fill{background:linear-gradient(90deg,#2a88df,#62d9ff 72%,#ffd31d)!important;box-shadow:0 0 12px rgba(87,204,255,.3)!important}
+.good-item{border-bottom-color:rgba(118,211,255,.16)!important}.good-item:hover{background:rgba(79,170,237,.14)!important;border-left-color:var(--jp-yellow)!important}
+.video-container{border:1px solid rgba(104,205,255,.25)!important;background:#041637!important}
+
+/* Stream & community */
+.schedule-item{background:linear-gradient(180deg,rgba(43,94,165,.48),rgba(9,36,87,.78))!important;border:1px solid rgba(110,208,255,.25)!important;border-radius:0!important}
+.schedule-item.active{border-color:#68d7ff!important;background:linear-gradient(135deg,rgba(47,133,213,.44),rgba(78,71,174,.38))!important;box-shadow:0 0 28px rgba(72,193,255,.18)!important}
+.live-badge{background:var(--jp-yellow)!important;color:#092454!important;border-radius:0!important;box-shadow:none!important}
+.voice-btn,.social-link-enhanced,.submit-fanart-btn{
+  border-radius:0!important;background:rgba(41,91,161,.34)!important;border:1px solid rgba(111,208,255,.28)!important;color:#f5fbff!important;
+}
+.voice-btn:hover,.social-link-enhanced:hover,.submit-fanart-btn:hover{
+  background:rgba(74,154,224,.30)!important;border-color:#76d9ff!important;color:#fff!important;box-shadow:0 10px 26px rgba(1,18,56,.22)!important;
+}
+
+/* Awards / Goods / Design */
+.section-collection .good-img-container,.section-design .staff-avatar{border-color:rgba(113,211,255,.5)!important}
+.section-design .wafuku-badge{padding:clamp(18px,2vw,28px)!important}
+.section-design .wafuku-badge .bg-black\/40{background:rgba(3,20,55,.58)!important}
+
+/* Fanart archive */
+.section-archive .tech-card{background:rgba(8,31,78,.52)!important}
+.fanart-grid{gap:clamp(16px,2vw,28px)!important}
+.fanart-img-wrapper{border:1px solid rgba(117,212,255,.30)!important;background:#061c48!important;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)!important}
+.fanart-img-wrapper:hover{border-color:#73d8ff!important;box-shadow:0 18px 34px rgba(0,14,55,.28)!important}
+.artist-credit{color:#bfeeff!important}
+
+/* fixed utility items */
+#visitor-counter,#back-to-top{background:rgba(4,25,65,.88)!important;border-color:rgba(109,209,255,.38)!important;color:#a7e8ff!important;border-radius:0!important;backdrop-filter:blur(10px)}
+#back-to-top:hover{background:#62d9ff!important;color:#07204d!important}
+
+/* light theme keeps the same identity rather than becoming generic white */
+:root[data-theme="light"] body{background:#dceaff!important;color:#0b2554!important}
+:root[data-theme="light"] .narrative-section::before{background:linear-gradient(180deg,#e9f3ff,#cbdffa)!important}
+:root[data-theme="light"] .narrative-section:nth-of-type(even)::before{background:linear-gradient(180deg,#d8eaff,#bdd6f5)!important}
+:root[data-theme="light"] .narrative-heading h2{color:#0a2b63!important;text-shadow:none!important}
+:root[data-theme="light"] .character-story .tech-card,:root[data-theme="light"] .character-story .wafuku-badge{background:linear-gradient(145deg,rgba(248,252,255,.94),rgba(220,236,255,.92))!important;color:#12315f!important;border-color:rgba(25,112,181,.24)!important}
+:root[data-theme="light"] .character-story .section-title{color:#12315f!important}
+:root[data-theme="light"] .section-profile #bio-text{color:#1b3863!important}
+
+@media(max-width:900px){
+  .narrative-section{padding:78px 20px!important}
+  .narrative-heading{padding-left:20px!important;margin-bottom:42px!important}
+  .visual-showcase{padding:74px 20px!important}
+}
+@media(max-width:560px){
+  .narrative-heading h2{font-size:clamp(2.7rem,15vw,4.3rem)!important}
+  .character-story .tech-card,.character-story .wafuku-badge{clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)!important}
+}
+
 </style>
 </head>
 <body class="p-4 md:p-8 lg:p-12">
@@ -818,16 +1021,14 @@ body::before{opacity:.08!important;background-size:100% 8px!important}
   <div class="hero-wave-pattern" aria-hidden="true"></div>
   <div class="hero-decor-star star-a">★</div><div class="hero-decor-star star-b">★</div><div class="hero-decor-star star-c">★</div>
   <div class="hero-copy">
-    <div class="hero-sub">SPACE FENNEC EXPLORER</div>
+    <div class="hero-sub" data-key="hero-role">นักสำรวจเฟนเนคแห่งอวกาศ</div>
     <h1>Hoshino <span>Kuroi</span></h1>
-    <div class="hero-jp">まだ見ぬ星の、その先へ——</div>
-    <div class="hero-tagline">To the stars beyond.</div>
+    <div class="hero-jp" data-key="hero-tagline">ออกเดินทางไปให้ไกลกว่าดวงดาวที่ยังไม่เคยพบ</div>
     <div class="hero-mini-panel"><span>EXPLORE</span><span>DISCOVER</span><span>CONNECT</span></div>
   </div>
   <div class="hero-character-frame">
     <div class="hero-character-cut"></div>
     <div class="hero-art"><img alt="Hoshino Kuroi key visual" src="HoshinoKuroi.png"/></div>
-    <div class="hero-vertical-jp">星を旅する、フェネック。</div>
     <div class="hero-side-data">EXPLORER<br/>DIGITAL<br/>FROM<br/>THE GALAXY</div>
   </div>
   <div class="hero-scroll">SCROLL<div class="mouse"></div><i class="fas fa-chevron-down"></i></div>
@@ -1175,7 +1376,7 @@ body::before{opacity:.08!important;background-size:100% 8px!important}
 
         const translations = {
             th: {
-                "sub-title": "Space Fennec Explorer", "birthday": "วันเกิด", "october": "ตุลาคม", "height": "ส่วนสูง", "age": "อายุ", "years": "ปี", "languages": "ภาษาที่พูดได้", "lang-th": "🇹🇭 ภาษาไทย (Native)", "lang-jp": "🇯🇵 ภาษาญี่ปุ่น (Basic)", "lang-en": "🇬🇧 ภาษาอังกฤษ (Basic)", "schedule": "ตารางสตรีมประจำสัปดาห์", "biography": "ประวัติ", "likes": "ของที่ชอบ / งานอดิเรก", "dislikes": "ของที่ไม่ชอบ", "goals": "เป้าหมาย", "interaction": "การสนับสนุนและส่งคำถาม", "social-links": "โซเชียลมีเดีย", "designers": "Character Design Sheet", "special-thanks": "ขอบคุณคนพิเศษ", "click_hint": "คลิกเพื่อขยายรูปภาพ", "fanart-gallery": "แกลเลอรีแฟนอาร์ต", "awards": "รางวัล", "award-name": "รางวัล Reality Official โปสเตอร์ชิบูยะ (ลำดับที่ 11)",
+                "sub-title": "Space Fennec Explorer", "hero-role": "นักสำรวจเฟนเนคแห่งอวกาศ", "hero-tagline": "ออกเดินทางไปให้ไกลกว่าดวงดาวที่ยังไม่เคยพบ", "birthday": "วันเกิด", "october": "ตุลาคม", "height": "ส่วนสูง", "age": "อายุ", "years": "ปี", "languages": "ภาษาที่พูดได้", "lang-th": "🇹🇭 ภาษาไทย (Native)", "lang-jp": "🇯🇵 ภาษาญี่ปุ่น (Basic)", "lang-en": "🇬🇧 ภาษาอังกฤษ (Basic)", "schedule": "ตารางสตรีมประจำสัปดาห์", "biography": "ประวัติ", "likes": "ของที่ชอบ / งานอดิเรก", "dislikes": "ของที่ไม่ชอบ", "goals": "เป้าหมาย", "interaction": "การสนับสนุนและส่งคำถาม", "social-links": "โซเชียลมีเดีย", "designers": "Character Design Sheet", "special-thanks": "ขอบคุณคนพิเศษ", "click_hint": "คลิกเพื่อขยายรูปภาพ", "fanart-gallery": "แกลเลอรีแฟนอาร์ต", "awards": "รางวัล", "award-name": "รางวัล Reality Official โปสเตอร์ชิบูยะ (ลำดับที่ 11)",
                 "mon": "จันทร์", "tue": "อังคาร", "wed": "พุธ", "thu": "พฤหัส", "fri": "ศุกร์", "sat": "เสาร์", "sun": "อาทิตย์", "off": "พักผ่อน",
                 "sup-donate-sub": "สนับสนุนค่าขนมและสตรีม", "sup-marsh-sub": "ส่งคำถาม/พูดคุยไร้ชื่อ", "sup-art-sub": "ส่งผลงานแฟนอาร์ตของคุณ",
                 "bio": "จากดวงดาวสีคราม Starloid สู่การผจญภัยที่ไม่มีวันสิ้นสุดบนโลกใบนี้!\n\nณ กาแล็กซีอันไกลโพ้น จิ้งจอกทะเลทราย (Fennec fox) ผู้เปี่ยมไปด้วยความอยากรู้อยากเห็นได้ถือกำเนิดขึ้นบนดวงดาว Starloid เขาออกเดินทางข้ามจักรวาลด้วยยานลำจิ๋วเพื่อภารกิจสำคัญ: ตามหาอาหารที่อร่อยที่สุดในกาแล็กซี\n\nแต่จุดหมายปลายทางกลับหักเหเมื่อเขาลงจอดที่ดาวโลก ที่นี่ไม่ได้มีแค่ของอร่อย แต่เขายังได้พบกับขุมทรัพย์ทางจิตวิญญาณอย่างวัฒนธรรมญี่ปุ่น และความตื่นเต้นของโลกแห่งเกม ที่ทำให้เขานั่งจดจ่อได้ทั้งวันคืนจนลืมเวลานอน\n\nความหลงใหลนี้เองที่เปลี่ยนจากนักเดินทางพเนจร ให้กลายเป็น VTuber สายเกมเมอร์ ผู้คลั่งไคล้อาหารและอนิเมะ ตอนนี้เขาพร้อมแล้วที่จะแบ่งปันความสุข เสียงหัวเราะ และเรื่องราวสุดเพี้ยนจากการสำรวจโลกไปพร้อมกับทุกคน!",
@@ -1192,7 +1393,7 @@ body::before{opacity:.08!important;background-size:100% 8px!important}
                 "voice-title": "ตัวอย่างเสียงแนะนำตัว", "voice-th": "ภาษาไทย", "voice-en": "ภาษาอังกฤษ", "voice-jp": "ภาษาญี่ปุ่น"
             },
             en: {
-                "sub-title": "Space Fennec Explorer", "birthday": "Birthday", "october": "October", "height": "Height", "age": "Age", "years": "Years", "languages": "Languages", "lang-th": "🇹🇭 THAI (Native)", "lang-jp": "🇯🇵 JAPANESE (Basic)", "lang-en": "🇬🇧 ENGLISH (Basic)", "schedule": "Weekly Schedule", "biography": "Biography", "likes": "Likes / Hobbies", "dislikes": "Dislikes", "goals": "Goals", "interaction": "Support and Q&A", "social-links": "Social Links", "designers": "Character Design Sheet", "special-thanks": "Special Thanks", "click_hint": "Click to expand image", "fanart-gallery": "FanArt Gallery", "awards": "Awards & Achievements", "award-name": "Reality Official Award Shibuya Poster (no.11)",
+                "sub-title": "Space Fennec Explorer", "hero-role": "SPACE FENNEC EXPLORER", "hero-tagline": "To the stars beyond.", "birthday": "Birthday", "october": "October", "height": "Height", "age": "Age", "years": "Years", "languages": "Languages", "lang-th": "🇹🇭 THAI (Native)", "lang-jp": "🇯🇵 JAPANESE (Basic)", "lang-en": "🇬🇧 ENGLISH (Basic)", "schedule": "Weekly Schedule", "biography": "Biography", "likes": "Likes / Hobbies", "dislikes": "Dislikes", "goals": "Goals", "interaction": "Support and Q&A", "social-links": "Social Links", "designers": "Character Design Sheet", "special-thanks": "Special Thanks", "click_hint": "Click to expand image", "fanart-gallery": "FanArt Gallery", "awards": "Awards & Achievements", "award-name": "Reality Official Award Shibuya Poster (no.11)",
                 "mon": "MON", "tue": "TUE", "wed": "WED", "thu": "THU", "fri": "FRI", "sat": "SAT", "sun": "SUN", "off": "OFF DAY",
                 "sup-donate-sub": "Support stream & snacks", "sup-marsh-sub": "Send anonymous Q&A", "sup-art-sub": "Submit your fanart",
                 "bio": "A Galactic Traveler who fell in love with Earth's pixels and flavors!\n\nBorn on the distant planet Starloid, a curious little Fennec Fox set out on a grand cosmic odyssey. His original goal was simple: to taste every Galaxy-class delicacy hidden across the stars.\n\nHowever, his navigation system led him to a small blue planet called Earth. Instead of just filling his stomach, he filled his heart with Japanese culture and the captivating world of gaming. From the neon lights of Akihabara to the endless challenges in virtual worlds, he found a new home.\n\nNow, he has traded his spaceship for a streaming setup! As a Gamer VTuber, he’s here to explore every digital realm, eat delicious snacks, and create unforgettable memories with his new earthly friends. Let’s level up together!",
@@ -1209,7 +1410,7 @@ body::before{opacity:.08!important;background-size:100% 8px!important}
                 "voice-title": "Introduction Voice Samples", "voice-th": "Thai", "voice-en": "English", "voice-jp": "Japanese"
             },
             jp: {
-                "sub-title": "宇宙のフェネック探検家", "birthday": "誕生日", "october": "10月", "height": "身長", "age": "年齢", "years": "歳", "languages": "対応言語", "lang-th": "🇹🇭 タイ語 (母国語)", "lang-jp": "🇯🇵 日本語 (初級)", "lang-en": "🇬🇧 英語 (初級)", "schedule": "週間配信スケジュール", "biography": "プロフィール", "likes": "好きなこと / 趣味", "dislikes": "苦手なもの", "goals": "今後の目標", "interaction": "応援とQ&A", "social-links": "SNSリンク", "designers": "Character Design Sheet", "special-thanks": "スペシャルサンクス", "click_hint": "クリックして拡大", "fanart-gallery": "ファンアートギャラリー", "awards": "受賞歴と実績", "award-name": "REALITY公式アワード 渋谷ポスターイベント【11位】",
+                "sub-title": "宇宙のフェネック探検家", "hero-role": "宇宙のフェネック探検家", "hero-tagline": "まだ見ぬ星の、その先へ——", "birthday": "誕生日", "october": "10月", "height": "身長", "age": "年齢", "years": "歳", "languages": "対応言語", "lang-th": "🇹🇭 タイ語 (母国語)", "lang-jp": "🇯🇵 日本語 (初級)", "lang-en": "🇬🇧 英語 (初級)", "schedule": "週間配信スケジュール", "biography": "プロフィール", "likes": "好きなこと / 趣味", "dislikes": "苦手なもの", "goals": "今後の目標", "interaction": "応援とQ&A", "social-links": "SNSリンク", "designers": "Character Design Sheet", "special-thanks": "スペシャルサンクス", "click_hint": "クリックして拡大", "fanart-gallery": "ファンアートギャラリー", "awards": "受賞歴と実績", "award-name": "REALITY公式アワード 渋谷ポスターイベント【11位】",
                 "mon": "月", "tue": "火", "wed": "水", "thu": "木", "fri": "金", "sat": "土", "sun": "日", "off": "お休み",
                 "sup-donate-sub": "配信や差し入れのサポート", "sup-marsh-sub": "匿名での質問箱・お便り", "sup-art-sub": "ファンアートの投稿",
                 "bio": "遥か彼方の星から、地球のゲームと美食を求めてやってきた！\n\n遠い銀河に浮かぶ惑星Starloidで生まれた一匹のフェネックギツネ。彼は好奇心に突き動かされ、宇宙一の美食を探すために銀河中を旅していました。\n\nしかし、偶然たどり着いた地球で彼の運命は一変します。未知の美味しい料理はもちろん、何よりも彼を虜にしたのは日本文化とゲームの世界でした。画面の中で繰り広げられる冒険に夢中になり、気づけば昼夜を忘れてコントローラーを握りしめる毎日に。\n\nこの楽しさを、みんなと共有したい！そう決意した彼は、ゲーマーVTuberとして新たな旅を始めました。美味しいものを食べ、大好きなゲームを楽しみながら、地球の皆さんと最高の時間を過ごしたいと思っています！",
