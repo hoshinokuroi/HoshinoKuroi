@@ -457,7 +457,7 @@
     ========================================================== */
     .profile-grid {
       display: grid;
-      grid-template-columns: 1.05fr 1fr 1.35fr .9fr;
+      grid-template-columns: 1.05fr 1fr 1.5fr;
       gap: 14px;
       padding: 14px;
     }
@@ -541,6 +541,15 @@
     .voice-btn strong { display:block; font-size:.76rem; }
     .voice-btn small { display:block; color:var(--muted); font:600 9px "JetBrains Mono",monospace; margin-top:4px; }
 
+    /* Personality content now owns Likes / Dislikes / Goals.
+       This prevents the Character Profile from feeling duplicated. */
+    .personality-copy { display:flex; flex-direction:column; gap:18px; }
+    .personality-copy .personality-lead { margin:0; padding:0 0 14px; border-bottom:1px solid var(--line-soft); }
+    .personality-preferences { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .personality-preferences .likes-card { background:rgba(9,40,91,.34); }
+    .personality-goals { padding-top:2px; }
+    .personality-goals .card-title { margin-bottom:10px; }
+
     /* =========================================================
        08. CHARACTER SHEET / ACROSS THE STAR FIELD
     ========================================================== */
@@ -553,6 +562,16 @@
     .fox-silhouette { font-size:84px; color:rgba(121,193,255,.18); margin-bottom:auto; text-align:center; filter:drop-shadow(0 0 18px rgba(57,215,255,.2)); }
     .sheet-side strong { font-size:1.15rem; line-height:1.5; }
     .sheet-side small { margin-top:12px; color:var(--cyan); }
+
+    /* Right-side image slot for Across the Star Field. */
+    .sheet-side-image { min-height:430px; padding:0; cursor:zoom-in; justify-content:flex-end; }
+    .sheet-side-image::before { display:none; }
+    .sheet-side-image > img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; transition:transform .45s ease; }
+    .sheet-side-image:hover > img { transform:scale(1.035); }
+    .sheet-side-image::after { content:""; position:absolute; inset:36% 0 0; background:linear-gradient(transparent,rgba(2,9,27,.96)); pointer-events:none; }
+    .sheet-side-overlay { position:relative; z-index:2; padding:20px; display:flex; flex-direction:column; }
+    .sheet-side-overlay strong { font-size:1.08rem; line-height:1.55; text-shadow:0 2px 12px rgba(0,0,0,.8); }
+    .sheet-side-overlay small { margin-top:10px; color:var(--cyan); }
 
     /* =========================================================
        09. AWARDS & GOODS
@@ -715,6 +734,7 @@
       .creator-credit.split > div { border-right:0; border-bottom:1px solid var(--line-soft); padding:0 0 9px; }
       .creator-credit.split > div:last-child { border-bottom:0; padding-bottom:0; }
     }
+@media (max-width:760px){.personality-preferences{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -794,7 +814,7 @@
       </div>
 
       <div class="hero-art-wrap" aria-hidden="true">
-        <img class="hero-art" src="HoshinoCT1.png" alt="" />
+        <img class="hero-art" src="HoshinoKuroi.png" alt="" />
       </div>
 
       <div class="hero-side-copy" data-i18n="hero-side">星を旅する、フェネック。</div>
@@ -809,7 +829,7 @@
 
     <!-- =======================================================
          01. CHARACTER PROFILE
-         Portrait + core identity + biography + likes/dislikes.
+         Portrait + core identity + biography. Likes/dislikes moved to Personality.
     ======================================================== -->
     <section class="section" id="profile">
       <div class="shell hud-panel">
@@ -842,16 +862,6 @@
             <p id="bio-text"></p>
           </article>
 
-          <div class="likes-stack">
-            <article class="likes-card hud-panel">
-              <h3 class="card-title"><i class="fa-solid fa-heart" style="color:#ff6579"></i><span data-i18n="likes">LIKES</span></h3>
-              <ul id="likes-list"></ul>
-            </article>
-            <article class="likes-card dislikes hud-panel">
-              <h3 class="card-title"><i class="fa-solid fa-circle-xmark"></i><span data-i18n="dislikes">DISLIKES</span></h3>
-              <ul id="dislikes-list"></ul>
-            </article>
-          </div>
         </div>
       </div>
     </section>
@@ -866,14 +876,30 @@
         <article class="hud-panel">
           <div class="section-heading">
             <span class="section-index">02</span>
-            <div><h2 data-i18n="section-personality">PERSONALITY</h2><span class="jp" data-i18n="section-personality-sub">บุคลิกและเป้าหมาย</span></div>
+            <div><h2 data-i18n="section-personality">PERSONALITY</h2><span class="jp" data-i18n="section-personality-sub">บุคลิก สิ่งที่ชอบ สิ่งที่ไม่ชอบ และเป้าหมาย</span></div>
           </div>
           <div class="personality-card">
             <div class="personality-image"><img src="HoshinoCT3.png" alt="Hoshino Kuroi personality visual" /></div>
             <div class="personality-copy">
-              <p data-i18n="personality-copy">ช่างสงสัย รักเกม อาหารอร่อย และวัฒนธรรมญี่ปุ่น ชอบแบ่งปันช่วงเวลาสนุก ๆ กับทุกคน</p>
-              <h3 class="card-title"><i class="fa-solid fa-bullseye"></i><span data-i18n="goals">GOALS</span></h3>
-              <ul class="goal-list" id="goals-list"></ul>
+              <p class="personality-lead" data-i18n="personality-copy">ช่างสงสัย รักเกม อาหารอร่อย และวัฒนธรรมญี่ปุ่น ชอบแบ่งปันช่วงเวลาสนุก ๆ กับทุกคน</p>
+
+              <!-- LIKES / DISLIKES: moved here from Character Profile so Personality contains preferences -->
+              <div class="personality-preferences">
+                <article class="likes-card hud-panel">
+                  <h3 class="card-title"><i class="fa-solid fa-heart" style="color:#ff6579"></i><span data-i18n="likes">ของที่ชอบ / งานอดิเรก</span></h3>
+                  <ul id="likes-list"></ul>
+                </article>
+                <article class="likes-card dislikes hud-panel">
+                  <h3 class="card-title"><i class="fa-solid fa-circle-xmark"></i><span data-i18n="dislikes">ของที่ไม่ชอบ</span></h3>
+                  <ul id="dislikes-list"></ul>
+                </article>
+              </div>
+
+              <!-- GOALS -->
+              <div class="personality-goals">
+                <h3 class="card-title"><i class="fa-solid fa-bullseye"></i><span data-i18n="goals">เป้าหมาย</span></h3>
+                <ul class="goal-list" id="goals-list"></ul>
+              </div>
             </div>
           </div>
         </article>
@@ -881,7 +907,7 @@
         <article class="hud-panel" id="stream">
           <div class="section-heading">
             <span class="section-index">03</span>
-            <div><h2 data-i18n="section-stream">STREAM & COMMUNITY</h2><span class="jp" data-i18n="section-stream-sub">การสตรีมและคอมมูนิตี้</span></div>
+            <div><h2 data-i18n="section-stream">LIVE STREAM & COMMUNITY</h2><span class="jp" data-i18n="section-stream-sub">ตารางไลฟ์ประจำสัปดาห์</span></div>
           </div>
           <div class="stream-card">
             <!-- LIVE STREAM: visual + highlighted weekly schedule + complete social channels -->
@@ -948,10 +974,13 @@
             <img src="HoshinoCarSheet.jpg" alt="Hoshino Kuroi original character sheet" loading="lazy" />
             <span class="expand-hint" data-i18n="expand">CLICK TO VIEW FULL SIZE</span>
           </div>
-          <aside class="sheet-side hud-panel">
-            <div class="fox-silhouette"><i class="fa-solid fa-cat"></i></div>
-            <strong data-i18n="sheet-side-copy">ยังมีอีกหลายสิ่งในจักรวาลที่รอให้ค้นพบ</strong>
-            <small data-i18n="sheet-side-sub">More to explore...</small>
+          <!-- RIGHT VISUAL SLOT: replace src with any character / promotional image you want -->
+          <aside class="sheet-side hud-panel sheet-side-image" onclick="openLightbox('HoshinoCT2.png')" role="button" tabindex="0" aria-label="Open side character visual">
+            <img src="HoshinoCT2.png" alt="Hoshino Kuroi side visual" loading="lazy" />
+            <div class="sheet-side-overlay">
+              <strong data-i18n="sheet-side-copy">ยังมีอีกหลายสิ่งในจักรวาลที่รอให้ค้นพบ</strong>
+              <small data-i18n="sheet-side-sub">ออกสำรวจต่อไป...</small>
+            </div>
           </aside>
         </div>
       </div>
@@ -1084,8 +1113,8 @@
         'nav-home':'หน้าหลัก','nav-profile':'โปรไฟล์','nav-personality':'บุคลิก','nav-stream':'สตรีม','nav-design':'ดีไซน์','nav-archive':'แกลเลอรี',
         'hero-role':'นักสำรวจเฟนเนคแห่งอวกาศ','hero-tagline':'ออกเดินทางไปให้ไกลกว่าดวงดาวที่ยังไม่เคยพบ','hero-sub':'จาก Starloid สู่โลกใบนี้ — การเดินทางยังไม่สิ้นสุด','hero-cta':'สำรวจจักรวาลของฉัน','hero-side':'เฟนเนคผู้เดินทางข้ามดวงดาว',
         'section-profile':'CHARACTER PROFILE','section-profile-sub':'ข้อมูลตัวละคร','profile-portrait-copy':'มารู้จัก Kuroi ให้มากขึ้น','identity':'IDENTITY','name':'ชื่อ','species':'เผ่าพันธุ์','species-value':'Space Fennec','birthday':'วันเกิด','birthday-value':'23 ตุลาคม','height':'ส่วนสูง','age':'อายุ','age-value':'3000 ปี','identity-quote':'จากดวงดาวสีคราม สู่การผจญภัยที่ไม่มีวันสิ้นสุดบนโลกใบนี้','biography':'ประวัติ','likes':'ของที่ชอบ / งานอดิเรก','dislikes':'ของที่ไม่ชอบ',
-        'section-personality':'PERSONALITY & GOALS','section-personality-sub':'บุคลิก ความชอบ และเป้าหมาย','personality-copy':'ช่างสงสัย รักเกม อาหารอร่อย และวัฒนธรรมญี่ปุ่น ชอบแบ่งปันช่วงเวลาสนุก ๆ กับทุกคน','goals':'เป้าหมาย',
-        'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'ตารางไลฟ์ ช่องทางติดตาม และการสนับสนุน','schedule':'ตารางไลฟ์ประจำสัปดาห์','follow':'โซเชียลมีเดีย','support-title':'SUPPORT & Q&A','support-copy':'สนับสนุนผลงาน ส่งคำถาม หรือส่งแฟนอาร์ตได้จากช่องทางด้านล่าง','support-donate':'สนับสนุนค่าขนมและสตรีม','support-marsh':'ส่งคำถาม/พูดคุยไร้ชื่อ','support-art':'ส่งผลงานแฟนอาร์ตของคุณ','voice-title':'ตัวอย่างเสียงแนะนำตัว','voice-copy':'ฟังตัวอย่างเสียงแนะนำตัวทั้ง 3 ภาษา','voice-th':'ภาษาไทย','voice-en':'ภาษาอังกฤษ','voice-jp':'ภาษาญี่ปุ่น',
+        'section-personality':'PERSONALITY','section-personality-sub':'บุคลิก สิ่งที่ชอบ สิ่งที่ไม่ชอบ และเป้าหมาย','personality-copy':'ช่างสงสัย รักเกม อาหารอร่อย และวัฒนธรรมญี่ปุ่น ชอบแบ่งปันช่วงเวลาสนุก ๆ กับทุกคน','goals':'เป้าหมาย',
+        'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'ตารางไลฟ์ประจำสัปดาห์','schedule':'ตารางไลฟ์ประจำสัปดาห์','follow':'โซเชียลมีเดีย','support-title':'SUPPORT & Q&A','support-copy':'สนับสนุนผลงาน ส่งคำถาม หรือส่งแฟนอาร์ตได้จากช่องทางด้านล่าง','support-donate':'สนับสนุนค่าขนมและสตรีม','support-marsh':'ส่งคำถาม/พูดคุยไร้ชื่อ','support-art':'ส่งผลงานแฟนอาร์ตของคุณ','voice-title':'ตัวอย่างเสียงแนะนำตัว','voice-copy':'ฟังตัวอย่างเสียงแนะนำตัวทั้ง 3 ภาษา','voice-th':'ภาษาไทย','voice-en':'ภาษาอังกฤษ','voice-jp':'ภาษาญี่ปุ่น',
         'section-sheet':'ACROSS THE STAR FIELD','section-sheet-sub':'ดีไซน์และข้อมูลตัวละคร','expand':'คลิกเพื่อดูภาพขนาดเต็ม','sheet-side-copy':'ยังมีอีกหลายสิ่งในจักรวาลที่รอให้ค้นพบ','sheet-side-sub':'ออกสำรวจต่อไป...',
         'section-collection':'AWARDS & GOODS','section-collection-sub':'รางวัลและสินค้า','awards':'รางวัลและความสำเร็จ','award-title':'REALITY Official Award','award-desc':'กิจกรรมโปสเตอร์ชิบูยะ 【ลำดับที่ 11】','goods':'สินค้า','coming-soon':'เร็ว ๆ นี้','future-goods':'สินค้าเพิ่มเติม',
         'section-character-design':'CHARACTER DESIGN & CREATORS','section-character-design-sub':'เบื้องหลังการออกแบบและผู้สร้าง','design-original':'SHEET 01 · ORIGINAL MODEL','design-kemono':'SHEET 02 · KEMONO MODEL','designer-role':'DESIGNER / ILLUSTRATOR / RIGGER','designer-illustrator-role':'DESIGNER / ILLUSTRATOR','rigger-role':'LIVE2D RIGGER','section-fanart':'FANART GALLERY','section-fanart-sub':'แฟนอาร์ต','footer-tag':'เฟนเนคตัวเล็ก กับจักรวาลที่กว้างกว่าเดิม',
@@ -1099,8 +1128,8 @@
         'nav-home':'HOME','nav-profile':'PROFILE','nav-personality':'PERSONALITY','nav-stream':'STREAM','nav-design':'DESIGN','nav-archive':'ARCHIVE',
         'hero-role':'SPACE FENNEC EXPLORER','hero-tagline':'To the stars beyond.','hero-sub':'From Starloid to Earth — the journey continues.','hero-cta':'EXPLORE MY UNIVERSE','hero-side':'A FENNEC TRAVELING AMONG THE STARS',
         'section-profile':'CHARACTER PROFILE','section-profile-sub':'Character profile','profile-portrait-copy':'More about Kuroi.','identity':'IDENTITY','name':'Name','species':'Species','species-value':'Space Fennec','birthday':'Birthday','birthday-value':'23 October','height':'Height','age':'Age','age-value':'3000 Years','identity-quote':'From a blue star to an endless adventure on Earth.','biography':'BIOGRAPHY','likes':'LIKES / HOBBIES','dislikes':'DISLIKES',
-        'section-personality':'PERSONALITY & GOALS','section-personality-sub':'Personality, interests & goals','personality-copy':'Curious, game-loving, food-obsessed and fascinated by Japanese culture. He loves sharing fun moments with everyone.','goals':'GOALS',
-        'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'Live schedule, social links & support','schedule':'WEEKLY LIVE SCHEDULE','follow':'SOCIAL LINKS','support-title':'SUPPORT & Q&A','support-copy':'Support the stream, send a question, or submit your fanart.','support-donate':'Support stream & snacks','support-marsh':'Send anonymous Q&A','support-art':'Submit your fanart','voice-title':'INTRODUCTION VOICE SAMPLES','voice-copy':'Listen to introduction samples in three languages.','voice-th':'THAI','voice-en':'ENGLISH','voice-jp':'JAPANESE',
+        'section-personality':'PERSONALITY','section-personality-sub':'Personality, likes, dislikes & goals','personality-copy':'Curious, game-loving, food-obsessed and fascinated by Japanese culture. He loves sharing fun moments with everyone.','goals':'GOALS',
+        'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'Weekly live schedule','schedule':'WEEKLY LIVE SCHEDULE','follow':'SOCIAL LINKS','support-title':'SUPPORT & Q&A','support-copy':'Support the stream, send a question, or submit your fanart.','support-donate':'Support stream & snacks','support-marsh':'Send anonymous Q&A','support-art':'Submit your fanart','voice-title':'INTRODUCTION VOICE SAMPLES','voice-copy':'Listen to introduction samples in three languages.','voice-th':'THAI','voice-en':'ENGLISH','voice-jp':'JAPANESE',
         'section-sheet':'ACROSS THE STAR FIELD','section-sheet-sub':'Design & character data','expand':'CLICK TO VIEW FULL SIZE','sheet-side-copy':'There is still so much in the universe waiting to be discovered.','sheet-side-sub':'More to explore...',
         'section-collection':'AWARDS & GOODS','section-collection-sub':'Achievements & merchandise','awards':'AWARDS & ACHIEVEMENTS','award-title':'REALITY Official Award','award-desc':'Shibuya Poster Event — 11th place','goods':'GOODS','coming-soon':'COMING SOON','future-goods':'More Goods',
         'section-character-design':'CHARACTER DESIGN & CREATORS','section-character-design-sub':'Design sheets, showcase videos & creators','design-original':'SHEET 01 · ORIGINAL MODEL','design-kemono':'SHEET 02 · KEMONO MODEL','designer-role':'DESIGNER / ILLUSTRATOR / RIGGER','designer-illustrator-role':'DESIGNER / ILLUSTRATOR','rigger-role':'LIVE2D RIGGER','section-fanart':'FANART GALLERY','section-fanart-sub':'Fan art','footer-tag':'A SMALL FENNEC, A BIGGER UNIVERSE.',
@@ -1114,8 +1143,8 @@
         'nav-home':'ホーム','nav-profile':'プロフィール','nav-personality':'性格','nav-stream':'配信','nav-design':'デザイン','nav-archive':'ギャラリー',
         'hero-role':'宇宙のフェネック探検家','hero-tagline':'まだ見ぬ星の、その先へ——','hero-sub':'Starloidから地球へ——旅はまだ続く。','hero-cta':'宇宙を探索する','hero-side':'星を旅する、フェネック。',
         'section-profile':'CHARACTER PROFILE','section-profile-sub':'キャラクタープロフィール','profile-portrait-copy':'クロイをもっと知る。','identity':'IDENTITY','name':'名前','species':'種族','species-value':'宇宙フェネック','birthday':'誕生日','birthday-value':'10月23日','height':'身長','age':'年齢','age-value':'3000歳','identity-quote':'青い星から、地球での終わりなき冒険へ。','biography':'プロフィール','likes':'好きなこと / 趣味','dislikes':'苦手なもの',
-        'section-personality':'PERSONALITY & GOALS','section-personality-sub':'性格・好きなもの・目標','personality-copy':'好奇心旺盛で、ゲームと美味しいもの、日本文化が大好き。みんなと楽しい時間を共有することを大切にしている。','goals':'今後の目標',
-        'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'配信予定・SNS・応援','schedule':'週間ライブスケジュール','follow':'SNSリンク','support-title':'応援・Q&A','support-copy':'配信の応援、匿名質問、ファンアート投稿はこちらから。','support-donate':'配信や差し入れを応援','support-marsh':'匿名で質問・メッセージ','support-art':'ファンアートを投稿','voice-title':'自己紹介ボイスサンプル','voice-copy':'3言語の自己紹介ボイスを聴けます。','voice-th':'タイ語','voice-en':'英語','voice-jp':'日本語',
+        'section-personality':'PERSONALITY','section-personality-sub':'性格・好きなもの・苦手なもの・目標','personality-copy':'好奇心旺盛で、ゲームと美味しいもの、日本文化が大好き。みんなと楽しい時間を共有することを大切にしている。','goals':'今後の目標',
+        'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'週間ライブスケジュール','schedule':'週間ライブスケジュール','follow':'SNSリンク','support-title':'応援・Q&A','support-copy':'配信の応援、匿名質問、ファンアート投稿はこちらから。','support-donate':'配信や差し入れを応援','support-marsh':'匿名で質問・メッセージ','support-art':'ファンアートを投稿','voice-title':'自己紹介ボイスサンプル','voice-copy':'3言語の自己紹介ボイスを聴けます。','voice-th':'タイ語','voice-en':'英語','voice-jp':'日本語',
         'section-sheet':'ACROSS THE STAR FIELD','section-sheet-sub':'デザイン・設定資料','expand':'クリックして拡大','sheet-side-copy':'宇宙には、まだ見ぬものがたくさん待っている。','sheet-side-sub':'もっと探索しよう…',
         'section-collection':'AWARDS & GOODS','section-collection-sub':'実績・グッズ','awards':'受賞歴と実績','award-title':'REALITY Official Award','award-desc':'渋谷ポスターイベント【11位】','goods':'グッズ','coming-soon':'近日公開','future-goods':'その他のグッズ',
         'section-character-design':'CHARACTER DESIGN & CREATORS','section-character-design-sub':'デザイン資料・紹介映像・クリエイター','design-original':'SHEET 01 · ORIGINAL MODEL','design-kemono':'SHEET 02 · KEMONO MODEL','designer-role':'デザイン / イラスト / Live2D','designer-illustrator-role':'デザイン / イラスト','rigger-role':'LIVE2D RIGGER','section-fanart':'FANART GALLERY','section-fanart-sub':'ファンアート','footer-tag':'小さなフェネック、もっと大きな宇宙へ。',
@@ -1272,3 +1301,65 @@
   </script>
 </body>
 </html>
+<style>
+/* ============================================================
+   PERSONALITY SPACING PATCH
+   เพิ่มพื้นที่หายใจให้ภาพ / บุคลิก / Likes / Dislikes / Goals
+============================================================ */
+#personality .section-heading{margin-bottom:24px;}
+#personality .personality-card{
+  grid-template-columns:minmax(300px,.82fr) minmax(0,1.18fr);
+  min-height:440px;
+  gap:0;
+}
+#personality .personality-copy{
+  padding:32px 34px 34px;
+  gap:26px;
+}
+#personality .personality-copy .personality-lead{
+  padding:0 0 22px;
+  margin:0;
+  line-height:1.9;
+  font-size:.92rem;
+}
+#personality .personality-preferences{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+}
+#personality .personality-preferences .likes-card{
+  padding:20px 22px;
+}
+#personality .personality-preferences .likes-card li{
+  padding:9px 0;
+  line-height:1.55;
+}
+#personality .personality-goals{
+  margin-top:2px;
+  padding:22px 22px 20px;
+  border:1px solid var(--line-soft);
+  background:rgba(9,40,91,.28);
+  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%);
+}
+#personality .personality-goals .goal-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px 18px;
+}
+#personality .personality-goals .goal-list li{
+  margin:0;
+  padding:10px 0;
+  line-height:1.55;
+}
+@media (max-width:980px){
+  #personality .personality-card{grid-template-columns:1fr;}
+  #personality .personality-image{min-height:400px;max-height:520px;}
+  #personality .personality-copy{padding:28px;}
+}
+@media (max-width:680px){
+  #personality .personality-copy{padding:22px 18px;gap:20px;}
+  #personality .personality-preferences,
+  #personality .personality-goals .goal-list{grid-template-columns:1fr;}
+  #personality .personality-preferences{gap:14px;}
+  #personality .personality-image{min-height:320px;}
+}
+</style>
