@@ -953,7 +953,37 @@
       .hero-kicker { font-size:clamp(1rem,4vw,1.25rem); }
     }
 
-  </style>
+  
+/* ============================================================
+   HERO CHARACTER — WHITE CUTOUT BORDER
+   Creates the thick white sticker/anime key-visual outline
+   behind the transparent character artwork.
+============================================================ */
+.hero-character img,
+.hero-art img,
+.hero-visual img,
+.hero-character-image {
+  filter:
+    drop-shadow(5px 0 0 #fff)
+    drop-shadow(-5px 0 0 #fff)
+    drop-shadow(0 5px 0 #fff)
+    drop-shadow(0 -5px 0 #fff)
+    drop-shadow(4px 4px 0 #fff)
+    drop-shadow(-4px 4px 0 #fff)
+    drop-shadow(4px -4px 0 #fff)
+    drop-shadow(-4px -4px 0 #fff)
+    drop-shadow(0 12px 24px rgba(0, 119, 255, .28));
+}
+
+@media (max-width: 768px) {
+  .hero-character img, .hero-art img, .hero-visual img, .hero-character-image {
+    filter:
+      drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff)
+      drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)
+      drop-shadow(0 8px 16px rgba(0, 119, 255, .24));
+  }
+}
+</style>
 </head>
 <body>
   <div class="site-stars" aria-hidden="true"></div>
