@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOSHINO KUROI | OFFICIAL PROFILE</title>
+  <meta name="description" content="Official profile of Hoshino Kuroi — Space Fennec Explorer." />
+  <meta property="og:title" content="HOSHINO KUROI | OFFICIAL PROFILE" />
+  <meta property="og:image" content="HoshinoKLogo.png" />
+
+  <!-- =========================================================
+       EXTERNAL FONTS / ICONS
+       - Rajdhani: futuristic English display
+       - Noto Sans Thai / JP: readable multilingual content
+       - JetBrains Mono: HUD / technical labels
+  ========================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+  <style>
+    /* =========================================================
+       01. DESIGN TOKENS
+       Central variables for the blue cyber-space visual system.
+    ========================================================== */
+    :root {
+      --bg-0: #020817;
+      --bg-1: #04132e;
+      --bg-2: #07265a;
+      --panel: rgba(4, 19, 48, 0.82);
+      --panel-strong: rgba(4, 18, 44, 0.96);
+      --line: rgba(68, 195, 255, 0.50);
+      --line-soft: rgba(68, 195, 255, 0.20);
+      --cyan: #39d7ff;
+      --cyan-2: #84ebff;
+      --blue: #1678ff;
+      --blue-2: #2e56ff;
+      --yellow: #ffd43b;
+      --purple: #7658ff;
+      --white: #f5fbff;
+      --muted: #94b7d3;
+      --danger: #ff6477;
+      --ok: #71f2ba;
+      --shadow: 0 20px 70px rgba(0, 0, 0, 0.36);
+      --radius: 14px;
+      --nav-h: 72px;
+      --max: 1540px;
+    }
+
+    :root[data-theme="light"] {
+      --bg-0: #eaf7ff;
+      --bg-1: #d9efff;
+      --bg-2: #b8def8;
+      --panel: rgba(245, 252, 255, 0.88);
+      --panel-strong: rgba(255, 255, 255, 0.97);
+      --line: rgba(0, 115, 190, 0.40);
+      --line-soft: rgba(0, 115, 190, 0.18);
+      --cyan: #007ebd;
+      --cyan-2: #006b9f;
+      --blue: #0059d6;
+      --blue-2: #304fcb;
+      --yellow: #d6a900;
+      --purple: #5946d2;
+      --white: #082039;
+      --muted: #49657c;
+      --shadow: 0 20px 70px rgba(5, 56, 94, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(22,120,255,.18), transparent 30%),
+        radial-gradient(circle at 88% 5%, rgba(118,88,255,.18), transparent 28%),
+        linear-gradient(180deg, var(--bg-0), var(--bg-1) 38%, var(--bg-0));
+      color: var(--white);
+      font-family: "Noto Sans Thai", "Noto Sans JP", sans-serif;
+      overflow-x: hidden;
+      line-height: 1.55;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .10;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.08) 0,
+        rgba(255,255,255,.08) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+      mix-blend-mode: overlay;
+    }
+
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    :focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+
+    /* Background star field. Decorative only. */
+    .site-stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .78;
+      background-image:
+        radial-gradient(circle at 10% 20%, #fff 0 1px, transparent 1.5px),
+        radial-gradient(circle at 70% 30%, rgba(117,225,255,.85) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 35% 70%, #fff 0 1px, transparent 1.6px),
+        radial-gradient(circle at 86% 78%, rgba(255,212,59,.8) 0 1px, transparent 1.8px);
+      background-size: 210px 180px, 270px 220px, 310px 260px, 370px 310px;
+      animation: driftStars 38s linear infinite;
+    }
+    @keyframes driftStars { to { transform: translateY(100px); } }
+
+    /* =========================================================
+       02. SHARED CYBER UI COMPONENTS
+    ========================================================== */
+    .shell { width: min(var(--max), calc(100% - 32px)); margin-inline: auto; }
+
+    .hud-panel {
+      position: relative;
+      background:
+        linear-gradient(145deg, rgba(9,42,96,.58), rgba(4,18,45,.90)),
+        var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: inset 0 0 32px rgba(28,139,255,.08), var(--shadow);
+      clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+    }
+    .hud-panel::before,
+    .hud-panel::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+    .hud-panel::before {
+      inset: 7px;
+      border: 1px solid var(--line-soft);
+      clip-path: inherit;
+    }
+    .hud-panel::after {
+      left: 18px;
+      top: -1px;
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      box-shadow: 0 0 12px var(--cyan);
+    }
+
+    .micro {
+      font-family: "JetBrains Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 10px;
+      color: var(--cyan-2);
+    }
+
+    .section {
+      position: relative;
+      padding: 28px 0;
+      scroll-margin-top: calc(var(--nav-h) + 12px);
+    }
+    .section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .12;
+      background-image:
+        linear-gradient(var(--line-soft) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+    }
+
+    .section-heading {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin: 0 0 18px;
+      padding: 0 6px;
+    }
+    .section-index {
+      width: 42px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-left: 2px solid var(--cyan);
+      border-top: 1px solid var(--line-soft);
+      font-family: "JetBrains Mono", monospace;
+      color: var(--cyan);
+      font-weight: 700;
+      text-shadow: 0 0 14px rgba(57,215,255,.65);
+    }
+    .section-heading h2 {
+      margin: 0;
+      font-family: "Rajdhani", "Noto Sans Thai", "Noto Sans JP", sans-serif;
+      font-size: clamp(1.7rem, 3.2vw, 2.85rem);
+      line-height: .95;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+    }
+    .section-heading .jp {
+      color: var(--cyan);
+      font-size: clamp(.72rem, 1vw, .88rem);
+      letter-spacing: .08em;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid var(--line-soft);
+      font-family: "Rajdhani", "Noto Sans Thai", "Noto Sans JP", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .card-title i { color: var(--cyan); }
+
+    .corner-label {
+      position: absolute;
+      z-index: 5;
+      top: 14px;
+      right: 16px;
+      font: 600 9px/1 "JetBrains Mono", monospace;
+      letter-spacing: .15em;
+      color: var(--cyan-2);
+      opacity: .76;
+    }
+
+    /* =========================================================
+       03. LOADING SCREEN
+    ========================================================== */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(28,117,255,.22), transparent 36%),
+        #020817;
+      transition: opacity .7s ease, visibility .7s ease;
+    }
+    #loading-screen.is-hidden { opacity: 0; visibility: hidden; }
+    .loader-core { width: min(620px, 86vw); text-align: center; }
+    .loader-frame {
+      position: relative;
+      height: clamp(170px, 28vw, 250px);
+      overflow: hidden;
+      border: 1px solid var(--cyan);
+      box-shadow: 0 0 40px rgba(57,215,255,.22);
+      clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+      background: #000;
+    }
+    .loader-frame img { width: 100%; height: 100%; object-fit: cover; opacity: .72; filter: saturate(.7) contrast(1.1); }
+    .loader-scan { position: absolute; inset: 0 auto 0 0; width: 3px; background: white; box-shadow: 0 0 20px var(--cyan); animation: loaderScan 1.8s ease forwards; }
+    @keyframes loaderScan { to { left: 100%; } }
+    .loader-progress { height: 3px; margin-top: 16px; background: rgba(255,255,255,.12); overflow: hidden; }
+    .loader-progress span { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--cyan), var(--blue)); transition: width .18s linear; box-shadow: 0 0 14px var(--cyan); }
+    .loader-text { margin-top: 12px; font: 600 10px "JetBrains Mono", monospace; letter-spacing: .18em; color: var(--cyan-2); }
+
+    /* =========================================================
+       04. FIXED NAVIGATION
+    ========================================================== */
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      background: linear-gradient(180deg, rgba(2,8,24,.96), rgba(2,14,38,.88));
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 8px 34px rgba(0,0,0,.24);
+    }
+    .topbar::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -3px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 3%, var(--cyan) 16%, transparent 34%, var(--blue) 58%, transparent 82%);
+      opacity: .55;
+    }
+    .nav-inner {
+      width: min(var(--max), calc(100% - 28px));
+      height: 100%;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 220px 1fr auto;
+      align-items: center;
+      gap: 20px;
+    }
+    .brand img { height: 54px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; justify-content: center; min-width: 0; height: 100%; }
+    .nav-links a {
+      position: relative;
+      min-width: 92px;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 4px;
+      padding: 0 14px;
+      text-decoration: none;
+      color: #a9c8df;
+      border-left: 1px solid rgba(68,195,255,.15);
+      transition: .25s ease;
+    }
+    .nav-links a:last-child { border-right: 1px solid rgba(68,195,255,.15); }
+    .nav-links a i { color: var(--cyan); font-size: 15px; }
+    .nav-links a span { font: 600 10px "Rajdhani", sans-serif; letter-spacing: .08em; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); background: linear-gradient(180deg, transparent, rgba(16,109,255,.14)); }
+    .nav-links a.active::after { content: ""; position: absolute; bottom: 0; left: 14%; right: 14%; height: 2px; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .lang-switch { display: flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; background: rgba(4,20,51,.62); }
+    .lang-btn { border: 0; background: transparent; color: #9dbbd1; padding: 7px 10px; font: 600 10px "JetBrains Mono", monospace; cursor: pointer; }
+    .lang-btn + .lang-btn { border-left: 1px solid var(--line-soft); }
+    .lang-btn.active, .lang-btn:hover { color: #fff; background: rgba(30,148,255,.20); }
+    .icon-btn {
+      width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line);
+      color: var(--white); background: rgba(4,20,51,.62); cursor: pointer;
+      display: grid; place-items: center;
+    }
+    .mobile-menu-btn { display: none; }
+
+    /* =========================================================
+       05. HERO / KEY VISUAL
+       Diagonal split inspired by the supplied reference image.
+    ========================================================== */
+    .hero {
+      position: relative;
+      min-height: 760px;
+      height: min(820px, 100svh);
+      padding-top: var(--nav-h);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 86% 16%, rgba(126,92,255,.36), transparent 30%),
+        linear-gradient(135deg, #06245c 0%, #12479c 43%, #061639 100%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* Japanese seigaiha-inspired pattern made only with CSS. */
+    .hero-pattern {
+      position: absolute;
+      left: 0; top: var(--nav-h); bottom: 0; width: 58%;
+      opacity: .28;
+      background-color: #18498f;
+      background-image:
+        radial-gradient(circle at 100% 150%, transparent 24%, rgba(255,255,255,.42) 25%, rgba(255,255,255,.42) 28%, transparent 29%, transparent 36%, rgba(255,255,255,.24) 37%, rgba(255,255,255,.24) 40%, transparent 41%),
+        radial-gradient(circle at 0 150%, transparent 24%, rgba(255,255,255,.42) 25%, rgba(255,255,255,.42) 28%, transparent 29%, transparent 36%, rgba(255,255,255,.24) 37%, rgba(255,255,255,.24) 40%, transparent 41%);
+      background-size: 72px 36px;
+    }
+    .hero-space-glow {
+      position: absolute; inset: var(--nav-h) 0 0 44%;
+      background:
+        radial-gradient(circle at 68% 30%, rgba(58,130,255,.30), transparent 26%),
+        radial-gradient(circle at 80% 80%, rgba(100,55,208,.22), transparent 34%);
+    }
+    .hero-left {
+      position: absolute;
+      z-index: 5;
+      left: max(6vw, 42px);
+      top: 50%;
+      transform: translateY(-42%);
+      width: min(560px, 44vw);
+    }
+    .hero-kicker {
+      margin: 0 0 10px;
+      font: 700 clamp(1rem, 1.6vw, 1.45rem) "Rajdhani", "Noto Sans Thai", "Noto Sans JP", sans-serif;
+      letter-spacing: .01em;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(20,171,255,.55);
+    }
+    .hero h1 {
+      margin: 0;
+      font-family: "Rajdhani", sans-serif;
+      font-size: clamp(5rem, 9.2vw, 9.7rem);
+      line-height: .72;
+      letter-spacing: -.055em;
+      color: #fff;
+      text-shadow: 0 8px 36px rgba(0,0,0,.22);
+    }
+    .hero-tagline { margin: 34px 0 0; font-size: clamp(.98rem, 1.4vw, 1.25rem); font-weight: 600; letter-spacing: .04em; color: #fff; }
+    .hero-tagline-sub { margin: 2px 0 0; color: #dcefff; font-size: clamp(.84rem, 1vw, 1rem); }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding: 10px 18px;
+      text-decoration: none; border: 1px solid var(--cyan); background: rgba(2,23,57,.58); color: #fff;
+      font: 700 10px "JetBrains Mono", monospace; letter-spacing: .08em;
+      box-shadow: 0 0 18px rgba(57,215,255,.18);
+    }
+    .hero-cta:hover { background: rgba(22,120,255,.34); box-shadow: 0 0 26px rgba(57,215,255,.35); }
+
+    .hero-art-wrap {
+      position: absolute;
+      z-index: 3;
+      right: -2vw;
+      top: var(--nav-h);
+      width: 66vw;
+      height: calc(100% - var(--nav-h));
+      overflow: hidden;
+      clip-path: polygon(26% 0, 100% 0, 100% 100%, 8% 100%);
+      background: linear-gradient(145deg, rgba(16,56,124,.15), rgba(32,15,96,.40));
+    }
+    .hero-art-wrap::before {
+      content: "";
+      position: absolute;
+      z-index: 5;
+      left: 17.7%;
+      top: -8%;
+      width: 16px;
+      height: 120%;
+      background: white;
+      transform: rotate(18deg);
+      transform-origin: top;
+      box-shadow: 0 0 22px rgba(255,255,255,.55);
+    }
+    .hero-art {
+      width: 100%; height: 100%; object-fit: contain; object-position: 62% 100%;
+      transform: scale(1.20); transform-origin: 65% 100%;
+      filter: drop-shadow(-16px 20px 35px rgba(0,0,0,.36));
+    }
+    .hero-side-copy {
+      position: absolute; z-index: 6; right: 2.2vw; top: 22%; writing-mode: vertical-rl;
+      font-weight: 600; letter-spacing: .10em; font-size: 1rem; color: rgba(255,255,255,.92);
+      text-shadow: 0 0 14px rgba(0,0,0,.25);
+    }
+    .hero-stars .star { position: absolute; z-index: 8; color: var(--yellow); filter: drop-shadow(0 3px 0 #fff); }
+    .hero-stars .s1 { left: 4%; top: 62%; font-size: 34px; transform: rotate(-15deg); }
+    .hero-stars .s2 { left: 39%; top: 31%; font-size: 34px; color: #fff; }
+    .hero-stars .s3 { left: 34%; top: 54%; font-size: 26px; }
+    .hero-stars .s4 { right: 7%; top: 31%; font-size: 28px; }
+    .hero-scroll {
+      position: absolute; z-index: 10; left: 50%; bottom: 16px; transform: translateX(-50%);
+      text-align: center; font: 600 9px "JetBrains Mono", monospace; letter-spacing: .12em; color: #fff;
+    }
+    .hero-scroll i { display: block; margin-top: 4px; animation: scrollBounce 1.6s ease-in-out infinite; }
+    @keyframes scrollBounce { 50% { transform: translateY(5px); opacity: .45; } }
+
+    /* =========================================================
+       06. PROFILE
+       Layout: portrait / identity / biography / likes & dislikes.
+    ========================================================== */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr 1.35fr .9fr;
+      gap: 14px;
+      padding: 14px;
+    }
+    .portrait-card { min-height: 440px; overflow: hidden; position: relative; }
+    .portrait-card img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .portrait-card::after { content:""; position:absolute; inset:55% 0 0; background:linear-gradient(transparent,rgba(2,8,23,.92)); }
+    .portrait-caption { position:absolute; z-index:3; left:18px; right:18px; bottom:18px; font-family:"Rajdhani",sans-serif; font-size:1.45rem; font-style:italic; }
+
+    .identity-table { padding: 18px; }
+    .identity-row { display:grid; grid-template-columns: 88px 1fr; gap:12px; padding:10px 0; border-bottom:1px solid var(--line-soft); }
+    .identity-row:last-child { border-bottom:0; }
+    .identity-label { font:600 9px "JetBrains Mono", monospace; color:var(--cyan); letter-spacing:.08em; text-transform:uppercase; }
+    .identity-value { font-size:.88rem; }
+    .identity-quote { margin-top:18px; padding:15px; border-left:2px solid var(--yellow); background:rgba(255,212,59,.05); font-size:.86rem; color:#dfefff; }
+
+    .bio-card { padding:18px; }
+    .bio-card p { margin:0; font-size:.84rem; white-space:pre-line; color:#dfefff; }
+
+    .likes-stack { display:grid; gap:12px; }
+    .likes-card { padding:15px; min-height:0; }
+    .likes-card ul { list-style:none; padding:0; margin:0; }
+    .likes-card li { padding:6px 0; border-bottom:1px solid var(--line-soft); font-size:.78rem; }
+    .likes-card li:last-child { border-bottom:0; }
+    .likes-card li i { width:18px; color:var(--cyan); }
+    .likes-card.dislikes li i { color:var(--danger); }
+
+    /* =========================================================
+       07. PERSONALITY + STREAM & COMMUNITY
+    ========================================================== */
+    .two-column-row { display:grid; grid-template-columns:.82fr 1.35fr; gap:14px; }
+    .personality-card { display:grid; grid-template-columns:.95fr 1.05fr; min-height:350px; overflow:hidden; }
+    .personality-image { position:relative; min-height:350px; overflow:hidden; }
+    .personality-image img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+    .personality-image::after { content:""; position:absolute; inset:55% 0 0; background:linear-gradient(transparent,rgba(3,16,44,.95)); }
+    .personality-copy { padding:20px; }
+    .personality-copy p { margin:0 0 12px; font-size:.84rem; color:#d6eaff; }
+    .goal-list { margin:16px 0 0; padding:0; list-style:none; display:grid; gap:8px; }
+    .goal-list li { display:flex; gap:9px; align-items:flex-start; padding:9px 10px; background:rgba(25,105,255,.07); border-left:2px solid var(--cyan); font-size:.78rem; }
+
+    .stream-card { padding:14px; }
+    .stream-inner { display:grid; grid-template-columns:.85fr 1.08fr .72fr; gap:12px; }
+    .stream-visual { overflow:hidden; min-height:300px; position:relative; }
+    .stream-visual img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+    .stream-visual::after { content:""; position:absolute; inset:auto 0 0; height:40%; background:linear-gradient(transparent,rgba(2,8,23,.9)); }
+    .schedule { padding:15px; }
+    .schedule-row { display:grid; grid-template-columns:44px 1fr; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--line-soft); font-size:.76rem; }
+    .schedule-day { font:700 10px "JetBrains Mono",monospace; color:var(--cyan-2); }
+    .follow-card { padding:15px; }
+    .social-list { display:grid; gap:8px; }
+    .social-link { display:flex; align-items:center; gap:10px; padding:9px 10px; text-decoration:none; border:1px solid var(--line-soft); background:rgba(18,90,220,.08); font-size:.78rem; transition:.2s ease; }
+    .social-link:hover { border-color:var(--cyan); transform:translateX(3px); background:rgba(18,90,220,.18); }
+    .social-link i { width:18px; text-align:center; color:var(--cyan); }
+
+    /* =========================================================
+       08. CHARACTER SHEET / ACROSS THE STAR FIELD
+    ========================================================== */
+    .sheet-wrap { padding:14px; display:grid; grid-template-columns:1fr 260px; gap:12px; }
+    .sheet-main { position:relative; overflow:hidden; min-height:430px; background:#f7fbff; cursor:zoom-in; }
+    .sheet-main img { width:100%; height:100%; object-fit:contain; }
+    .sheet-main .expand-hint { position:absolute; right:12px; bottom:10px; padding:6px 8px; background:rgba(2,8,23,.75); color:#fff; font:600 8px "JetBrains Mono",monospace; letter-spacing:.08em; }
+    .sheet-side { padding:18px; display:flex; flex-direction:column; justify-content:flex-end; background:linear-gradient(180deg,rgba(15,56,120,.65),rgba(4,16,44,.94)); position:relative; overflow:hidden; }
+    .sheet-side::before { content:""; position:absolute; width:190px; height:190px; right:-55px; top:-45px; border:1px solid var(--line); border-radius:50%; box-shadow:0 0 80px rgba(76,83,255,.28) inset; }
+    .fox-silhouette { font-size:84px; color:rgba(121,193,255,.18); margin-bottom:auto; text-align:center; filter:drop-shadow(0 0 18px rgba(57,215,255,.2)); }
+    .sheet-side strong { font-size:1.15rem; line-height:1.5; }
+    .sheet-side small { margin-top:12px; color:var(--cyan); }
+
+    /* =========================================================
+       09. AWARDS & GOODS
+    ========================================================== */
+    .collection-grid { display:grid; grid-template-columns:.84fr 1.16fr; gap:14px; padding:14px; }
+    .award-card, .goods-card { padding:16px; }
+    .award-showcase { display:grid; grid-template-columns:1fr .8fr; gap:12px; }
+    .award-image { min-height:235px; overflow:hidden; cursor:zoom-in; }
+    .award-image img { width:100%; height:100%; object-fit:cover; }
+    .award-copy { display:flex; flex-direction:column; justify-content:center; }
+    .award-copy h3 { margin:0 0 8px; font-family:"Rajdhani",sans-serif; font-size:1.3rem; }
+    .award-copy p { margin:0; font-size:.78rem; color:var(--muted); }
+
+    .goods-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .good-card { position:relative; min-height:190px; padding:10px; border:1px solid var(--line-soft); background:rgba(11,55,126,.12); overflow:hidden; }
+    .good-card img { width:100%; height:125px; object-fit:contain; }
+    .good-card strong { display:block; margin-top:7px; font-size:.78rem; }
+    .good-card small { color:var(--cyan); font-size:.66rem; }
+
+    /* =========================================================
+       10. CHARACTER DESIGN
+    ========================================================== */
+    .design-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:14px; }
+    .design-card { padding:16px; }
+    .design-media { cursor:zoom-in; height:280px; overflow:hidden; background:rgba(255,255,255,.04); }
+    .design-media img { width:100%; height:100%; object-fit:contain; }
+    .credits { margin-top:12px; display:grid; gap:5px; font-size:.75rem; color:var(--muted); }
+    .credits a { color:var(--cyan); text-decoration:none; }
+
+    /* =========================================================
+       11. FAN ART GALLERY
+    ========================================================== */
+    .gallery-wrap { padding:14px; }
+    .fanart-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; }
+    .fanart-item { position:relative; aspect-ratio:1/1.2; overflow:hidden; cursor:zoom-in; border:1px solid var(--line-soft); background:rgba(17,73,160,.08); }
+    .fanart-item img { width:100%; height:100%; object-fit:cover; transition:transform .35s ease; }
+    .fanart-item:hover img { transform:scale(1.05); }
+    .fanart-credit { position:absolute; left:0; right:0; bottom:0; padding:22px 10px 8px; background:linear-gradient(transparent,rgba(2,8,23,.92)); font:600 9px "JetBrains Mono",monospace; color:#dff7ff; }
+
+    /* =========================================================
+       12. FOOTER
+    ========================================================== */
+    .footer { margin-top:24px; border-top:1px solid var(--line); background:rgba(2,8,23,.92); }
+    .footer-inner { min-height:120px; display:grid; grid-template-columns:260px 1fr auto; gap:22px; align-items:center; }
+    .footer-brand { display:flex; align-items:center; gap:14px; }
+    .footer-brand img { width:120px; }
+    .footer-tag { font:600 10px "JetBrains Mono",monospace; letter-spacing:.06em; color:#d5edff; }
+    .footer-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; }
+    .footer-nav a { color:var(--muted); text-decoration:none; font:600 9px "JetBrains Mono",monospace; }
+    .footer-nav a:hover { color:var(--cyan); }
+    .footer-social { display:flex; gap:8px; }
+    .footer-social a { width:32px; height:32px; display:grid; place-items:center; border:1px solid var(--line-soft); text-decoration:none; }
+
+    /* =========================================================
+       13. LIGHTBOX / BACK TO TOP / MOBILE NAV
+    ========================================================== */
+    #lightbox { display:none; position:fixed; inset:0; z-index:30000; background:rgba(0,5,17,.94); backdrop-filter:blur(8px); padding:30px; align-items:center; justify-content:center; cursor:zoom-out; }
+    #lightbox img { max-width:92vw; max-height:90vh; object-fit:contain; border:1px solid var(--cyan); box-shadow:0 0 60px rgba(57,215,255,.25); }
+    #back-to-top { position:fixed; right:20px; bottom:20px; z-index:900; width:42px; height:42px; border:1px solid var(--line); background:rgba(2,17,45,.82); color:var(--cyan); cursor:pointer; opacity:0; visibility:hidden; transition:.25s ease; }
+    #back-to-top.show { opacity:1; visibility:visible; }
+
+    .mobile-drawer { display:none; }
+
+    /* =========================================================
+       14. RESPONSIVE BREAKPOINTS
+    ========================================================== */
+    @media (max-width: 1200px) {
+      .nav-inner { grid-template-columns:180px 1fr auto; }
+      .brand img { height:46px; }
+      .nav-links a { min-width:78px; padding:0 8px; }
+      .profile-grid { grid-template-columns:1fr 1fr; }
+      .portrait-card { grid-row:span 2; }
+      .two-column-row { grid-template-columns:1fr; }
+      .stream-inner { grid-template-columns:.85fr 1fr .72fr; }
+      .hero-art-wrap { width:69vw; }
+    }
+
+    @media (max-width: 900px) {
+      :root { --nav-h:64px; }
+      .nav-inner { grid-template-columns:1fr auto; }
+      .nav-links { display:none; }
+      .mobile-menu-btn { display:grid; }
+      .hero { min-height:700px; height:92svh; }
+      .hero-left { left:24px; width:55vw; top:42%; }
+      .hero h1 { font-size:clamp(4.7rem, 15vw, 7rem); }
+      .hero-art-wrap { width:75vw; right:-13vw; }
+      .hero-side-copy { display:none; }
+      .profile-grid { grid-template-columns:1fr 1fr; }
+      .sheet-wrap { grid-template-columns:1fr; }
+      .sheet-side { min-height:210px; }
+      .collection-grid { grid-template-columns:1fr; }
+      .design-grid { grid-template-columns:1fr; }
+      .fanart-grid { grid-template-columns:repeat(2,1fr); }
+      .footer-inner { grid-template-columns:1fr; text-align:center; padding:22px 0; }
+      .footer-brand { justify-content:center; }
+      .footer-social { justify-content:center; }
+
+      .mobile-drawer {
+        position:fixed; inset:var(--nav-h) 0 auto 0; z-index:950;
+        display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+        background:rgba(2,8,23,.96); border-bottom:1px solid var(--line);
+        transform:translateY(-120%); opacity:0; pointer-events:none; transition:.25s ease;
+      }
+      .mobile-drawer.open { transform:translateY(0); opacity:1; pointer-events:auto; }
+      .mobile-drawer a { padding:15px; text-decoration:none; border:1px solid var(--line-soft); color:#d7eeff; font:600 10px "JetBrains Mono",monospace; text-align:center; }
+    }
+
+    @media (max-width: 640px) {
+      .shell { width:min(100% - 18px, var(--max)); }
+      .brand img { height:40px; }
+      .nav-actions .lang-switch { display:none; }
+      .hero { min-height:650px; }
+      .hero-pattern { width:100%; }
+      .hero-left { left:18px; right:18px; width:auto; top:31%; transform:none; }
+      .hero-left::before { content:""; position:absolute; inset:-18px -18px -22px; z-index:-1; background:linear-gradient(90deg,rgba(2,8,23,.74),rgba(2,8,23,.12),transparent); }
+      .hero h1 { font-size:clamp(4.25rem, 20vw, 6rem); }
+      .hero-art-wrap { width:105vw; right:-36vw; opacity:.90; clip-path:polygon(34% 0,100% 0,100% 100%,20% 100%); }
+      .hero-art-wrap::before { left:27%; }
+      .hero-stars .s2 { left:48%; top:17%; }
+      .hero-cta { margin-top:18px; }
+      .profile-grid { grid-template-columns:1fr; }
+      .portrait-card { min-height:360px; grid-row:auto; }
+      .personality-card { grid-template-columns:1fr; }
+      .personality-image { min-height:310px; }
+      .stream-inner { grid-template-columns:1fr; }
+      .stream-visual { min-height:300px; }
+      .sheet-main { min-height:260px; }
+      .award-showcase { grid-template-columns:1fr; }
+      .goods-grid { grid-template-columns:1fr 1fr; }
+      .fanart-grid { grid-template-columns:1fr 1fr; }
+      .section { padding:18px 0; }
+      .section-heading { align-items:flex-start; }
+      .section-heading h2 { font-size:2rem; }
+      .section-heading .jp { display:block; margin-top:4px; }
+    }
+
+    /* Respect users who prefer less motion. */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-stars" aria-hidden="true"></div>
+
+  <!-- =========================================================
+       LOADING SCREEN
+       Keeps the original “system initialization” concept.
+  ========================================================== -->
+  <div id="loading-screen" aria-live="polite">
+    <div class="loader-core">
+      <div class="loader-frame">
+        <img src="HoshinoLoding.jpg" alt="Hoshino Kuroi loading visual" />
+        <div class="loader-scan"></div>
+      </div>
+      <div class="loader-progress"><span id="loader-bar"></span></div>
+      <div class="loader-text">INITIALIZING STARLOID LINK // <span id="loader-percent">0%</span></div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       FIXED NAVIGATION
+       Desktop navigation + language + theme controls.
+  ========================================================== -->
+  <header class="topbar">
+    <div class="nav-inner">
+      <a class="brand" href="#home" aria-label="Hoshino Kuroi home">
+        <img src="HoshinoKLogo.png" alt="Hoshino Kuroi logo" />
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a class="active" href="#home"><i class="fa-solid fa-house"></i><span data-i18n="nav-home">HOME</span></a>
+        <a href="#profile"><i class="fa-regular fa-user"></i><span data-i18n="nav-profile">PROFILE</span></a>
+        <a href="#personality"><i class="fa-regular fa-star"></i><span data-i18n="nav-personality">PERSONALITY</span></a>
+        <a href="#stream"><i class="fa-solid fa-play"></i><span data-i18n="nav-stream">STREAM</span></a>
+        <a href="#design"><i class="fa-regular fa-image"></i><span data-i18n="nav-design">DESIGN</span></a>
+        <a href="#archive"><i class="fa-regular fa-folder"></i><span data-i18n="nav-archive">ARCHIVE</span></a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-btn active" type="button" data-lang="th">TH</button>
+          <button class="lang-btn" type="button" data-lang="en">EN</button>
+          <button class="lang-btn" type="button" data-lang="jp">JP</button>
+        </div>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle theme"><i class="fa-regular fa-moon"></i></button>
+        <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" type="button" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile navigation drawer -->
+  <nav class="mobile-drawer" id="mobile-drawer" aria-label="Mobile navigation">
+    <a href="#home" data-i18n="nav-home">HOME</a>
+    <a href="#profile" data-i18n="nav-profile">PROFILE</a>
+    <a href="#personality" data-i18n="nav-personality">PERSONALITY</a>
+    <a href="#stream" data-i18n="nav-stream">STREAM</a>
+    <a href="#design" data-i18n="nav-design">DESIGN</a>
+    <a href="#archive" data-i18n="nav-archive">ARCHIVE</a>
+  </nav>
+
+  <main>
+    <!-- =======================================================
+         HERO / KEY VISUAL
+         Large diagonal composition from the reference design.
+    ======================================================== -->
+    <section class="hero" id="home">
+      <div class="hero-pattern" aria-hidden="true"></div>
+      <div class="hero-space-glow" aria-hidden="true"></div>
+
+      <div class="hero-left">
+        <p class="hero-kicker" data-i18n="hero-role">นักสำรวจเฟนเนคแห่งอวกาศ</p>
+        <h1>Hoshino<br />Kuroi</h1>
+        <p class="hero-tagline" data-i18n="hero-tagline">ออกเดินทางไปให้ไกลกว่าดวงดาวที่ยังไม่เคยพบ</p>
+        <p class="hero-tagline-sub" data-i18n="hero-sub">จาก Starloid สู่โลกใบนี้ — การเดินทางยังไม่สิ้นสุด</p>
+        <a class="hero-cta" href="#profile"><span data-i18n="hero-cta">EXPLORE MY UNIVERSE</span><i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="hero-art-wrap" aria-hidden="true">
+        <img class="hero-art" src="HoshinoCT1.png" alt="" />
+      </div>
+
+      <div class="hero-side-copy" data-i18n="hero-side">星を旅する、フェネック。</div>
+      <div class="hero-stars" aria-hidden="true">
+        <i class="fa-solid fa-star star s1"></i>
+        <i class="fa-solid fa-star star s2"></i>
+        <i class="fa-solid fa-star star s3"></i>
+        <i class="fa-solid fa-star star s4"></i>
+      </div>
+      <div class="hero-scroll">SCROLL<i class="fa-solid fa-angles-down"></i></div>
+    </section>
+
+    <!-- =======================================================
+         01. CHARACTER PROFILE
+         Portrait + core identity + biography + likes/dislikes.
+    ======================================================== -->
+    <section class="section" id="profile">
+      <div class="shell hud-panel">
+        <div class="section-heading">
+          <span class="section-index">01</span>
+          <div><h2 data-i18n="section-profile">CHARACTER PROFILE</h2><span class="jp" data-i18n="section-profile-sub">ข้อมูลตัวละคร</span></div>
+        </div>
+
+        <div class="profile-grid">
+          <article class="portrait-card hud-panel">
+            <span class="corner-label">VISUAL // 01</span>
+            <img src="HoshinoCT2.png" alt="Hoshino Kuroi portrait" />
+            <div class="portrait-caption" data-i18n="profile-portrait-copy">More about Kuroi.</div>
+          </article>
+
+          <article class="identity-table hud-panel" aria-label="Character identity">
+            <h3 class="card-title"><i class="fa-regular fa-id-card"></i><span data-i18n="identity">IDENTITY</span></h3>
+            <div class="identity-row"><span class="identity-label" data-i18n="name">Name</span><span class="identity-value">Hoshino Kuroi</span></div>
+            <div class="identity-row"><span class="identity-label" data-i18n="species">Species</span><span class="identity-value" data-i18n="species-value">Space Fennec</span></div>
+            <div class="identity-row"><span class="identity-label" data-i18n="birthday">Birthday</span><span class="identity-value" data-i18n="birthday-value">23 ตุลาคม</span></div>
+            <div class="identity-row"><span class="identity-label" data-i18n="height">Height</span><span class="identity-value">174 cm</span></div>
+            <div class="identity-row"><span class="identity-label" data-i18n="age">Age</span><span class="identity-value" data-i18n="age-value">3000 ปี</span></div>
+            <div class="identity-row"><span class="identity-label">ART TAG</span><span class="identity-value">#HoshijinART</span></div>
+            <div class="identity-row"><span class="identity-label">FAN NAME</span><span class="identity-value">#HoshiKoro / #ホシコロ</span></div>
+            <div class="identity-quote" data-i18n="identity-quote">จากดวงดาวสีคราม สู่การผจญภัยที่ไม่มีวันสิ้นสุดบนโลกใบนี้</div>
+          </article>
+
+          <article class="bio-card hud-panel">
+            <h3 class="card-title"><i class="fa-regular fa-file-lines"></i><span data-i18n="biography">BIOGRAPHY</span></h3>
+            <p id="bio-text"></p>
+          </article>
+
+          <div class="likes-stack">
+            <article class="likes-card hud-panel">
+              <h3 class="card-title"><i class="fa-solid fa-heart" style="color:#ff6579"></i><span data-i18n="likes">LIKES</span></h3>
+              <ul id="likes-list"></ul>
+            </article>
+            <article class="likes-card dislikes hud-panel">
+              <h3 class="card-title"><i class="fa-solid fa-circle-xmark"></i><span data-i18n="dislikes">DISLIKES</span></h3>
+              <ul id="dislikes-list"></ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         02–03. PERSONALITY + STREAM & COMMUNITY
+         These two sections intentionally share one visual row,
+         matching the compact editorial rhythm of the concept art.
+    ======================================================== -->
+    <section class="section" id="personality">
+      <div class="shell two-column-row">
+        <article class="hud-panel">
+          <div class="section-heading">
+            <span class="section-index">02</span>
+            <div><h2 data-i18n="section-personality">PERSONALITY</h2><span class="jp" data-i18n="section-personality-sub">บุคลิกและเป้าหมาย</span></div>
+          </div>
+          <div class="personality-card">
+            <div class="personality-image"><img src="HoshinoCT3.png" alt="Hoshino Kuroi personality visual" /></div>
+            <div class="personality-copy">
+              <p data-i18n="personality-copy">ช่างสงสัย รักเกม อาหารอร่อย และวัฒนธรรมญี่ปุ่น ชอบแบ่งปันช่วงเวลาสนุก ๆ กับทุกคน</p>
+              <h3 class="card-title"><i class="fa-solid fa-bullseye"></i><span data-i18n="goals">GOALS</span></h3>
+              <ul class="goal-list" id="goals-list"></ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="hud-panel" id="stream">
+          <div class="section-heading">
+            <span class="section-index">03</span>
+            <div><h2 data-i18n="section-stream">STREAM & COMMUNITY</h2><span class="jp" data-i18n="section-stream-sub">การสตรีมและคอมมูนิตี้</span></div>
+          </div>
+          <div class="stream-card">
+            <div class="stream-inner">
+              <div class="stream-visual hud-panel"><img src="HoshinoCT1.png" alt="Hoshino Kuroi streaming visual" /></div>
+              <div class="schedule hud-panel">
+                <h3 class="card-title"><i class="fa-regular fa-calendar"></i><span data-i18n="schedule">STREAM SCHEDULE</span></h3>
+                <div id="schedule-list"></div>
+              </div>
+              <div class="follow-card hud-panel">
+                <h3 class="card-title"><i class="fa-solid fa-share-nodes"></i><span data-i18n="follow">FOLLOW ME</span></h3>
+                <div class="social-list">
+                  <a class="social-link" href="https://youtube.com/@hoshinokuroi440" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i>YouTube</a>
+                  <a class="social-link" href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i>X / Twitter</a>
+                  <a class="social-link" href="https://www.twitch.tv/hoshino_kuroi" target="_blank" rel="noopener"><i class="fa-brands fa-twitch"></i>Twitch</a>
+                  <a class="social-link" href="https://www.tiktok.com/@hoshino440" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i>TikTok</a>
+                  <a class="social-link" href="https://discord.gg/NQjyaZtxfx" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i>Discord</a>
+                  <a class="social-link" href="https://www.instagram.com/hoshino_kuroi/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>Instagram</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         04. ACROSS THE STAR FIELD / CHARACTER SHEET
+    ======================================================== -->
+    <section class="section" id="design">
+      <div class="shell hud-panel">
+        <div class="section-heading">
+          <span class="section-index">04</span>
+          <div><h2 data-i18n="section-sheet">ACROSS THE STAR FIELD</h2><span class="jp" data-i18n="section-sheet-sub">ดีไซน์และข้อมูลตัวละคร</span></div>
+        </div>
+        <div class="sheet-wrap">
+          <div class="sheet-main hud-panel" onclick="openLightbox('HoshinoCarSheet.jpg')" role="button" tabindex="0" aria-label="Open character sheet">
+            <img src="HoshinoCarSheet.jpg" alt="Hoshino Kuroi original character sheet" loading="lazy" />
+            <span class="expand-hint" data-i18n="expand">CLICK TO VIEW FULL SIZE</span>
+          </div>
+          <aside class="sheet-side hud-panel">
+            <div class="fox-silhouette"><i class="fa-solid fa-cat"></i></div>
+            <strong data-i18n="sheet-side-copy">ยังมีอีกหลายสิ่งในจักรวาลที่รอให้ค้นพบ</strong>
+            <small data-i18n="sheet-side-sub">More to explore...</small>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         05. AWARDS & GOODS
+    ======================================================== -->
+    <section class="section" id="collection">
+      <div class="shell hud-panel">
+        <div class="section-heading">
+          <span class="section-index">05</span>
+          <div><h2 data-i18n="section-collection">AWARDS & GOODS</h2><span class="jp" data-i18n="section-collection-sub">รางวัลและสินค้า</span></div>
+        </div>
+        <div class="collection-grid">
+          <article class="award-card hud-panel">
+            <h3 class="card-title"><i class="fa-solid fa-trophy" style="color:var(--yellow)"></i><span data-i18n="awards">AWARDS & ACHIEVEMENTS</span></h3>
+            <div class="award-showcase">
+              <div class="award-image hud-panel" onclick="openLightbox('REALITYPOSTER.jpg')" role="button" tabindex="0"><img src="REALITYPOSTER.jpg" alt="REALITY official award poster" loading="lazy" /></div>
+              <div class="award-copy">
+                <h3 data-i18n="award-title">REALITY Official Award</h3>
+                <p data-i18n="award-desc">渋谷ポスターイベント【11位】</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="goods-card hud-panel">
+            <h3 class="card-title"><i class="fa-solid fa-bag-shopping"></i><span data-i18n="goods">GOODS</span></h3>
+            <div class="goods-grid">
+              <a class="good-card" href="https://store.line.me/themeshop/product/11be9ad5-4499-4331-8db7-0895c91bdcec/ja" target="_blank" rel="noopener"><img src="GoodsLine.png" alt="LINE Theme" loading="lazy" /><strong>LINE Theme</strong><small>DIGITAL CONTENT</small></a>
+              <div class="good-card"><img src="Acrylickeychain2.jpg" alt="Acrylic keychain standee ver.2" loading="lazy" /><strong>Acrylic keychain standee ver.2</strong><small data-i18n="coming-soon">COMING SOON</small></div>
+              <div class="good-card"><img src="HoshinoKLogo.png" alt="Hoshino Kuroi logo goods placeholder" loading="lazy" /><strong data-i18n="future-goods">More Goods</strong><small data-i18n="coming-soon">COMING SOON</small></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         06. CHARACTER DESIGN SHEETS / CREATOR CREDITS
+    ======================================================== -->
+    <section class="section">
+      <div class="shell hud-panel">
+        <div class="section-heading">
+          <span class="section-index">06</span>
+          <div><h2 data-i18n="section-character-design">CHARACTER DESIGN</h2><span class="jp" data-i18n="section-character-design-sub">คาแรกเตอร์ดีไซน์</span></div>
+        </div>
+        <div class="design-grid">
+          <article class="design-card hud-panel">
+            <h3 class="card-title"><i class="fa-regular fa-image"></i>Sheet 01 : Original Model</h3>
+            <div class="design-media hud-panel" onclick="openLightbox('HoshinoCarSheet.jpg')" role="button" tabindex="0"><img src="HoshinoCarSheet.jpg" alt="Original character design sheet" loading="lazy" /></div>
+            <div class="credits"><span>Designer / Rigger: <a href="https://x.com/Inumaru_Atsuki" target="_blank" rel="noopener">Inumaru Atsuki</a></span></div>
+          </article>
+          <article class="design-card hud-panel">
+            <h3 class="card-title"><i class="fa-regular fa-image"></i>Sheet 02 : Kemono Model</h3>
+            <div class="design-media hud-panel" onclick="openLightbox('HoshinoCarSheet2.PNG')" role="button" tabindex="0"><img src="HoshinoCarSheet2.PNG" alt="Kemono character design sheet" loading="lazy" /></div>
+            <div class="credits"><span>Designer: <a href="https://x.com/Nemuru_Y" target="_blank" rel="noopener">ネム / Nemu</a></span><span>Rigger: <a href="https://x.com/Tempura0111" target="_blank" rel="noopener">Tempuran</a></span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         07. FAN ART GALLERY
+         Populated from JavaScript to keep HTML easy to maintain.
+    ======================================================== -->
+    <section class="section" id="archive">
+      <div class="shell hud-panel">
+        <div class="section-heading">
+          <span class="section-index">07</span>
+          <div><h2 data-i18n="section-fanart">FANART GALLERY</h2><span class="jp" data-i18n="section-fanart-sub">แฟนอาร์ต</span></div>
+        </div>
+        <div class="gallery-wrap"><div class="fanart-grid" id="fanart-grid"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand"><img src="HoshinoKLogo.png" alt="Hoshino Kuroi logo" /><span class="footer-tag" data-i18n="footer-tag">A SMALL FENNEC, A BIGGER UNIVERSE.</span></div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#home" data-i18n="nav-home">HOME</a><a href="#profile" data-i18n="nav-profile">PROFILE</a><a href="#personality" data-i18n="nav-personality">PERSONALITY</a><a href="#stream" data-i18n="nav-stream">STREAM</a><a href="#design" data-i18n="nav-design">DESIGN</a><a href="#archive" data-i18n="nav-archive">ARCHIVE</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://youtube.com/@hoshinokuroi440" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.twitch.tv/hoshino_kuroi" target="_blank" rel="noopener" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+        <a href="https://discord.gg/NQjyaZtxfx" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Full-screen lightbox used by character sheets / artwork. -->
+  <div id="lightbox" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-label="Image preview"><img id="lightbox-image" src="" alt="Expanded artwork" /></div>
+  <button id="back-to-top" type="button" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+  <script>
+    /* =========================================================
+       01. CONTENT DATA
+       Arrays are separated from HTML so they can be translated
+       and edited without touching layout code.
+    ========================================================== */
+    const fanartData = [
+      { url: 'HoshijinArt1.png', artist: 'solar_drago' },
+      { url: 'HoshijinArt2.png', artist: 'solar_drago' },
+      { url: 'HoshijinArt3.jpg', artist: 'Inumaru Atsuki' },
+      { url: 'HoshijinArt4.jpg', artist: 'Inumaru Atsuki' },
+      { url: 'HoshijinArt5.gif', artist: 'Inumaru Atsuki' },
+      { url: 'HoshijinArt6.jpg', artist: 'Inumaru Atsuki' },
+      { url: 'HoshijinArt7.png', artist: 'KUROSE' },
+      { url: 'HoshijinArt8.webp', artist: 'KUROSE' }
+    ];
+
+    const translations = {
+      th: {
+        'nav-home':'หน้าหลัก','nav-profile':'โปรไฟล์','nav-personality':'บุคลิก','nav-stream':'สตรีม','nav-design':'ดีไซน์','nav-archive':'แกลเลอรี',
+        'hero-role':'นักสำรวจเฟนเนคแห่งอวกาศ','hero-tagline':'ออกเดินทางไปให้ไกลกว่าดวงดาวที่ยังไม่เคยพบ','hero-sub':'จาก Starloid สู่โลกใบนี้ — การเดินทางยังไม่สิ้นสุด','hero-cta':'สำรวจจักรวาลของฉัน','hero-side':'เฟนเนคผู้เดินทางข้ามดวงดาว',
+        'section-profile':'CHARACTER PROFILE','section-profile-sub':'ข้อมูลตัวละคร','profile-portrait-copy':'มารู้จัก Kuroi ให้มากขึ้น','identity':'IDENTITY','name':'ชื่อ','species':'เผ่าพันธุ์','species-value':'Space Fennec','birthday':'วันเกิด','birthday-value':'23 ตุลาคม','height':'ส่วนสูง','age':'อายุ','age-value':'3000 ปี','identity-quote':'จากดวงดาวสีคราม สู่การผจญภัยที่ไม่มีวันสิ้นสุดบนโลกใบนี้','biography':'ประวัติ','likes':'ของที่ชอบ / งานอดิเรก','dislikes':'ของที่ไม่ชอบ',
+        'section-personality':'PERSONALITY','section-personality-sub':'บุคลิกและเป้าหมาย','personality-copy':'ช่างสงสัย รักเกม อาหารอร่อย และวัฒนธรรมญี่ปุ่น ชอบแบ่งปันช่วงเวลาสนุก ๆ กับทุกคน','goals':'เป้าหมาย',
+        'section-stream':'STREAM & COMMUNITY','section-stream-sub':'การสตรีมและคอมมูนิตี้','schedule':'ตารางสตรีม','follow':'ติดตาม',
+        'section-sheet':'ACROSS THE STAR FIELD','section-sheet-sub':'ดีไซน์และข้อมูลตัวละคร','expand':'คลิกเพื่อดูภาพขนาดเต็ม','sheet-side-copy':'ยังมีอีกหลายสิ่งในจักรวาลที่รอให้ค้นพบ','sheet-side-sub':'ออกสำรวจต่อไป...',
+        'section-collection':'AWARDS & GOODS','section-collection-sub':'รางวัลและสินค้า','awards':'รางวัลและความสำเร็จ','award-title':'REALITY Official Award','award-desc':'กิจกรรมโปสเตอร์ชิบูยะ 【ลำดับที่ 11】','goods':'สินค้า','coming-soon':'เร็ว ๆ นี้','future-goods':'สินค้าเพิ่มเติม',
+        'section-character-design':'CHARACTER DESIGN','section-character-design-sub':'คาแรกเตอร์ดีไซน์','section-fanart':'FANART GALLERY','section-fanart-sub':'แฟนอาร์ต','footer-tag':'เฟนเนคตัวเล็ก กับจักรวาลที่กว้างกว่าเดิม',
+        bio:'จากดวงดาวสีคราม Starloid สู่การผจญภัยที่ไม่มีวันสิ้นสุดบนโลกใบนี้!\n\nณ กาแล็กซีอันไกลโพ้น จิ้งจอกทะเลทราย (Fennec fox) ผู้เปี่ยมไปด้วยความอยากรู้อยากเห็นได้ถือกำเนิดขึ้นบนดวงดาว Starloid เขาออกเดินทางข้ามจักรวาลด้วยยานลำจิ๋วเพื่อภารกิจสำคัญ: ตามหาอาหารที่อร่อยที่สุดในกาแล็กซี\n\nแต่จุดหมายปลายทางกลับหักเหเมื่อเขาลงจอดที่ดาวโลก ที่นี่ไม่ได้มีแค่ของอร่อย แต่เขายังได้พบกับขุมทรัพย์ทางจิตวิญญาณอย่างวัฒนธรรมญี่ปุ่น และความตื่นเต้นของโลกแห่งเกม ที่ทำให้เขานั่งจดจ่อได้ทั้งวันคืนจนลืมเวลานอน\n\nความหลงใหลนี้เองที่เปลี่ยนจากนักเดินทางพเนจร ให้กลายเป็น VTuber สายเกมเมอร์ ผู้คลั่งไคล้อาหารและอนิเมะ ตอนนี้เขาพร้อมแล้วที่จะแบ่งปันความสุข เสียงหัวเราะ และเรื่องราวสุดเพี้ยนจากการสำรวจโลกไปพร้อมกับทุกคน!',
+        likes:['อาหารอร่อย','เพลงญี่ปุ่น','เล่นเกม','วาดภาพ','อนิเมะ','แมว และ fennec fox','นอน'],
+        dislikes:['เสียงดังกะทันหัน','ฟ้าร้องฟ้าผ่า','อาหารไม่อร่อย'],
+        goals:['พูดภาษาญี่ปุ่นได้อย่างเป็นธรรมชาติ','คอลแลบกับสตรีมเมอร์ญี่ปุ่นเยอะ ๆ','ไปเที่ยวญี่ปุ่นสักครั้งในชีวิต','ได้โล่ YouTube มานอนกอด'],
+        schedule:[['จันทร์','พักผ่อน'],['อังคาร','พักผ่อน'],['พุธ','พักผ่อน'],['พฤหัส','พักผ่อน'],['ศุกร์','18:30 (TH) / 20:30 (JP) · Play with Listener'],['เสาร์','18:30 (TH) / 20:30 (JP) · Main Stream'],['อาทิตย์','พักผ่อน']]
+      },
+      en: {
+        'nav-home':'HOME','nav-profile':'PROFILE','nav-personality':'PERSONALITY','nav-stream':'STREAM','nav-design':'DESIGN','nav-archive':'ARCHIVE',
+        'hero-role':'SPACE FENNEC EXPLORER','hero-tagline':'To the stars beyond.','hero-sub':'From Starloid to Earth — the journey continues.','hero-cta':'EXPLORE MY UNIVERSE','hero-side':'A FENNEC TRAVELING AMONG THE STARS',
+        'section-profile':'CHARACTER PROFILE','section-profile-sub':'Character profile','profile-portrait-copy':'More about Kuroi.','identity':'IDENTITY','name':'Name','species':'Species','species-value':'Space Fennec','birthday':'Birthday','birthday-value':'23 October','height':'Height','age':'Age','age-value':'3000 Years','identity-quote':'From a blue star to an endless adventure on Earth.','biography':'BIOGRAPHY','likes':'LIKES / HOBBIES','dislikes':'DISLIKES',
+        'section-personality':'PERSONALITY','section-personality-sub':'Personality & goals','personality-copy':'Curious, game-loving, food-obsessed and fascinated by Japanese culture. He loves sharing fun moments with everyone.','goals':'GOALS',
+        'section-stream':'STREAM & COMMUNITY','section-stream-sub':'Streaming & community','schedule':'STREAM SCHEDULE','follow':'FOLLOW ME',
+        'section-sheet':'ACROSS THE STAR FIELD','section-sheet-sub':'Design & character data','expand':'CLICK TO VIEW FULL SIZE','sheet-side-copy':'There is still so much in the universe waiting to be discovered.','sheet-side-sub':'More to explore...',
+        'section-collection':'AWARDS & GOODS','section-collection-sub':'Achievements & merchandise','awards':'AWARDS & ACHIEVEMENTS','award-title':'REALITY Official Award','award-desc':'Shibuya Poster Event — 11th place','goods':'GOODS','coming-soon':'COMING SOON','future-goods':'More Goods',
+        'section-character-design':'CHARACTER DESIGN','section-character-design-sub':'Character design','section-fanart':'FANART GALLERY','section-fanart-sub':'Fan art','footer-tag':'A SMALL FENNEC, A BIGGER UNIVERSE.',
+        bio:'A Galactic Traveler who fell in love with Earth\'s pixels and flavors!\n\nBorn on the distant planet Starloid, a curious little Fennec Fox set out on a grand cosmic odyssey. His original goal was simple: to taste every Galaxy-class delicacy hidden across the stars.\n\nHowever, his navigation system led him to a small blue planet called Earth. Instead of just filling his stomach, he filled his heart with Japanese culture and the captivating world of gaming.\n\nNow, he has traded his spaceship for a streaming setup. As a Gamer VTuber, he explores digital realms, enjoys delicious food, and creates unforgettable memories with his new earthly friends.',
+        likes:['Delicious Food','Japanese Music','Playing Games','Digital Art','Anime','Cats & Fennec Foxes','Sleeping'],
+        dislikes:['Sudden Loud Noises','Thunder & Lightning','Bad Tasting Food'],
+        goals:['Speak Japanese naturally','Collab with Japanese streamers','Visit Japan at least once','Earn a YouTube Play Button'],
+        schedule:[['MON','OFF DAY'],['TUE','OFF DAY'],['WED','OFF DAY'],['THU','OFF DAY'],['FRI','18:30 (TH) / 20:30 (JP) · Play with Listener'],['SAT','18:30 (TH) / 20:30 (JP) · Main Stream'],['SUN','OFF DAY']]
+      },
+      jp: {
+        'nav-home':'ホーム','nav-profile':'プロフィール','nav-personality':'性格','nav-stream':'配信','nav-design':'デザイン','nav-archive':'ギャラリー',
+        'hero-role':'宇宙のフェネック探検家','hero-tagline':'まだ見ぬ星の、その先へ——','hero-sub':'Starloidから地球へ——旅はまだ続く。','hero-cta':'宇宙を探索する','hero-side':'星を旅する、フェネック。',
+        'section-profile':'CHARACTER PROFILE','section-profile-sub':'キャラクタープロフィール','profile-portrait-copy':'クロイをもっと知る。','identity':'IDENTITY','name':'名前','species':'種族','species-value':'宇宙フェネック','birthday':'誕生日','birthday-value':'10月23日','height':'身長','age':'年齢','age-value':'3000歳','identity-quote':'青い星から、地球での終わりなき冒険へ。','biography':'プロフィール','likes':'好きなこと / 趣味','dislikes':'苦手なもの',
+        'section-personality':'PERSONALITY','section-personality-sub':'性格・目標','personality-copy':'好奇心旺盛で、ゲームと美味しいもの、日本文化が大好き。みんなと楽しい時間を共有することを大切にしている。','goals':'今後の目標',
+        'section-stream':'STREAM & COMMUNITY','section-stream-sub':'配信・コミュニティ','schedule':'週間配信スケジュール','follow':'SNSリンク',
+        'section-sheet':'ACROSS THE STAR FIELD','section-sheet-sub':'デザイン・設定資料','expand':'クリックして拡大','sheet-side-copy':'宇宙には、まだ見ぬものがたくさん待っている。','sheet-side-sub':'もっと探索しよう…',
+        'section-collection':'AWARDS & GOODS','section-collection-sub':'実績・グッズ','awards':'受賞歴と実績','award-title':'REALITY Official Award','award-desc':'渋谷ポスターイベント【11位】','goods':'グッズ','coming-soon':'近日公開','future-goods':'その他のグッズ',
+        'section-character-design':'CHARACTER DESIGN','section-character-design-sub':'キャラクターデザイン','section-fanart':'FANART GALLERY','section-fanart-sub':'ファンアート','footer-tag':'小さなフェネック、もっと大きな宇宙へ。',
+        bio:'遥か彼方の星から、地球のゲームと美食を求めてやってきた！\n\n遠い銀河に浮かぶ惑星Starloidで生まれた一匹のフェネックギツネ。好奇心に動かされ、宇宙一の美食を探すために銀河中を旅していた。\n\nしかし、偶然たどり着いた地球で運命が一変。未知の美味しい料理だけでなく、日本文化とゲームの世界に心を奪われた。\n\nこの楽しさをみんなと共有したい——そう決意し、ゲーマーVTuberとして新たな旅を始めた。',
+        likes:['美味しい食べ物','邦楽','ゲーム','イラスト','アニメ','猫とフェネック','寝ること'],
+        dislikes:['突然の大きな音','雷','美味しくない食べ物'],
+        goals:['日本語を自然に話せるようになる','日本の配信者とたくさんコラボする','一度は日本へ旅行する','YouTubeの銀の盾を手に入れる'],
+        schedule:[['月','お休み'],['火','お休み'],['水','お休み'],['木','お休み'],['金','18:30 (TH) / 20:30 (JP) · リスナー参加'],['土','18:30 (TH) / 20:30 (JP) · メイン配信'],['日','お休み']]
+      }
+    };
+
+    /* =========================================================
+       02. LANGUAGE RENDERER
+    ========================================================== */
+    let currentLang = 'th';
+
+    function renderLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+      document.documentElement.lang = lang === 'jp' ? 'ja' : lang;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (Object.prototype.hasOwnProperty.call(t, key)) el.textContent = t[key];
+      });
+
+      document.getElementById('bio-text').textContent = t.bio;
+      renderIconList('likes-list', t.likes, 'fa-star');
+      renderIconList('dislikes-list', t.dislikes, 'fa-minus');
+      renderGoals(t.goals);
+      renderSchedule(t.schedule);
+
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+    }
+
+    function renderIconList(id, items, icon) {
+      document.getElementById(id).innerHTML = items.map(item => `<li><i class="fa-solid ${icon}"></i>${item}</li>`).join('');
+    }
+
+    function renderGoals(items) {
+      document.getElementById('goals-list').innerHTML = items.map(item => `<li><i class="fa-solid fa-star" style="color:var(--yellow)"></i><span>${item}</span></li>`).join('');
+    }
+
+    function renderSchedule(rows) {
+      document.getElementById('schedule-list').innerHTML = rows.map(([day, detail]) => `<div class="schedule-row"><span class="schedule-day">${day}</span><span>${detail}</span></div>`).join('');
+    }
+
+    /* =========================================================
+       03. FAN ART RENDERER
+    ========================================================== */
+    function renderFanart() {
+      document.getElementById('fanart-grid').innerHTML = fanartData.map(item => `
+        <div class="fanart-item" role="button" tabindex="0" data-image="${item.url}" aria-label="Fanart by ${item.artist}">
+          <img src="${item.url}" alt="Fanart by ${item.artist}" loading="lazy" />
+          <span class="fanart-credit">BY: ${item.artist}</span>
+        </div>
+      `).join('');
+
+      document.querySelectorAll('.fanart-item').forEach(item => {
+        item.addEventListener('click', () => openLightbox(item.dataset.image));
+        item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLightbox(item.dataset.image); });
+      });
+    }
+
+    /* =========================================================
+       04. LIGHTBOX
+    ========================================================== */
+    function openLightbox(src) {
+      const box = document.getElementById('lightbox');
+      document.getElementById('lightbox-image').src = src;
+      box.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    /* =========================================================
+       05. THEME, NAVIGATION, SCROLL STATE
+    ========================================================== */
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => renderLanguage(btn.dataset.lang)));
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = next;
+      document.querySelector('#theme-toggle i').className = next === 'dark' ? 'fa-regular fa-moon' : 'fa-regular fa-sun';
+    });
+
+    const drawer = document.getElementById('mobile-drawer');
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => drawer.classList.toggle('open'));
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+    const backToTop = document.getElementById('back-to-top');
+    backToTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+
+    const navAnchors = [...document.querySelectorAll('.nav-links a')];
+    const navSections = navAnchors.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('show', window.scrollY > 600);
+      let current = '#home';
+      navSections.forEach(section => { if (window.scrollY >= section.offsetTop - 140) current = `#${section.id}`; });
+      navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === current));
+    }, { passive:true });
+
+    /* Keyboard support for image panels that use role=button. */
+    document.querySelectorAll('[role="button"][onclick]').forEach(el => {
+      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') el.click(); });
+    });
+
+    /* =========================================================
+       06. LOADER + INITIALIZATION
+    ========================================================== */
+    window.addEventListener('load', () => {
+      renderFanart();
+      renderLanguage('th');
+
+      const bar = document.getElementById('loader-bar');
+      const pct = document.getElementById('loader-percent');
+      let progress = 0;
+      const timer = setInterval(() => {
+        progress = Math.min(100, progress + Math.floor(Math.random() * 16) + 8);
+        bar.style.width = progress + '%';
+        pct.textContent = progress + '%';
+        if (progress >= 100) {
+          clearInterval(timer);
+          setTimeout(() => document.getElementById('loading-screen').classList.add('is-hidden'), 220);
+        }
+      }, 110);
+    });
+  </script>
+</body>
+</html>
