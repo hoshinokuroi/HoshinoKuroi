@@ -449,6 +449,28 @@
       transform: scale(1.20); transform-origin: 65% 100%;
       filter: drop-shadow(-16px 20px 35px rgba(0,0,0,.36));
     }
+    /* HERO MESSAGE NAME PNG — lower-right overlay */
+    .hero-name-overlay {
+      position: absolute;
+      z-index: 9;
+      right: 3.2%;
+      bottom: 7%;
+      width: min(27vw, 410px);
+      max-width: 34%;
+      height: auto;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,.28));
+    }
+    @media (max-width: 768px) {
+      .hero-name-overlay {
+        right: 4%;
+        bottom: 6%;
+        width: min(46vw, 300px);
+        max-width: 48%;
+      }
+    }
     .hero-side-copy {
       position: absolute; z-index: 6; right: 2.2vw; top: 22%; writing-mode: vertical-rl;
       font-weight: 600; letter-spacing: .10em; font-size: 1rem; color: rgba(255,255,255,.92);
@@ -1556,7 +1578,7 @@
 
       <div class="hero-left">
         <p class="hero-kicker" data-i18n="hero-role">นักสำรวจเฟนเนคแห่งอวกาศ</p>
-        <h1>Hoshino<br />Kuroi</h1>
+        <h1><span data-i18n="hero-name-line1">โฮชิโนะ</span><br /><span data-i18n="hero-name-line2">คุโรอิ</span></h1>
         <p class="hero-tagline" data-i18n="hero-tagline">ออกเดินทางไปให้ไกลกว่าดวงดาวที่ยังไม่เคยพบ</p>
         <p class="hero-tagline-sub" data-i18n="hero-sub">จาก Starloid สู่โลกใบนี้ — การเดินทางยังไม่สิ้นสุด</p>
         <a class="hero-cta" href="#profile"><span data-i18n="hero-cta">EXPLORE MY UNIVERSE</span><i class="fa-solid fa-arrow-right"></i></a>
@@ -1566,7 +1588,7 @@
         <img class="hero-art" src="HoshinoKuroi.png" alt="" />
       </div>
 
-      <div class="hero-side-copy" data-i18n="hero-side">星を旅する、フェネック。</div>
+      <img class="hero-name-overlay" src="MessageName.png" alt="" aria-hidden="true" />
       <div class="hero-stars" aria-hidden="true">
         <i class="fa-solid fa-star star s1"></i>
         <i class="fa-solid fa-star star s2"></i>
@@ -1596,7 +1618,7 @@
 
           <article class="identity-table hud-panel" aria-label="Character identity">
             <h3 class="card-title"><i class="fa-regular fa-id-card"></i><span data-i18n="identity">IDENTITY</span></h3>
-            <div class="identity-row"><span class="identity-label" data-i18n="name">Name</span><span class="identity-value">Hoshino Kuroi</span></div>
+            <div class="identity-row"><span class="identity-label" data-i18n="name">Name</span><span class="identity-value" data-i18n="character-name">โฮชิโนะ คุโรอิ</span></div>
             <div class="identity-row"><span class="identity-label" data-i18n="species">Species</span><span class="identity-value" data-i18n="species-value">Space Fennec</span></div>
             <div class="identity-row"><span class="identity-label" data-i18n="birthday">Birthday</span><span class="identity-value" data-i18n="birthday-value">23 ตุลาคม</span></div>
             <div class="identity-row"><span class="identity-label" data-i18n="height">Height</span><span class="identity-value">174 cm</span></div>
@@ -1629,7 +1651,7 @@
         <article class="hud-panel">
           <div class="section-heading">
             <span class="section-index">02</span>
-            <div><h2 data-i18n="section-personality">PERSONALITY</h2><span class="jp" data-i18n="section-personality-sub">บุคลิกและสิ่งที่เป็นตัวตนของ Hoshino Kuroi</span></div>
+            <div><h2 data-i18n="section-personality">PERSONALITY</h2><span class="jp" data-i18n="section-personality-sub">บุคลิกและสิ่งที่เป็นตัวตนของ โฮชิโนะ คุโรอิ</span></div>
           </div>
           <div class="personality-card">
             <div class="personality-image"><img src="HoshinoCT3.png" alt="Hoshino Kuroi personality visual" /></div>
@@ -1731,7 +1753,7 @@
           <aside class="sheet-side hud-panel" aria-label="Secondary character visual">
             <img class="sheet-side-image" src="HoshinoSheetOverlay.png" alt="Hoshino Kuroi secondary visual" loading="lazy" />
             <!-- OVERLAY PNG SLOT: replace Message2.png with any transparent PNG artwork/signature. -->
-            <img class="sheet-side-overlay" src="Message2.png" alt="" loading="lazy" />
+            <img class="sheet-side-overlay" src="https://raw.githubusercontent.com/hoshinokuroi/HoshinoKuroi/main/Message2.png" alt="" loading="lazy" />
           </aside>
         </div>
       </div>
@@ -1862,9 +1884,9 @@
     const translations = {
       th: {
         'nav-home':'หน้าหลัก','nav-profile':'โปรไฟล์','nav-personality':'บุคลิก','nav-stream':'สตรีม','nav-design':'ดีไซน์','nav-archive':'แกลเลอรี',
-        'hero-role':'นักสำรวจเฟนเนคแห่งอวกาศ','hero-tagline':'ออกเดินทางไปให้ไกลกว่าดวงดาวที่ยังไม่เคยพบ','hero-sub':'จาก Starloid สู่โลกใบนี้ — การเดินทางยังไม่สิ้นสุด','hero-cta':'สำรวจจักรวาลของฉัน','hero-side':'เฟนเนคผู้เดินทางข้ามดวงดาว',
+        'hero-name-line1':'โฮชิโนะ','hero-name-line2':'คุโรอิ','character-name':'โฮชิโนะ คุโรอิ','hero-role':'นักสำรวจเฟนเนคแห่งอวกาศ','hero-tagline':'ออกเดินทางไปให้ไกลกว่าดวงดาวที่ยังไม่เคยพบ','hero-sub':'จาก Starloid สู่โลกใบนี้ — การเดินทางยังไม่สิ้นสุด','hero-cta':'สำรวจจักรวาลของฉัน','hero-side':'เฟนเนคผู้เดินทางข้ามดวงดาว',
         'section-profile':'CHARACTER PROFILE','section-profile-sub':'ข้อมูลตัวละคร','profile-portrait-copy':'มารู้จัก Kuroi ให้มากขึ้น','identity':'IDENTITY','name':'ชื่อ','species':'เผ่าพันธุ์','species-value':'Space Fennec','birthday':'วันเกิด','birthday-value':'23 ตุลาคม','height':'ส่วนสูง','age':'อายุ','age-value':'3000 ปี','identity-quote':'จากดวงดาวสีคราม สู่การผจญภัยที่ไม่มีวันสิ้นสุดบนโลกใบนี้','biography':'ประวัติ','likes-label':'ของที่ชอบ','dislikes-label':'ของที่ไม่ชอบ',
-        'section-personality':'PERSONALITY','section-personality-sub':'บุคลิกและสิ่งที่เป็นตัวตนของ Hoshino Kuroi','personality-copy':'ช่างสงสัย รักเกม อาหารอร่อย และวัฒนธรรมญี่ปุ่น ชอบแบ่งปันช่วงเวลาสนุก ๆ กับทุกคน','goals-label':'เป้าหมาย',
+        'section-personality':'PERSONALITY','section-personality-sub':'บุคลิกและสิ่งที่เป็นตัวตนของ โฮชิโนะ คุโรอิ','personality-copy':'ช่างสงสัย รักเกม อาหารอร่อย และวัฒนธรรมญี่ปุ่น ชอบแบ่งปันช่วงเวลาสนุก ๆ กับทุกคน','goals-label':'เป้าหมาย',
         'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'ตารางไลฟ์ประจำสัปดาห์','schedule':'ตารางไลฟ์ประจำสัปดาห์','follow':'โซเชียลมีเดีย','support-title':'SUPPORT & Q&A','support-copy':'สนับสนุนผลงาน ส่งคำถาม หรือส่งแฟนอาร์ตได้จากช่องทางด้านล่าง','support-donate':'สนับสนุนค่าขนมและสตรีม','support-marsh':'ส่งคำถาม/พูดคุยไร้ชื่อ','support-art':'ส่งผลงานแฟนอาร์ตของคุณ','voice-title':'ตัวอย่างเสียงแนะนำตัว','voice-copy':'ฟังตัวอย่างเสียงแนะนำตัวทั้ง 3 ภาษา','voice-th':'ภาษาไทย','voice-en':'ภาษาอังกฤษ','voice-jp':'ภาษาญี่ปุ่น',
         'section-sheet':'ACROSS THE STAR FIELD','section-sheet-sub':'ดีไซน์และข้อมูลตัวละคร','expand':'คลิกเพื่อดูภาพขนาดเต็ม','sheet-side-copy':'ยังมีอีกหลายสิ่งในจักรวาลที่รอให้ค้นพบ','sheet-side-sub':'ออกสำรวจต่อไป...',
         'section-collection':'AWARDS & GOODS','section-collection-sub':'รางวัลและสินค้า','awards':'รางวัลและความสำเร็จ','award-title':'REALITY Official Award','award-desc':'กิจกรรมโปสเตอร์ชิบูยะ 【ลำดับที่ 11】','goods':'สินค้า','coming-soon':'เร็ว ๆ นี้','future-goods':'สินค้าเพิ่มเติม',
@@ -1877,7 +1899,7 @@
       },
       en: {
         'nav-home':'HOME','nav-profile':'PROFILE','nav-personality':'PERSONALITY','nav-stream':'STREAM','nav-design':'DESIGN','nav-archive':'ARCHIVE',
-        'hero-role':'SPACE FENNEC EXPLORER','hero-tagline':'To the stars beyond.','hero-sub':'From Starloid to Earth — the journey continues.','hero-cta':'EXPLORE MY UNIVERSE','hero-side':'A FENNEC TRAVELING AMONG THE STARS',
+        'hero-name-line1':'Hoshino','hero-name-line2':'Kuroi','character-name':'Hoshino Kuroi','hero-role':'SPACE FENNEC EXPLORER','hero-tagline':'To the stars beyond.','hero-sub':'From Starloid to Earth — the journey continues.','hero-cta':'EXPLORE MY UNIVERSE','hero-side':'A FENNEC TRAVELING AMONG THE STARS',
         'section-profile':'CHARACTER PROFILE','section-profile-sub':'Character profile','profile-portrait-copy':'More about Kuroi.','identity':'IDENTITY','name':'Name','species':'Species','species-value':'Space Fennec','birthday':'Birthday','birthday-value':'23 October','height':'Height','age':'Age','age-value':'3000 Years','identity-quote':'From a blue star to an endless adventure on Earth.','biography':'BIOGRAPHY','likes-label':'LIKES','dislikes-label':'DISLIKES',
         'section-personality':'PERSONALITY','section-personality-sub':'Personality and defining traits of Hoshino Kuroi','personality-copy':'Curious, game-loving, food-obsessed and fascinated by Japanese culture. He loves sharing fun moments with everyone.','goals-label':'GOALS',
         'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'Weekly Live Schedule','schedule':'WEEKLY LIVE SCHEDULE','follow':'SOCIAL LINKS','support-title':'SUPPORT & Q&A','support-copy':'Support the stream, send a question, or submit your fanart.','support-donate':'Support stream & snacks','support-marsh':'Send anonymous Q&A','support-art':'Submit your fanart','voice-title':'INTRODUCTION VOICE SAMPLES','voice-copy':'Listen to introduction samples in three languages.','voice-th':'THAI','voice-en':'ENGLISH','voice-jp':'JAPANESE',
@@ -1892,7 +1914,7 @@
       },
       jp: {
         'nav-home':'ホーム','nav-profile':'プロフィール','nav-personality':'性格','nav-stream':'配信','nav-design':'デザイン','nav-archive':'ギャラリー',
-        'hero-role':'宇宙のフェネック探検家','hero-tagline':'まだ見ぬ星の、その先へ——','hero-sub':'Starloidから地球へ——旅はまだ続く。','hero-cta':'宇宙を探索する','hero-side':'星を旅する、フェネック。',
+        'hero-name-line1':'星野','hero-name-line2':'クロイ','character-name':'星野クロイ','hero-role':'宇宙のフェネック探検家','hero-tagline':'まだ見ぬ星の、その先へ——','hero-sub':'Starloidから地球へ——旅はまだ続く。','hero-cta':'宇宙を探索する','hero-side':'星を旅する、フェネック。',
         'section-profile':'CHARACTER PROFILE','section-profile-sub':'キャラクタープロフィール','profile-portrait-copy':'クロイをもっと知る。','identity':'IDENTITY','name':'名前','species':'種族','species-value':'宇宙フェネック','birthday':'誕生日','birthday-value':'10月23日','height':'身長','age':'年齢','age-value':'3000歳','identity-quote':'青い星から、地球での終わりなき冒険へ。','biography':'プロフィール','likes-label':'好きなもの','dislikes-label':'苦手なもの',
         'section-personality':'PERSONALITY','section-personality-sub':'星野クロイの性格と個性','personality-copy':'好奇心旺盛で、ゲームと美味しいもの、日本文化が大好き。みんなと楽しい時間を共有することを大切にしている。','goals-label':'目標',
         'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'週間ライブスケジュール','schedule':'週間ライブスケジュール','follow':'SNSリンク','support-title':'応援・Q&A','support-copy':'配信の応援、匿名質問、ファンアート投稿はこちらから。','support-donate':'配信や差し入れを応援','support-marsh':'匿名で質問・メッセージ','support-art':'ファンアートを投稿','voice-title':'自己紹介ボイスサンプル','voice-copy':'3言語の自己紹介ボイスを聴けます。','voice-th':'タイ語','voice-en':'英語','voice-jp':'日本語',
