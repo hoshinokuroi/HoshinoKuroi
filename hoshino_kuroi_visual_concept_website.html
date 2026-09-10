@@ -762,7 +762,198 @@
     @media (max-width: 780px) {
       .personality-traits { grid-template-columns:1fr; }
     }
-</style>
+
+
+    /* =========================================================
+       05A. HERO REFINEMENT V8
+       Refined to match the supplied reference more closely:
+       wider logo/navigation, cinematic diagonal split, stronger
+       typography, larger close-up character and cleaner spacing.
+    ========================================================== */
+    @media (min-width: 901px) {
+      :root { --nav-h: 82px; }
+
+      .topbar {
+        background:
+          radial-gradient(circle at 78% -40%, rgba(56,111,255,.22), transparent 34%),
+          linear-gradient(180deg, rgba(3,18,55,.98), rgba(3,15,45,.94));
+        border-bottom-color: rgba(66,205,255,.34);
+        box-shadow: 0 12px 34px rgba(0,5,24,.32), inset 0 -1px 0 rgba(71,217,255,.16);
+      }
+      .topbar::before {
+        content:"";
+        position:absolute;
+        inset:0;
+        pointer-events:none;
+        background:linear-gradient(105deg, transparent 0 13%, rgba(71,217,255,.045) 13.2% 13.35%, transparent 13.55% 100%);
+      }
+      .nav-inner {
+        width:min(1440px, calc(100% - 42px));
+        grid-template-columns: 250px minmax(560px,1fr) auto;
+        gap:22px;
+      }
+      .brand { display:flex; align-items:center; height:100%; }
+      .brand img {
+        height:64px;
+        max-width:235px;
+        filter:drop-shadow(0 4px 10px rgba(0,0,0,.22));
+      }
+      .nav-links { justify-content:flex-start; }
+      .nav-links a {
+        min-width:96px;
+        padding:0 15px;
+        gap:5px;
+        border-left-color:rgba(70,198,255,.13);
+      }
+      .nav-links a i { font-size:17px; }
+      .nav-links a span { font-size:10.5px; letter-spacing:.10em; }
+      .nav-links a.active::after { left:10%; right:10%; height:3px; }
+      .nav-actions { gap:10px; }
+      .lang-switch { border-radius:8px; box-shadow:inset 0 0 18px rgba(34,143,255,.08); }
+      .lang-btn { min-width:42px; padding:8px 10px; }
+      .icon-btn { width:42px; height:42px; }
+
+      .hero {
+        min-height:690px;
+        height:clamp(690px, 78vw, 790px);
+        max-height:820px;
+        background:
+          radial-gradient(circle at 97% 8%, rgba(113,63,230,.38), transparent 25%),
+          radial-gradient(circle at 5% 78%, rgba(49,125,255,.35), transparent 27%),
+          linear-gradient(120deg,#123d84 0%,#1d54a8 39%,#0a2459 64%,#081536 100%);
+      }
+      .hero::before {
+        content:"";
+        position:absolute;
+        inset:var(--nav-h) 0 0;
+        z-index:1;
+        pointer-events:none;
+        background:
+          radial-gradient(circle at 8% 78%, rgba(212,237,255,.26) 0 1px, transparent 2px),
+          radial-gradient(circle at 15% 25%, rgba(255,255,255,.75) 0 1px, transparent 1.8px),
+          radial-gradient(circle at 38% 12%, rgba(255,255,255,.55) 0 1px, transparent 1.7px);
+        background-size:120px 120px,165px 165px,210px 210px;
+        opacity:.6;
+      }
+      .hero-pattern {
+        width:58%;
+        opacity:.42;
+        background-color:#315b9e;
+        background-size:62px 31px;
+        -webkit-mask-image:linear-gradient(90deg,#000 0 76%,transparent 100%);
+        mask-image:linear-gradient(90deg,#000 0 76%,transparent 100%);
+      }
+      .hero-space-glow {
+        inset:var(--nav-h) 0 0 34%;
+        background:
+          radial-gradient(circle at 72% 22%, rgba(60,135,255,.36), transparent 28%),
+          radial-gradient(circle at 90% 58%, rgba(111,60,220,.28), transparent 32%);
+      }
+      .hero-left {
+        left:max(7.4vw, 70px);
+        top:50%;
+        transform:translateY(-40%);
+        width:min(610px, 45vw);
+        z-index:8;
+      }
+      .hero-kicker {
+        margin-bottom:12px;
+        font-size:clamp(1.25rem,1.7vw,1.6rem);
+        line-height:1.05;
+        letter-spacing:.01em;
+      }
+      .hero h1 {
+        font-size:clamp(6.3rem,9.4vw,9.8rem);
+        line-height:.66;
+        letter-spacing:-.06em;
+        text-shadow:0 12px 32px rgba(0,0,0,.22),0 0 28px rgba(78,174,255,.08);
+      }
+      .hero-tagline {
+        margin-top:30px;
+        max-width:520px;
+        font-size:clamp(1rem,1.2vw,1.2rem);
+        line-height:1.45;
+      }
+      .hero-tagline-sub {
+        margin-top:4px;
+        max-width:500px;
+        font-size:clamp(.83rem,.95vw,.98rem);
+        line-height:1.5;
+        color:#d8eaff;
+      }
+      .hero-cta {
+        margin-top:20px;
+        padding:11px 19px;
+        border-radius:7px;
+        border-color:rgba(77,218,255,.88);
+        background:linear-gradient(180deg,rgba(9,55,111,.72),rgba(5,31,73,.76));
+        box-shadow:0 0 0 1px rgba(40,132,255,.18) inset,0 0 22px rgba(48,197,255,.2);
+      }
+
+      .hero-art-wrap {
+        right:-5vw;
+        width:70vw;
+        clip-path:polygon(27% 0,100% 0,100% 100%,7% 100%);
+        background:
+          radial-gradient(circle at 82% 20%,rgba(86,61,188,.34),transparent 35%),
+          linear-gradient(150deg,rgba(13,42,105,.12),rgba(19,8,72,.46));
+      }
+      .hero-art-wrap::after {
+        content:"";
+        position:absolute;
+        inset:0;
+        pointer-events:none;
+        background:linear-gradient(90deg,rgba(255,255,255,.04),transparent 16% 80%,rgba(76,160,255,.08));
+      }
+      .hero-art-wrap::before {
+        left:19.5%;
+        width:14px;
+        height:128%;
+        top:-15%;
+        transform:rotate(18.5deg);
+        box-shadow:0 0 3px rgba(255,255,255,.95),0 0 20px rgba(255,255,255,.34);
+      }
+      .hero-art {
+        object-position:59% 50%;
+        transform:scale(1.42);
+        transform-origin:61% 54%;
+        filter:drop-shadow(-12px 18px 28px rgba(0,0,0,.32));
+      }
+      .hero-side-copy {
+        right:2.4vw;
+        top:21%;
+        font-size:1.12rem;
+        line-height:1.7;
+        letter-spacing:.14em;
+        text-shadow:0 2px 14px rgba(0,0,0,.38);
+      }
+      .hero-stars .s1 { left:3.4%; top:65%; font-size:32px; }
+      .hero-stars .s2 { left:40%; top:28%; font-size:34px; }
+      .hero-stars .s3 { left:32%; top:54%; font-size:27px; }
+      .hero-stars .s4 { right:4.2%; top:44%; font-size:30px; }
+      .hero-scroll { bottom:18px; font-size:9.5px; }
+    }
+
+    /* Mid-size desktop/laptop refinement */
+    @media (min-width: 901px) and (max-width: 1180px) {
+      .nav-inner { grid-template-columns:200px 1fr auto; width:calc(100% - 24px); gap:8px; }
+      .brand img { height:56px; max-width:190px; }
+      .nav-links a { min-width:78px; padding:0 8px; }
+      .hero-left { left:42px; width:47vw; }
+      .hero h1 { font-size:clamp(5.4rem,10.4vw,7.6rem); }
+      .hero-art-wrap { width:72vw; right:-9vw; }
+      .hero-art { transform:scale(1.34); }
+    }
+
+    /* Mobile/tablet hero remains readable while preserving the same visual language. */
+    @media (max-width: 900px) {
+      .hero { background:linear-gradient(145deg,#123d84 0%,#0a2459 58%,#07152f 100%); }
+      .hero-left { z-index:8; }
+      .hero-art-wrap::before { width:8px; box-shadow:0 0 14px rgba(255,255,255,.4); }
+      .hero-kicker { font-size:clamp(1rem,4vw,1.25rem); }
+    }
+
+  </style>
 </head>
 <body>
   <div class="site-stars" aria-hidden="true"></div>
@@ -828,6 +1019,7 @@
          HERO / KEY VISUAL
          Large diagonal composition from the reference design.
     ======================================================== -->
+    <!-- Refined cinematic hero matching the supplied visual reference -->
     <section class="hero" id="home">
       <div class="hero-pattern" aria-hidden="true"></div>
       <div class="hero-space-glow" aria-hidden="true"></div>
