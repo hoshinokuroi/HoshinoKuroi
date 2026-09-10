@@ -1444,6 +1444,19 @@
 
     :root[data-theme="light"] .bio-signature-slot { border-top-color:rgba(0,105,170,.18); }
     :root[data-theme="light"] .bio-signature-slot img { filter:drop-shadow(0 5px 12px rgba(26,72,120,.16)); }
+
+/* SHEET MESSAGE OVERLAY — V18: larger centered overlay */
+.sheet-side-overlay {
+  width: min(86%, 620px) !important;
+  max-width: 86% !important;
+  height: auto !important;
+}
+@media (max-width: 768px) {
+  .sheet-side-overlay {
+    width: 88% !important;
+    max-width: 88% !important;
+  }
+}
 </style>
 </head>
 <body>
