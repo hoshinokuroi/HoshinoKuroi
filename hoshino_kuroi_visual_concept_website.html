@@ -488,8 +488,12 @@
     .identity-value { font-size:.88rem; }
     .identity-quote { margin-top:18px; padding:15px; border-left:2px solid var(--yellow); background:rgba(255,212,59,.05); font-size:.86rem; color:#dfefff; }
 
-    .bio-card { padding:18px; }
+    .bio-card { padding:18px; display:flex; flex-direction:column; }
     .bio-card p { margin:0; font-size:.84rem; white-space:pre-line; color:#dfefff; }
+    /* BIOGRAPHY SIGNATURE SLOT: replace HoshinoSignature.png with your transparent PNG signature. */
+    .bio-signature-slot { margin-top:18px; min-height:92px; display:flex; align-items:flex-end; justify-content:flex-end; border-top:1px dashed rgba(111,226,255,.18); padding-top:14px; }
+    .bio-signature-slot img { display:block; width:min(220px,58%); max-height:86px; object-fit:contain; object-position:right bottom; filter:drop-shadow(0 6px 16px rgba(0,0,0,.28)); }
+    .bio-signature-slot img[src="HoshinoSignature.png"] { }
 
     .likes-stack { display:grid; gap:12px; }
     .likes-card { padding:15px; min-height:0; }
@@ -589,13 +593,11 @@
     .sheet-main { position:relative; overflow:hidden; min-height:430px; background:#f7fbff; cursor:zoom-in; }
     .sheet-main img { width:100%; height:100%; object-fit:contain; }
     .sheet-main .expand-hint { position:absolute; right:12px; bottom:10px; padding:6px 8px; background:rgba(2,8,23,.75); color:#fff; font:600 8px "JetBrains Mono",monospace; letter-spacing:.08em; }
-    .sheet-side { min-height:430px; display:flex; flex-direction:column; justify-content:flex-end; background:linear-gradient(180deg,rgba(15,56,120,.65),rgba(4,16,44,.94)); position:relative; overflow:hidden; cursor:zoom-in; }
-    .sheet-side::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,8,23,.04) 25%,rgba(2,8,23,.88) 100%); z-index:2; pointer-events:none; }
-    .sheet-side-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; z-index:1; transition:transform .45s ease; }
-    .sheet-side:hover .sheet-side-image { transform:scale(1.035); }
-    .sheet-side-copy { position:relative; z-index:3; padding:18px; display:flex; flex-direction:column; justify-content:flex-end; min-height:100%; }
-    .sheet-side strong { font-size:1.15rem; line-height:1.5; text-shadow:0 2px 18px rgba(0,0,0,.75); }
-    .sheet-side small { margin-top:12px; color:var(--cyan); }
+    .sheet-side { min-height:430px; display:flex; flex-direction:column; justify-content:flex-end; background:linear-gradient(180deg,rgba(15,56,120,.65),rgba(4,16,44,.94)); position:relative; overflow:hidden; cursor:default; }
+    .sheet-side::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,8,23,.02) 28%,rgba(2,8,23,.74) 100%); z-index:2; pointer-events:none; }
+    .sheet-side-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; z-index:1; }
+    /* SHEET OVERLAY PNG SLOT: place a transparent PNG over the right artwork. */
+    .sheet-side-overlay { position:absolute; z-index:3; right:14px; bottom:14px; width:min(210px,72%); max-height:145px; object-fit:contain; object-position:right bottom; filter:drop-shadow(0 8px 18px rgba(0,0,0,.42)); pointer-events:none; }
 
     /* =========================================================
        09. AWARDS & GOODS
@@ -1429,7 +1431,20 @@
       .fanart-credit { font-size:9px !important; }
     }
 
-  </style>
+  
+/* STAR CURSOR — V14 */
+@media (pointer: fine) {
+  html, body, a, button, [role="button"], .fanart-item, .gallery-item {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16 1.8l2.8 9.1L28 13.7l-9.2 2.8L16 25.7l-2.8-9.2L4 13.7l9.2-2.8L16 1.8z' fill='%23ffffff' stroke='%2300a8ff' stroke-width='1.8'/%3E%3Ccircle cx='16' cy='13.7' r='2.2' fill='%23ffe45c'/%3E%3C/svg%3E") 16 14, auto;
+  }
+  a:hover, button:hover, [role="button"]:hover, .fanart-item:hover, .gallery-item:hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath d='M18 1.5l3.3 10.9L32.2 16l-10.9 3.3L18 30.2l-3.3-10.9L3.8 16l10.9-3.6L18 1.5z' fill='%23ffe45c' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M18 5.5v21M7.5 16h21' stroke='%2300a8ff' stroke-width='1' opacity='.8'/%3E%3C/svg%3E") 18 16, pointer;
+  }
+}
+
+    :root[data-theme="light"] .bio-signature-slot { border-top-color:rgba(0,105,170,.18); }
+    :root[data-theme="light"] .bio-signature-slot img { filter:drop-shadow(0 5px 12px rgba(26,72,120,.16)); }
+</style>
 </head>
 <body>
   <div class="site-stars" aria-hidden="true"></div>
@@ -1555,6 +1570,10 @@
           <article class="bio-card hud-panel">
             <h3 class="card-title"><i class="fa-regular fa-file-lines"></i><span data-i18n="biography">BIOGRAPHY</span></h3>
             <p id="bio-text"></p>
+            <!-- SIGNATURE IMAGE SLOT: replace HoshinoSignature.png with your transparent signature PNG. -->
+            <div class="bio-signature-slot">
+              <img src="HoshinoSignature.png" alt="Hoshino Kuroi signature" loading="lazy" />
+            </div>
           </article>
 
         </div>
@@ -1669,13 +1688,11 @@
             <img src="HoshinoCarSheet.jpg" alt="Hoshino Kuroi original character sheet" loading="lazy" />
             <span class="expand-hint" data-i18n="expand">CLICK TO VIEW FULL SIZE</span>
           </div>
-          <!-- RIGHT IMAGE SLOT: change HoshinoCT2.png below to any artwork you want. -->
-          <aside class="sheet-side hud-panel" onclick="openLightbox('HoshinoCT2.png')" role="button" tabindex="0" aria-label="Open secondary character visual">
+          <!-- RIGHT IMAGE SLOT: decorative only; this image no longer opens the lightbox. -->
+          <aside class="sheet-side hud-panel" aria-label="Secondary character visual">
             <img class="sheet-side-image" src="HoshinoCT2.png" alt="Hoshino Kuroi secondary visual" loading="lazy" />
-            <div class="sheet-side-copy">
-              <strong data-i18n="sheet-side-copy">ยังมีอีกหลายสิ่งในจักรวาลที่รอให้ค้นพบ</strong>
-              <small data-i18n="sheet-side-sub">ออกสำรวจต่อไป...</small>
-            </div>
+            <!-- OVERLAY PNG SLOT: replace HoshinoSheetOverlay.png with any transparent PNG artwork/signature. -->
+            <img class="sheet-side-overlay" src="HoshinoSheetOverlay.png" alt="" loading="lazy" />
           </aside>
         </div>
       </div>
