@@ -1505,6 +1505,314 @@
       .portrait-message-overlay { left:5%; bottom:4%; width:min(66%, 300px) !important; }
     }
 
+
+
+    /* =========================================================
+       HERO TITLE / SCROLL REFINEMENT — v24
+       - Better multilingual title spacing and typography
+       - Cyan glow for the character name
+       - Mouse-shaped scroll indicator
+    ========================================================== */
+    .hero h1 {
+      line-height: .88;
+      letter-spacing: -.025em;
+      font-weight: 700;
+      text-shadow:
+        0 0 8px rgba(73, 221, 255, .72),
+        0 0 22px rgba(38, 173, 255, .48),
+        0 8px 34px rgba(0, 0, 0, .30);
+      filter: drop-shadow(0 0 2px rgba(255,255,255,.18));
+    }
+    .hero h1 span {
+      display: inline-block;
+      padding-inline: .03em;
+    }
+    .hero h1 span + br + span,
+    .hero h1 br + span {
+      margin-top: .10em;
+    }
+
+    /* Thai needs more breathing room than Latin display type. */
+    html[lang="th"] .hero h1 {
+      font-family: "Noto Sans Thai", sans-serif;
+      font-size: clamp(4.35rem, 7.7vw, 8.15rem);
+      line-height: 1.02;
+      letter-spacing: .015em;
+      font-weight: 800;
+    }
+    html[lang="th"] .hero h1 span {
+      padding-inline: .04em;
+    }
+
+    /* Japanese uses a clean heavy gothic face with tighter rhythm. */
+    html[lang="ja"] .hero h1 {
+      font-family: "Noto Sans JP", sans-serif;
+      font-size: clamp(4.7rem, 8.2vw, 8.7rem);
+      line-height: .94;
+      letter-spacing: .025em;
+      font-weight: 900;
+    }
+
+    /* English keeps the futuristic display look but removes collision. */
+    html[lang="en"] .hero h1 {
+      font-family: "Rajdhani", sans-serif;
+      font-size: clamp(5rem, 9vw, 9.4rem);
+      line-height: .80;
+      letter-spacing: -.025em;
+    }
+
+    .hero-scroll {
+      bottom: 18px;
+      min-width: 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(57, 215, 255, .8);
+    }
+    .scroll-mouse {
+      position: relative;
+      width: 24px;
+      height: 36px;
+      border: 2px solid rgba(255,255,255,.95);
+      border-radius: 15px;
+      box-shadow:
+        0 0 10px rgba(57,215,255,.62),
+        inset 0 0 8px rgba(57,215,255,.14);
+      background: rgba(3, 18, 48, .22);
+    }
+    .scroll-wheel {
+      position: absolute;
+      left: 50%;
+      top: 7px;
+      width: 3px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--cyan-2);
+      transform: translateX(-50%);
+      box-shadow: 0 0 7px rgba(57,215,255,.95);
+      animation: mouseWheel 1.55s ease-in-out infinite;
+    }
+    .scroll-label {
+      font: 700 8px "JetBrains Mono", monospace;
+      letter-spacing: .22em;
+      padding-left: .22em;
+    }
+    .hero-scroll i {
+      margin-top: 0;
+      font-size: 10px;
+      color: var(--cyan-2);
+      filter: drop-shadow(0 0 6px rgba(57,215,255,.8));
+    }
+    @keyframes mouseWheel {
+      0%   { transform: translate(-50%, 0); opacity: 0; }
+      20%  { opacity: 1; }
+      75%  { transform: translate(-50%, 10px); opacity: 1; }
+      100% { transform: translate(-50%, 12px); opacity: 0; }
+    }
+
+    @media (max-width: 768px) {
+      html[lang="th"] .hero h1 { font-size: clamp(3.1rem, 13vw, 5.2rem); line-height: 1.04; }
+      html[lang="ja"] .hero h1 { font-size: clamp(3.3rem, 13.5vw, 5.5rem); }
+      html[lang="en"] .hero h1 { font-size: clamp(3.8rem, 15vw, 6rem); }
+      .scroll-mouse { width: 20px; height: 31px; }
+      .hero-scroll { bottom: 12px; }
+    }
+
+  
+
+    /* =========================================================
+       V25. SOCIAL / SUPPORT COLOR SYSTEM + YELLOW STAR ACCENTS
+       Give each social/support action its own visual identity,
+       while keeping the overall Space Fennec theme consistent.
+    ========================================================== */
+
+    /* ---------- SOCIAL LINKS: colorful icon badges ---------- */
+    .social-link {
+      position: relative;
+      overflow: hidden;
+      min-height: 48px;
+      padding: 8px 11px;
+      border-color: rgba(106,205,255,.20);
+      background: linear-gradient(135deg, rgba(13,45,105,.34), rgba(6,19,50,.56));
+      font-weight: 700;
+      letter-spacing: .015em;
+    }
+    .social-link::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.045), transparent);
+      transform: translateX(-120%);
+      transition: transform .45s ease;
+      pointer-events: none;
+    }
+    .social-link:hover::after { transform: translateX(120%); }
+    .social-link i {
+      width: 31px;
+      height: 31px;
+      flex: 0 0 31px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      font-size: 1rem;
+      color: #fff !important;
+      background: rgba(255,255,255,.10);
+      box-shadow: 0 7px 18px rgba(0,0,0,.18), inset 0 0 0 1px rgba(255,255,255,.16);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .social-link:hover i { transform: translateY(-1px) scale(1.07); }
+
+    /* Brand-inspired colors. */
+    .social-link:nth-child(1) i { background:#ff0033; box-shadow:0 0 18px rgba(255,0,51,.30); } /* YouTube */
+    .social-link:nth-child(2) i { background:#9146ff; box-shadow:0 0 18px rgba(145,70,255,.30); } /* Twitch */
+    .social-link:nth-child(3) i { background:#111827; box-shadow:0 0 18px rgba(255,255,255,.12); } /* X */
+    .social-link:nth-child(4) i { background:linear-gradient(145deg,#111,#25f4ee 55%,#fe2c55); } /* TikTok */
+    .social-link:nth-child(5) i { background:#1877f2; box-shadow:0 0 18px rgba(24,119,242,.30); } /* Facebook */
+    .social-link:nth-child(6) i { background:linear-gradient(145deg,#0b8dff,#53c7ff); } /* Bluesky */
+    .social-link:nth-child(7) i { background:linear-gradient(145deg,#833ab4,#fd1d1d 56%,#fcb045); } /* Instagram */
+    .social-link:nth-child(8) i { background:linear-gradient(145deg,#1b2838,#66c0f4); } /* Steam */
+    .social-link:nth-child(9) i { background:#5865f2; box-shadow:0 0 18px rgba(88,101,242,.30); } /* Discord */
+    .social-link:nth-child(10) i { background:linear-gradient(145deg,#ffd43b,#ff8c42); color:#15213b !important; } /* REALITY */
+
+    .social-link:nth-child(1):hover { border-color:rgba(255,64,91,.62); background:rgba(255,0,51,.08); }
+    .social-link:nth-child(2):hover { border-color:rgba(166,112,255,.62); background:rgba(145,70,255,.08); }
+    .social-link:nth-child(3):hover { border-color:rgba(230,240,255,.44); background:rgba(255,255,255,.055); }
+    .social-link:nth-child(4):hover { border-color:rgba(37,244,238,.58); background:rgba(37,244,238,.07); }
+    .social-link:nth-child(5):hover { border-color:rgba(74,151,255,.62); background:rgba(24,119,242,.08); }
+    .social-link:nth-child(6):hover { border-color:rgba(83,199,255,.62); background:rgba(83,199,255,.08); }
+    .social-link:nth-child(7):hover { border-color:rgba(255,91,145,.62); background:rgba(253,29,29,.07); }
+    .social-link:nth-child(8):hover { border-color:rgba(102,192,244,.62); background:rgba(102,192,244,.08); }
+    .social-link:nth-child(9):hover { border-color:rgba(124,136,255,.64); background:rgba(88,101,242,.09); }
+    .social-link:nth-child(10):hover { border-color:rgba(255,212,59,.72); background:rgba(255,212,59,.09); }
+
+    /* ---------- SUPPORT & Q&A: distinct action colors ---------- */
+    .support-action {
+      position: relative;
+      overflow: hidden;
+      min-height: 124px;
+      border-radius: 8px;
+      background: linear-gradient(155deg, rgba(13,45,105,.36), rgba(6,19,50,.56));
+    }
+    .support-action i {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin: 0 0 9px;
+      border-radius: 14px;
+      color:#fff !important;
+      font-size:1.35rem;
+      box-shadow:0 9px 22px rgba(0,0,0,.20), inset 0 0 0 1px rgba(255,255,255,.16);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .support-action:hover i { transform:translateY(-2px) scale(1.06); }
+    .support-action strong { font-size:.79rem; letter-spacing:.06em; }
+    .support-action small { max-width: 150px; }
+    .support-action:nth-child(1) i { background:linear-gradient(145deg,#ffbf2f,#ff7b29); color:#13203b !important; box-shadow:0 0 22px rgba(255,177,48,.28); }
+    .support-action:nth-child(2) i { background:linear-gradient(145deg,#ff6fae,#ff4d75); box-shadow:0 0 22px rgba(255,79,133,.28); }
+    .support-action:nth-child(3) i { background:linear-gradient(145deg,#39d7ff,#3169ff); box-shadow:0 0 22px rgba(57,215,255,.28); }
+    .support-action:nth-child(1):hover { border-color:rgba(255,190,61,.70); background:rgba(255,177,48,.09); }
+    .support-action:nth-child(2):hover { border-color:rgba(255,105,161,.70); background:rgba(255,79,133,.09); }
+    .support-action:nth-child(3):hover { border-color:rgba(57,215,255,.70); background:rgba(57,215,255,.09); }
+
+    /* ---------- Yellow star decoration throughout the site ---------- */
+    .section,
+    .profile-wrap,
+    .two-column-row,
+    .stream-card,
+    .sheet-wrap,
+    .collection-grid,
+    .design-grid,
+    .fanart-wrap { position: relative; }
+
+    /* A small signature star next to major section titles. */
+    .section-heading::after {
+      content: "★";
+      margin-left: auto;
+      align-self: flex-start;
+      color: var(--yellow);
+      font-size: clamp(1rem, 1.7vw, 1.45rem);
+      line-height: 1;
+      text-shadow: 0 0 9px rgba(255,212,59,.72), 0 0 22px rgba(255,212,59,.30);
+      transform: rotate(13deg);
+      opacity: .92;
+    }
+
+    /* Ambient decorative stars placed behind content. */
+    .section:nth-of-type(odd)::before,
+    .section:nth-of-type(even)::after {
+      position:absolute;
+      z-index:0;
+      pointer-events:none;
+      color:var(--yellow);
+      text-shadow:0 0 8px rgba(255,212,59,.72),0 0 20px rgba(255,212,59,.24);
+      opacity:.50;
+      font-family:"Font Awesome 6 Free",sans-serif;
+      font-weight:900;
+    }
+    .section:nth-of-type(odd)::before {
+      content:"★";
+      left:clamp(10px,2.4vw,38px);
+      top:clamp(24px,4vw,58px);
+      font-size:clamp(14px,1.5vw,23px);
+      transform:rotate(-17deg);
+    }
+    .section:nth-of-type(even)::after {
+      content:"✦";
+      right:clamp(12px,3vw,48px);
+      top:clamp(36px,5vw,76px);
+      font-size:clamp(18px,2vw,30px);
+      transform:rotate(12deg);
+    }
+    .section > * { position:relative; z-index:1; }
+
+    /* Tiny yellow star marks on selected cards. */
+    .follow-card::after,
+    .support-card::after,
+    .voice-samples::after,
+    .stream-goals::after {
+      content:"✦";
+      position:absolute;
+      right:10px;
+      top:8px;
+      color:var(--yellow);
+      font-size:11px;
+      opacity:.72;
+      text-shadow:0 0 8px rgba(255,212,59,.50);
+      pointer-events:none;
+    }
+
+    /* Light mode: keep icons vivid but panels readable. */
+    :root[data-theme="light"] .social-link,
+    :root[data-theme="light"] .support-action {
+      color:#133a59 !important;
+      background:rgba(255,255,255,.92) !important;
+      border-color:rgba(28,104,156,.20) !important;
+      box-shadow:0 7px 18px rgba(37,88,122,.06);
+    }
+    :root[data-theme="light"] .social-link:hover,
+    :root[data-theme="light"] .support-action:hover {
+      background:#f7fbff !important;
+      border-color:rgba(28,122,184,.38) !important;
+    }
+    :root[data-theme="light"] .social-link i,
+    :root[data-theme="light"] .support-action i { color:#fff !important; }
+    :root[data-theme="light"] .social-link:nth-child(10) i,
+    :root[data-theme="light"] .support-action:nth-child(1) i { color:#16314a !important; }
+    :root[data-theme="light"] .section-heading::after,
+    :root[data-theme="light"] .section:nth-of-type(odd)::before,
+    :root[data-theme="light"] .section:nth-of-type(even)::after { color:#d79f00; text-shadow:0 0 8px rgba(215,159,0,.22); }
+
+    @media (max-width:760px) {
+      .social-link { min-height:46px; }
+      .social-link i { width:30px; height:30px; flex-basis:30px; }
+      .support-action { min-height:108px; }
+      .support-action i { width:43px; height:43px; border-radius:12px; }
+      .section-heading::after { font-size:1rem; }
+    }
+
 </style>
 </head>
 <body>
@@ -1595,7 +1903,11 @@
         <i class="fa-solid fa-star star s3"></i>
         <i class="fa-solid fa-star star s4"></i>
       </div>
-      <div class="hero-scroll">SCROLL<i class="fa-solid fa-angles-down"></i></div>
+      <div class="hero-scroll" aria-hidden="true">
+        <span class="scroll-mouse"><span class="scroll-wheel"></span></span>
+        <span class="scroll-label">SCROLL</span>
+        <i class="fa-solid fa-angles-down"></i>
+      </div>
     </section>
 
     <!-- =======================================================
