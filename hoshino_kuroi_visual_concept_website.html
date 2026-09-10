@@ -2584,9 +2584,18 @@
       const loaderImage = document.querySelector('.loader-frame > img');
       const reveal = document.getElementById('loader-reveal');
       const scan = document.getElementById('loader-scan');
-      let progress = 0;
-      const timer = setInterval(() => {
-        progress = Math.min(100, progress + Math.floor(Math.random() * 18) + 14);
+      /* Balanced cinematic loading: about 2.8 seconds + a short completion hold. */
+      const loaderDuration = 2800;
+      const completionHold = 420;
+      const startedAt = performance.now();
+
+      const animateLoader = (now) => {
+        const elapsed = now - startedAt;
+        const linear = Math.min(1, elapsed / loaderDuration);
+        /* Smoothstep makes the reveal feel deliberate without looking sluggish. */
+        const eased = linear * linear * (3 - 2 * linear);
+        const progress = Math.min(100, Math.round(eased * 100));
+
         bar.style.width = progress + '%';
         pct.textContent = progress + '%';
 
@@ -2595,11 +2604,14 @@
         if (scan) scan.style.left = `calc(${progress}% - 1px)`;
         if (loaderImage) loaderImage.style.transform = `scale(${1.025 - (progress / 100) * .025})`;
 
-        if (progress >= 100) {
-          clearInterval(timer);
-          setTimeout(() => document.getElementById('loading-screen').classList.add('is-hidden'), 220);
+        if (linear < 1) {
+          requestAnimationFrame(animateLoader);
+        } else {
+          setTimeout(() => document.getElementById('loading-screen').classList.add('is-hidden'), completionHold);
         }
-      }, 75);
+      };
+
+      requestAnimationFrame(animateLoader);
     });
   </script>
 </body>
