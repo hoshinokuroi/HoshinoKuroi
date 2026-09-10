@@ -1097,7 +1097,339 @@
   .hero-pattern::after{left:-38vw;bottom:-25vw;width:92vw;}
   .hero-space-glow{opacity:.55;}
 }
-</style>
+
+
+/* ============================================================
+   V11 LIGHT MODE + HERO CHARACTER OUTLINE
+   - Keeps the light theme bright without losing the cyber/space identity.
+   - HoshinoKuroi.png receives a layered white sticker-style outline.
+============================================================ */
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 14% 8%, rgba(45,151,255,.16), transparent 28%),
+    radial-gradient(circle at 86% 10%, rgba(107,91,255,.13), transparent 25%),
+    linear-gradient(180deg,#f6fbff 0%,#e8f5ff 46%,#f8fcff 100%);
+}
+:root[data-theme="light"] body::before { opacity:.16; }
+:root[data-theme="light"] .site-nav {
+  background:linear-gradient(180deg,rgba(245,251,255,.97),rgba(226,243,255,.94)) !important;
+  border-bottom-color:rgba(0,126,189,.32) !important;
+  box-shadow:0 10px 34px rgba(18,83,130,.12),0 1px 0 rgba(0,126,189,.16);
+}
+:root[data-theme="light"] .nav-link,
+:root[data-theme="light"] .lang-btn,
+:root[data-theme="light"] .icon-btn { color:#123b61; }
+:root[data-theme="light"] .nav-link:hover,
+:root[data-theme="light"] .nav-link.active { color:#006eae; }
+:root[data-theme="light"] .tech-panel,
+:root[data-theme="light"] .tech-card,
+:root[data-theme="light"] .profile-panel,
+:root[data-theme="light"] .personality-card,
+:root[data-theme="light"] .stream-card,
+:root[data-theme="light"] .creator-card {
+  background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(230,245,255,.88)) !important;
+  border-color:rgba(0,126,189,.28) !important;
+  box-shadow:0 14px 42px rgba(25,87,132,.10);
+}
+:root[data-theme="light"] .section-shell {
+  background:linear-gradient(180deg,rgba(244,251,255,.94),rgba(226,242,255,.90));
+}
+:root[data-theme="light"] .section-title,
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3,
+:root[data-theme="light"] h4 { text-shadow:none; }
+:root[data-theme="light"] .hero {
+  /* Hero remains cinematic in light mode so the character and white outline stay readable. */
+  background:
+    radial-gradient(circle at 72% 20%,rgba(67,127,255,.24),transparent 28%),
+    radial-gradient(circle at 22% 32%,rgba(49,180,255,.20),transparent 26%),
+    linear-gradient(145deg,#071a42 0%,#0d4383 48%,#17205f 100%) !important;
+}
+:root[data-theme="light"] .hero-left,
+:root[data-theme="light"] .hero-tagline,
+:root[data-theme="light"] .hero-tagline-sub,
+:root[data-theme="light"] .hero-side-copy,
+:root[data-theme="light"] .hero-scroll { color:#fff; }
+
+/* White backing/outline for transparent HoshinoKuroi.png.
+   Multiple drop-shadows trace the alpha edge, unlike a rectangular border. */
+.hero-art {
+  filter:
+    drop-shadow( 4px  0   0 #fff)
+    drop-shadow(-4px  0   0 #fff)
+    drop-shadow( 0    4px 0 #fff)
+    drop-shadow( 0   -4px 0 #fff)
+    drop-shadow( 3px  3px 0 #fff)
+    drop-shadow(-3px  3px 0 #fff)
+    drop-shadow( 3px -3px 0 #fff)
+    drop-shadow(-3px -3px 0 #fff)
+    drop-shadow(-18px 22px 34px rgba(0,0,0,.34)) !important;
+}
+@media (max-width:900px){
+  .hero-art {
+    filter:
+      drop-shadow( 3px 0 0 #fff) drop-shadow(-3px 0 0 #fff)
+      drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)
+      drop-shadow(-10px 16px 26px rgba(0,0,0,.30)) !important;
+  }
+}
+
+
+
+/* ============================================================
+   V12 ACCESSIBLE LIGHT MODE
+   High-contrast light palette for every content component.
+   Hero intentionally stays dark/cinematic for artwork contrast.
+============================================================ */
+:root[data-theme="light"] {
+  --white:#102a43;
+  --muted:#526d82;
+  --panel:rgba(255,255,255,.96);
+  --panel-strong:#ffffff;
+  --line:rgba(0,105,168,.38);
+  --line-soft:rgba(0,105,168,.17);
+  --cyan:#006fa8;
+  --cyan-2:#005f91;
+  --blue:#075fc7;
+  --yellow:#9b7200;
+}
+:root[data-theme="light"] body{color:#102a43;}
+:root[data-theme="light"] .site-stars{opacity:.16;filter:saturate(.7);}
+:root[data-theme="light"] body::before{opacity:.035;mix-blend-mode:multiply;}
+
+/* Navigation */
+:root[data-theme="light"] .site-nav,
+:root[data-theme="light"] .topbar{
+  background:rgba(248,252,255,.96)!important;
+  border-color:rgba(0,103,168,.28)!important;
+  color:#173b58!important;
+  backdrop-filter:blur(18px);
+}
+:root[data-theme="light"] .nav-link,
+:root[data-theme="light"] .lang-btn,
+:root[data-theme="light"] .icon-btn,
+:root[data-theme="light"] .mobile-menu-btn{color:#244a68!important;}
+:root[data-theme="light"] .nav-link:hover,
+:root[data-theme="light"] .nav-link.active,
+:root[data-theme="light"] .lang-btn.active{color:#006ba6!important;}
+:root[data-theme="light"] .lang-switch,
+:root[data-theme="light"] .icon-btn,
+:root[data-theme="light"] .mobile-menu-btn{background:#fff!important;border-color:rgba(0,103,168,.35)!important;}
+:root[data-theme="light"] .mobile-drawer{background:rgba(248,252,255,.98)!important;border-color:rgba(0,103,168,.25)!important;color:#173b58!important;}
+
+/* Main section surfaces */
+:root[data-theme="light"] .section{color:#17324a;}
+:root[data-theme="light"] .section-shell,
+:root[data-theme="light"] .hud-panel,
+:root[data-theme="light"] .tech-panel,
+:root[data-theme="light"] .tech-card,
+:root[data-theme="light"] .profile-panel,
+:root[data-theme="light"] .personality-card,
+:root[data-theme="light"] .stream-card,
+:root[data-theme="light"] .bio-card,
+:root[data-theme="light"] .likes-card,
+:root[data-theme="light"] .dislikes,
+:root[data-theme="light"] .follow-card,
+:root[data-theme="light"] .support-card,
+:root[data-theme="light"] .voice-samples,
+:root[data-theme="light"] .goods-card,
+:root[data-theme="light"] .design-card,
+:root[data-theme="light"] .creator-card,
+:root[data-theme="light"] .portrait-card,
+:root[data-theme="light"] .sheet-side{
+  background:linear-gradient(145deg,rgba(255,255,255,.99),rgba(237,248,255,.97))!important;
+  color:#17324a!important;
+  border-color:rgba(0,108,172,.34)!important;
+  box-shadow:0 12px 34px rgba(31,91,130,.10),inset 0 0 0 1px rgba(255,255,255,.8)!important;
+}
+
+/* Headings and descriptive copy */
+:root[data-theme="light"] .section-heading,
+:root[data-theme="light"] .section-title,
+:root[data-theme="light"] .card-title,
+:root[data-theme="light"] .creator-name,
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3,
+:root[data-theme="light"] h4,
+:root[data-theme="light"] strong{color:#102a43;}
+:root[data-theme="light"] .micro-copy,
+:root[data-theme="light"] .creator-role,
+:root[data-theme="light"] .portrait-caption,
+:root[data-theme="light"] .fanart-credit,
+:root[data-theme="light"] small{color:#526d82!important;}
+:root[data-theme="light"] .section-index,
+:root[data-theme="light"] .identity-label{color:#006fa8!important;}
+
+/* Profile data rows */
+:root[data-theme="light"] .identity-row,
+:root[data-theme="light"] .schedule-row,
+:root[data-theme="light"] .goal-list li,
+:root[data-theme="light"] .personality-traits li{
+  border-color:rgba(0,105,168,.18)!important;
+  color:#18364f!important;
+}
+:root[data-theme="light"] .identity-value{color:#102a43!important;}
+:root[data-theme="light"] .identity-quote{color:#234d6d!important;border-color:rgba(0,105,168,.25)!important;}
+
+/* Personality / lists */
+:root[data-theme="light"] .personality-copy,
+:root[data-theme="light"] .personality-traits,
+:root[data-theme="light"] .goal-list{color:#24465f!important;}
+
+/* Schedule */
+:root[data-theme="light"] .schedule{
+  background:#f8fcff!important;
+  border-color:rgba(0,105,168,.28)!important;
+  color:#17324a!important;
+}
+:root[data-theme="light"] .schedule-day{color:#075b92!important;}
+:root[data-theme="light"] .schedule-row.is-live{
+  background:linear-gradient(90deg,rgba(255,224,92,.24),rgba(20,144,214,.08))!important;
+  color:#102a43!important;
+}
+:root[data-theme="light"] .live-pill{color:#704f00!important;background:#fff4bf!important;border-color:#d4a600!important;}
+
+/* Interactive cards / buttons */
+:root[data-theme="light"] .social-link,
+:root[data-theme="light"] .support-action,
+:root[data-theme="light"] .voice-btn,
+:root[data-theme="light"] .good-card{
+  background:rgba(255,255,255,.92)!important;
+  color:#173b58!important;
+  border-color:rgba(0,105,168,.30)!important;
+}
+:root[data-theme="light"] .social-link:hover,
+:root[data-theme="light"] .support-action:hover,
+:root[data-theme="light"] .voice-btn:hover,
+:root[data-theme="light"] .good-card:hover{
+  background:#e6f6ff!important;
+  border-color:#0085c7!important;
+  color:#064d78!important;
+}
+
+/* Character sheet / galleries */
+:root[data-theme="light"] .sheet-wrap,
+:root[data-theme="light"] .gallery-wrap,
+:root[data-theme="light"] .award-showcase,
+:root[data-theme="light"] .collection-grid,
+:root[data-theme="light"] .design-grid{
+  color:#17324a!important;
+}
+:root[data-theme="light"] .fanart-item,
+:root[data-theme="light"] .award-card{
+  background:#fff!important;
+  border-color:rgba(0,105,168,.30)!important;
+  box-shadow:0 8px 22px rgba(25,83,120,.10)!important;
+}
+:root[data-theme="light"] .award-copy{color:#24465f!important;}
+
+/* Footer */
+:root[data-theme="light"] .footer{
+  background:linear-gradient(180deg,#eaf6fd,#dceff9)!important;
+  color:#23445d!important;
+  border-top-color:rgba(0,105,168,.26)!important;
+}
+:root[data-theme="light"] .footer-nav a,
+:root[data-theme="light"] .footer-social a{color:#1e506f!important;}
+:root[data-theme="light"] .footer-tag{color:#526d82!important;}
+
+/* Keep the hero deliberately dark in Light Mode. */
+:root[data-theme="light"] .hero,
+:root[data-theme="light"] .hero *{--white:#f7fcff;}
+:root[data-theme="light"] .hero .hero-kicker,
+:root[data-theme="light"] .hero .hero-left,
+:root[data-theme="light"] .hero .hero-tagline,
+:root[data-theme="light"] .hero .hero-tagline-sub,
+:root[data-theme="light"] .hero .hero-side-copy,
+:root[data-theme="light"] .hero .hero-scroll{color:#fff!important;}
+:root[data-theme="light"] .hero .hero-cta{color:#fff!important;background:rgba(2,22,54,.42)!important;}
+
+
+    /* =========================================================
+       V13 FIXES: Light-mode biography + horizontal fanart rail
+       - Ensure biography text remains readable in light mode.
+       - FanArt becomes a single horizontal scrolling row.
+       - Artist name is separated from image and emphasized.
+    ========================================================== */
+    :root[data-theme="light"] .bio-card {
+      background: rgba(255,255,255,.97) !important;
+      border-color: rgba(0,115,190,.28) !important;
+    }
+    :root[data-theme="light"] .bio-card .card-title,
+    :root[data-theme="light"] .bio-card .card-title span,
+    :root[data-theme="light"] #bio-text {
+      color: #102a43 !important;
+      opacity: 1 !important;
+      text-shadow: none !important;
+    }
+    :root[data-theme="light"] .bio-card .card-title i { color:#007ebd !important; }
+
+    .gallery-wrap { overflow:hidden; padding:14px 14px 18px; }
+    .fanart-grid {
+      display:flex !important;
+      grid-template-columns:none !important;
+      gap:14px !important;
+      overflow-x:auto;
+      overflow-y:hidden;
+      padding:4px 2px 14px;
+      scroll-snap-type:x proximity;
+      scrollbar-width:thin;
+      scrollbar-color:var(--cyan) rgba(68,195,255,.10);
+    }
+    .fanart-grid::-webkit-scrollbar { height:9px; }
+    .fanart-grid::-webkit-scrollbar-track { background:rgba(68,195,255,.08); border-radius:999px; }
+    .fanart-grid::-webkit-scrollbar-thumb { background:var(--cyan); border-radius:999px; }
+    .fanart-item {
+      flex:0 0 clamp(150px,16vw,210px);
+      aspect-ratio:auto !important;
+      overflow:visible !important;
+      border:0 !important;
+      background:transparent !important;
+      scroll-snap-align:start;
+      cursor:pointer;
+    }
+    .fanart-image-frame {
+      position:relative;
+      aspect-ratio:1/1.08;
+      overflow:hidden;
+      border:1px solid var(--line-soft);
+      background:rgba(17,73,160,.08);
+      box-shadow:0 10px 30px rgba(0,0,0,.12);
+    }
+    .fanart-image-frame img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .35s ease;
+    }
+    .fanart-item:hover .fanart-image-frame img { transform:scale(1.045); }
+    .fanart-credit {
+      position:static !important;
+      display:block;
+      margin-top:8px;
+      padding:8px 10px !important;
+      background:rgba(2,8,23,.78) !important;
+      border-left:3px solid var(--cyan);
+      font:700 10px "JetBrains Mono",monospace !important;
+      letter-spacing:.04em;
+      color:#f3fbff !important;
+      line-height:1.35;
+      min-height:36px;
+    }
+    :root[data-theme="light"] .fanart-credit {
+      background:#ffffff !important;
+      color:#102a43 !important;
+      border:1px solid rgba(0,115,190,.20);
+      border-left:3px solid #007ebd;
+    }
+    @media (max-width:700px){
+      .fanart-item { flex-basis:145px; }
+      .fanart-credit { font-size:9px !important; }
+    }
+
+  </style>
 </head>
 <body>
   <div class="site-stars" aria-hidden="true"></div>
@@ -1582,8 +1914,10 @@
     function renderFanart() {
       document.getElementById('fanart-grid').innerHTML = fanartData.map(item => `
         <div class="fanart-item" role="button" tabindex="0" data-image="${item.url}" aria-label="Fanart by ${item.artist}">
-          <img src="${item.url}" alt="Fanart by ${item.artist}" loading="lazy" />
-          <span class="fanart-credit">BY: ${item.artist}</span>
+          <div class="fanart-image-frame">
+            <img src="${item.url}" alt="Fanart by ${item.artist}" loading="lazy" />
+          </div>
+          <span class="fanart-credit">ARTIST: ${item.artist}</span>
         </div>
       `).join('');
 
