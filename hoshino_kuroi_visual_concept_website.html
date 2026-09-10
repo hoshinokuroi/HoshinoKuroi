@@ -597,7 +597,7 @@
     .sheet-side::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,8,23,.02) 28%,rgba(2,8,23,.74) 100%); z-index:2; pointer-events:none; }
     .sheet-side-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; z-index:1; }
     /* SHEET OVERLAY PNG SLOT: place a transparent PNG over the right artwork. */
-    .sheet-side-overlay { position:absolute; z-index:3; right:14px; bottom:14px; width:min(210px,72%); max-height:145px; object-fit:contain; object-position:right bottom; filter:drop-shadow(0 8px 18px rgba(0,0,0,.42)); pointer-events:none; }
+    .sheet-side-overlay { position:absolute; z-index:3; left:50%; top:50%; width:min(360px,72%); max-height:220px; object-fit:contain; object-position:center; transform:translate(-50%,-50%); filter:drop-shadow(0 8px 18px rgba(0,0,0,.42)); pointer-events:none; }
 
     /* =========================================================
        09. AWARDS & GOODS
@@ -1690,9 +1690,9 @@
           </div>
           <!-- RIGHT IMAGE SLOT: decorative only; this image no longer opens the lightbox. -->
           <aside class="sheet-side hud-panel" aria-label="Secondary character visual">
-            <img class="sheet-side-image" src="HoshinoSheetOverlay.png" alt="Hoshino Kuroi secondary visual" loading="lazy" />
+            <img class="sheet-side-image" src="HoshinoCT2.png" alt="Hoshino Kuroi secondary visual" loading="lazy" />
             <!-- OVERLAY PNG SLOT: replace HoshinoSheetOverlay.png with any transparent PNG artwork/signature. -->
-            <img class="sheet-side-overlay" src="Message2.png" alt="" loading="lazy" />
+            <img class="sheet-side-overlay" src="HoshinoSheetOverlay.png" alt="" loading="lazy" />
           </aside>
         </div>
       </div>
