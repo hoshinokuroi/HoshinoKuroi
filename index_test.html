@@ -673,6 +673,22 @@ body::before{opacity:.08!important;background-size:100% 8px!important}
 
 
 
+
+/* ===== Reference-style top hero / navigation ===== */
+.character-nav{position:fixed!important;inset:0 0 auto 0!important;height:88px!important;display:grid!important;grid-template-columns:310px 1fr auto!important;align-items:center!important;gap:20px!important;padding:0 clamp(24px,5vw,90px)!important;background:linear-gradient(180deg,rgba(3,18,55,.96),rgba(5,25,70,.88))!important;border:0!important;border-bottom:1px solid rgba(89,202,255,.45)!important;backdrop-filter:blur(18px)!important;clip-path:none!important;z-index:1500!important;box-shadow:0 10px 35px rgba(0,8,34,.22)!important}
+.character-nav:after{content:'';position:absolute;left:26%;right:4%;bottom:-1px;height:2px;background:linear-gradient(90deg,transparent,#28a8ff 15%,#69dcff 56%,transparent);opacity:.9}
+.nav-logo{display:flex!important;align-items:center!important;height:100%!important;border:0!important;padding:9px 0!important}.nav-logo img{display:block;max-width:250px;max-height:68px;object-fit:contain;filter:drop-shadow(0 3px 8px rgba(0,0,0,.3))}
+.nav-links{height:100%;display:flex;justify-content:center;align-items:stretch}.nav-links a{min-width:108px!important;height:100%!important;padding:14px 17px 10px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;border-left:1px solid rgba(105,203,255,.18)!important;color:#bfe9ff!important;font:500 13px 'Rajdhani','Noto Sans JP',sans-serif!important;letter-spacing:.045em!important;position:relative!important;transition:.25s ease!important}.nav-links a:last-child{border-right:1px solid rgba(105,203,255,.18)!important}.nav-links a i{font-size:21px;color:#45bfff;filter:drop-shadow(0 0 6px rgba(47,185,255,.35))}.nav-links a:hover{background:rgba(47,159,255,.08)!important;color:#fff!important}.nav-links a:hover:after,.nav-links a:first-child:after{content:'';position:absolute;bottom:0;left:16%;right:16%;height:2px;background:#52c9ff;box-shadow:0 0 10px #52c9ff}
+.nav-controls{display:flex;align-items:center;gap:20px}.nav-languages{display:flex;align-items:center;padding:8px 14px;border:1px solid rgba(84,194,255,.55);border-radius:8px;background:rgba(25,61,115,.35);box-shadow:inset 0 0 12px rgba(44,147,255,.08)}.nav-languages span{width:1px;height:17px;background:rgba(161,223,255,.38)}.nav-languages .lang-btn{min-width:auto!important;padding:0 9px!important;border:0!important;border-radius:0!important;background:transparent!important;color:#bde7ff!important;box-shadow:none!important;font:600 12px 'JetBrains Mono'!important}.nav-languages .lang-btn.active,.nav-languages .lang-btn:hover{color:#fff!important;text-shadow:0 0 8px #5dd6ff!important}.theme-nav-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(132,215,255,.7);background:rgba(3,18,55,.42);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 0 16px rgba(58,184,255,.08)}
+.hero-keyvisual{min-height:770px!important;height:calc(100svh - 0px)!important;max-height:980px!important;display:block!important;position:relative!important;overflow:hidden!important;padding:0!important;background:linear-gradient(180deg,#193d7a 0%,#567dbe 68%,#789bd1 100%)!important;border-bottom:1px solid rgba(95,200,255,.5)!important}
+.hero-keyvisual:before{content:''!important;position:absolute!important;inset:88px 0 0 0!important;background:radial-gradient(circle at 76% 38%,rgba(122,80,214,.45),transparent 30%),linear-gradient(105deg,rgba(19,60,124,.08) 0 46%,rgba(8,25,72,.2) 46% 100%)!important;z-index:1!important}
+.hero-keyvisual:after{content:''!important;position:absolute!important;inset:88px 0 0 0!important;background-image:radial-gradient(circle at 0 100%,transparent 20px,rgba(215,230,255,.18) 21px 22px,transparent 23px),radial-gradient(circle at 40px 100%,transparent 20px,rgba(215,230,255,.18) 21px 22px,transparent 23px)!important;background-size:80px 40px!important;background-position:0 0,0 20px!important;opacity:.78!important;z-index:0!important;mask-image:linear-gradient(90deg,#000 0 49%,transparent 66%)!important}
+.hero-wave-pattern{position:absolute;inset:88px 48% 0 0;z-index:1;background:repeating-radial-gradient(circle at 0 100%,transparent 0 27px,rgba(222,235,255,.16) 28px 30px,transparent 31px 56px);opacity:.55;pointer-events:none}
+.hero-copy{position:absolute!important;z-index:5!important;left:clamp(42px,8vw,135px)!important;top:50%!important;transform:translateY(-42%)!important;width:min(43vw,640px)!important;max-width:none!important;align-self:auto!important}.hero-copy .hero-sub{margin:0 0 18px!important;color:#fff!important;font:700 clamp(24px,2.2vw,39px) 'Rajdhani','Noto Sans JP',sans-serif!important;letter-spacing:.01em!important;text-transform:none!important;text-shadow:0 3px 10px rgba(20,41,90,.3)}.hero-copy h1{font-family:'Rajdhani','Noto Sans JP',sans-serif!important;font-weight:700!important;font-size:clamp(84px,9.3vw,160px)!important;line-height:.77!important;letter-spacing:-.055em!important;text-transform:none!important;margin:0!important;color:#fff!important;text-shadow:0 5px 20px rgba(28,47,90,.18)}.hero-copy h1 span{display:block!important;color:#fff!important;-webkit-text-stroke:0!important}.hero-jp{margin-top:27px;color:#fff;font:700 clamp(16px,1.45vw,25px) 'Noto Sans JP',sans-serif;letter-spacing:.08em}.hero-tagline{margin-top:7px;color:#fff;font:500 clamp(14px,1.3vw,21px) 'Rajdhani',sans-serif;letter-spacing:.04em}.hero-mini-panel{margin-top:42px;width:290px;min-height:92px;display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:15px 23px;background:linear-gradient(90deg,rgba(13,56,130,.35),rgba(38,77,153,.25)),radial-gradient(circle at 100% 55%,rgba(160,187,255,.55),transparent 45%);border-left:2px solid #42bdf6;border-top:1px solid rgba(114,214,255,.65);border-bottom:1px solid rgba(114,214,255,.26);font:600 11px 'JetBrains Mono';letter-spacing:.08em;color:#fff}.hero-mini-panel span{display:block}
+.hero-character-frame{position:absolute;z-index:3;top:88px;right:0;bottom:0;width:64%;overflow:hidden;clip-path:polygon(20% 0,100% 0,100% 100%,0 100%)}.hero-character-frame:before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(22,36,108,.92),rgba(11,22,76,.38) 62%,rgba(39,34,111,.6));z-index:0}.hero-character-cut{position:absolute;z-index:1;left:1%;top:-8%;width:23%;height:125%;background:#fff;transform:skewX(-25deg);box-shadow:12px 0 0 rgba(33,68,150,.8)}.hero-art{position:absolute!important;z-index:3!important;inset:0!important;height:auto!important;display:block!important}.hero-art img{position:absolute;right:-2%;bottom:-11%;width:107%;height:110%;object-fit:contain;object-position:right bottom;transform:scale(1.18)!important;transform-origin:right bottom!important;filter:drop-shadow(-8px 12px 0 rgba(255,255,255,.98)) drop-shadow(-18px 16px 0 rgba(13,48,128,.55))!important}.hero-vertical-jp{position:absolute;z-index:5;right:24px;top:30px;writing-mode:vertical-rl;color:#fff;font:500 19px 'Noto Sans JP';letter-spacing:.14em;text-shadow:0 2px 8px rgba(0,0,0,.35)}.hero-side-data{position:absolute;z-index:5;right:26px;bottom:60px;text-align:center;color:rgba(218,235,255,.72);font:500 9px 'JetBrains Mono';line-height:2.2;letter-spacing:.18em}.hero-scroll{position:absolute;z-index:7;left:50%;bottom:20px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;color:#fff;font:600 10px 'JetBrains Mono';letter-spacing:.06em;text-shadow:0 2px 5px rgba(0,0,0,.4)}.hero-scroll .mouse{width:16px;height:28px;border:1px solid #fff;border-radius:10px;margin:6px 0 3px;position:relative}.hero-scroll .mouse:after{content:'';position:absolute;left:50%;top:6px;width:2px;height:6px;background:#fff;transform:translateX(-50%);border-radius:2px;animation:scrollDot 1.4s infinite}.hero-scroll i{font-size:10px;animation:scrollArrow 1.4s infinite}.hero-decor-star{position:absolute;z-index:6;color:#ffd31d;-webkit-text-stroke:3px #fff;filter:drop-shadow(0 3px 2px rgba(0,0,0,.15));line-height:1}.star-a{left:33%;top:25%;font-size:48px;transform:rotate(10deg)}.star-b{left:4%;bottom:26%;font-size:30px;transform:rotate(-12deg)}.star-c{right:8%;top:30%;font-size:45px}.hero-orbit{display:none!important}@keyframes scrollDot{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}@keyframes scrollArrow{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(4px);opacity:1}}
+@media(max-width:1180px){.character-nav{grid-template-columns:220px 1fr auto!important;padding:0 25px!important}.nav-logo img{max-width:195px}.nav-links a{min-width:82px!important;padding-left:10px!important;padding-right:10px!important;font-size:11px!important}.nav-controls{gap:10px}.hero-copy{left:55px!important;width:45vw!important}.hero-copy h1{font-size:clamp(74px,10vw,122px)!important}.hero-character-frame{width:62%}.hero-art img{right:-11%;width:116%}}
+@media(max-width:900px){.character-nav{height:72px!important;grid-template-columns:1fr auto!important;padding:0 16px!important}.nav-logo img{max-width:170px;max-height:54px}.nav-links{display:none!important}.nav-controls{gap:8px}.nav-languages{padding:6px 8px}.theme-nav-btn{width:38px;height:38px}.hero-keyvisual{min-height:720px!important;height:100svh!important}.hero-keyvisual:before,.hero-keyvisual:after{inset-top:72px}.hero-copy{left:24px!important;top:43%!important;width:72vw!important;transform:translateY(-50%)!important}.hero-copy .hero-sub{font-size:22px!important}.hero-copy h1{font-size:clamp(64px,18vw,105px)!important}.hero-jp{font-size:14px}.hero-mini-panel{display:none}.hero-character-frame{top:72px;width:72%;right:-20%;opacity:.9;clip-path:polygon(25% 0,100% 0,100% 100%,0 100%)}.hero-art img{right:-10%;bottom:-4%;width:125%;height:92%;transform:scale(1.1)!important}.hero-vertical-jp,.hero-side-data{display:none}.hero-copy{z-index:8!important;text-shadow:0 4px 18px rgba(0,0,0,.28)}.star-a{left:auto;right:20%;top:19%}.star-c{display:none}}
+@media(max-width:560px){.nav-logo img{max-width:145px}.nav-languages .lang-btn{padding:0 5px!important;font-size:10px!important}.theme-nav-btn{width:34px;height:34px}.hero-copy{width:84vw!important;top:42%!important}.hero-copy h1{font-size:clamp(58px,20vw,86px)!important}.hero-copy .hero-sub{font-size:18px!important}.hero-tagline{font-size:13px}.hero-character-frame{right:-42%;width:90%}.hero-art img{right:-12%;width:140%;height:88%}.hero-scroll{bottom:12px}.star-a{font-size:34px;right:12%}.star-b{font-size:24px}}
 /* Single character-sheet showcase */
 .visual-sheet-single{position:relative;width:min(1180px,100%);margin:0 auto;overflow:hidden;border:1px solid rgba(98,217,255,.2);background:linear-gradient(145deg,rgba(8,18,43,.62),rgba(7,13,31,.38));padding:clamp(10px,1.5vw,20px);clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,0 100%)}
 .visual-sheet-single img{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain;background:rgba(2,5,15,.35)}
@@ -776,17 +792,46 @@ body::before{opacity:.08!important;background-size:100% 8px!important}
 <button id="back-to-top" onclick="window.scrollTo(0,0)" title="Back to Top">
 <i class="fas fa-chevron-up"></i>
 </button>
-<!-- Top Controls: Theme Toggle & Language Switcher with Flags -->
-<div class="fixed top-4 right-4 z-50 flex items-center gap-2">
-<button class="px-3 py-1.5 text-xs border border-cyan-400 font-bold rounded flex items-center gap-1 bg-cyan-400/10 text-cyan-400 cursor-none hover:bg-cyan-400 hover:text-black transition-all" id="theme-toggle-btn" onclick="toggleTheme()">
-<i class="fas fa-moon" id="theme-icon"></i>
-</button>
-<button class="lang-btn" id="gbtn-th" onclick="setGlobalLang('th')">TH</button>
-<button class="lang-btn" id="gbtn-en" onclick="setGlobalLang('en')">EN</button>
-<button class="lang-btn" id="gbtn-jp" onclick="setGlobalLang('jp')">JP</button>
-</div>
-<nav class="character-nav"><b>HOSHINO // KUROI</b><a href="#visual">VISUAL</a><a href="#profile">PROFILE</a><a href="#story">PERSONALITY</a><a href="#activity">STREAM</a><a href="#design">DESIGN</a><a href="#archive">ARCHIVE</a></nav>
-<section class="hero-keyvisual" id="top"><div class="hero-orbit"></div><div class="hero-copy"><div class="hero-kicker">CHARACTER FILE // STARLOID ORIGIN</div><h1>Hoshino <span>Kuroi</span></h1><div class="hero-sub">SPACE FENNEC EXPLORER</div><div class="hero-meta"><span>CYBER × WAFUKU</span><span>SPACE FOX</span><span>IDENTITY // HK-023</span></div></div><div class="hero-art"><img alt="Hoshino Kuroi key visual" src="HoshinoCT1.png"/></div></section>
+<!-- MAIN CHARACTER NAVIGATION -->
+<nav class="character-nav">
+  <a class="nav-logo" href="#top" aria-label="Hoshino Kuroi Home"><img src="HoshinoKLogo.png" alt="Hoshino Kuroi Official Logo"/></a>
+  <div class="nav-links">
+    <a href="#top"><i class="fas fa-home"></i><span>HOME</span></a>
+    <a href="#profile"><i class="far fa-user"></i><span>PROFILE</span></a>
+    <a href="#story"><i class="far fa-star"></i><span>PERSONALITY</span></a>
+    <a href="#activity"><i class="fas fa-play"></i><span>STREAM</span></a>
+    <a href="#design"><i class="far fa-image"></i><span>DESIGN</span></a>
+    <a href="#archive"><i class="far fa-folder"></i><span>ARCHIVE</span></a>
+  </div>
+  <div class="nav-controls">
+    <div class="nav-languages">
+      <button class="lang-btn" id="gbtn-th" onclick="setGlobalLang('th')">TH</button>
+      <span></span>
+      <button class="lang-btn" id="gbtn-en" onclick="setGlobalLang('en')">EN</button>
+      <span></span>
+      <button class="lang-btn" id="gbtn-jp" onclick="setGlobalLang('jp')">JP</button>
+    </div>
+    <button class="theme-nav-btn" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"><i class="fas fa-moon" id="theme-icon"></i></button>
+  </div>
+</nav>
+<section class="hero-keyvisual" id="top">
+  <div class="hero-wave-pattern" aria-hidden="true"></div>
+  <div class="hero-decor-star star-a">★</div><div class="hero-decor-star star-b">★</div><div class="hero-decor-star star-c">★</div>
+  <div class="hero-copy">
+    <div class="hero-sub">SPACE FENNEC EXPLORER</div>
+    <h1>Hoshino <span>Kuroi</span></h1>
+    <div class="hero-jp">まだ見ぬ星の、その先へ——</div>
+    <div class="hero-tagline">To the stars beyond.</div>
+    <div class="hero-mini-panel"><span>EXPLORE</span><span>DISCOVER</span><span>CONNECT</span></div>
+  </div>
+  <div class="hero-character-frame">
+    <div class="hero-character-cut"></div>
+    <div class="hero-art"><img alt="Hoshino Kuroi key visual" src="HoshinoCT1.png"/></div>
+    <div class="hero-vertical-jp">星を旅する、フェネック。</div>
+    <div class="hero-side-data">EXPLORER<br/>DIGITAL<br/>FROM<br/>THE GALAXY</div>
+  </div>
+  <div class="hero-scroll">SCROLL<div class="mouse"></div><i class="fas fa-chevron-down"></i></div>
+</section>
 <section class="visual-showcase" id="visual">
   <div class="visual-head">
     <div><p>VISUAL // CHARACTER STUDY</p><h2>Across the<br/>Star Field</h2></div>
