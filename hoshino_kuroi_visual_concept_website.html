@@ -253,39 +253,27 @@
        03. LOADING SCREEN
     ========================================================== */
     #loading-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 20000;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 50% 40%, rgba(28,117,255,.22), transparent 36%),
-        #020817;
-      transition: opacity .7s ease, visibility .7s ease;
+      position:fixed; inset:0; z-index:20000; display:grid; place-items:center; overflow:hidden;
+      background:radial-gradient(circle at 50% 42%,rgba(30,132,255,.18),transparent 32%),linear-gradient(145deg,#010612,#03142f 58%,#070b24);
+      transition:opacity .55s ease,visibility .55s ease;
     }
-    #loading-screen.is-hidden { opacity: 0; visibility: hidden; }
-    .loader-core { width: min(620px, 86vw); text-align: center; }
-    .loader-frame {
-      position: relative;
-      height: clamp(170px, 28vw, 250px);
-      overflow: hidden;
-      border: 1px solid var(--cyan);
-      box-shadow: 0 0 40px rgba(57,215,255,.22);
-      clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
-      background: #000;
-    }
-    .loader-frame img {
-      width: 100%; height: 100%; object-fit: cover;
-      opacity: .9;
-      /* Start completely monochrome. JavaScript gradually restores colour as loading progresses. */
-      filter: grayscale(1) saturate(.15) contrast(1.08) brightness(.82);
-      transition: filter .22s linear, opacity .22s linear;
-    }
-    .loader-scan { position: absolute; inset: 0 auto 0 0; width: 3px; background: white; box-shadow: 0 0 20px var(--cyan); animation: loaderScan 1.8s ease forwards; }
-    @keyframes loaderScan { to { left: 100%; } }
-    .loader-progress { height: 3px; margin-top: 16px; background: rgba(255,255,255,.12); overflow: hidden; }
-    .loader-progress span { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--cyan), var(--blue)); transition: width .18s linear; box-shadow: 0 0 14px var(--cyan); }
-    .loader-text { margin-top: 12px; font: 600 10px "JetBrains Mono", monospace; letter-spacing: .18em; color: var(--cyan-2); }
+    #loading-screen::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.45; background-image:radial-gradient(circle at 12% 18%,#fff 0 1px,transparent 1.4px),radial-gradient(circle at 72% 28%,#75e1ff 0 1px,transparent 1.5px),radial-gradient(circle at 35% 76%,#fff 0 1px,transparent 1.4px),radial-gradient(circle at 88% 70%,#ffd43b 0 1px,transparent 1.6px); background-size:150px 150px,210px 210px,270px 270px,330px 330px; }
+    #loading-screen.is-hidden { opacity:0; visibility:hidden; pointer-events:none; }
+    .loader-core { position:relative; z-index:2; width:min(900px,92vw); text-align:center; }
+    .loader-brand { margin:0 0 12px; font:700 clamp(10px,1.2vw,13px) "JetBrains Mono",monospace; letter-spacing:.28em; color:#8be9ff; text-shadow:0 0 14px rgba(57,215,255,.65); }
+    .loader-frame { position:relative; width:100%; aspect-ratio:16/7; max-height:460px; overflow:hidden; border:1px solid rgba(107,224,255,.72); background:#020817; box-shadow:0 0 0 1px rgba(43,129,255,.14) inset,0 0 50px rgba(57,215,255,.18); clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,28px 100%,0 calc(100% - 28px)); }
+    .loader-frame img { width:100%; height:100%; object-fit:cover; object-position:center; filter:grayscale(1) saturate(0) contrast(1.12) brightness(.66); transform:scale(1.025); transition:filter .12s linear,transform 1.4s ease; }
+    .loader-color-reveal { position:absolute; inset:0; width:0%; overflow:hidden; z-index:2; border-right:2px solid #fff; box-shadow:8px 0 28px rgba(57,215,255,.48); }
+    .loader-color-reveal img { position:absolute; inset:0; width:100%; max-width:none; height:100%; object-fit:cover; object-position:center; filter:saturate(1.08) contrast(1.03) brightness(1); transform:scale(1.025); }
+    .loader-scan { position:absolute; z-index:3; top:0; bottom:0; left:0; width:2px; background:#fff; box-shadow:0 0 10px #fff,0 0 26px var(--cyan); opacity:.9; }
+    .loader-corner { position:absolute; z-index:4; width:32px; height:32px; border-color:#ffd43b; opacity:.9; }
+    .loader-corner.tl { left:12px; top:12px; border-left:2px solid; border-top:2px solid; } .loader-corner.br { right:12px; bottom:12px; border-right:2px solid; border-bottom:2px solid; }
+    .loader-status { display:flex; justify-content:space-between; gap:14px; align-items:center; margin-top:14px; color:#bdefff; font:600 9px "JetBrains Mono",monospace; letter-spacing:.14em; }
+    .loader-progress { position:relative; height:4px; margin-top:9px; background:rgba(255,255,255,.09); overflow:hidden; }
+    .loader-progress span { display:block; width:0; height:100%; background:linear-gradient(90deg,#1678ff,#39d7ff,#ffd43b); box-shadow:0 0 16px rgba(57,215,255,.8); transition:width .1s linear; }
+    .loader-text { color:#86dfff; white-space:nowrap; } .loader-percent { color:#ffd43b; font-size:11px; text-shadow:0 0 10px rgba(255,212,59,.45); }
+    @media(max-width:640px){ .loader-core{width:94vw}.loader-frame{aspect-ratio:4/5;max-height:68svh}.loader-frame img,.loader-color-reveal img{object-position:center}.loader-status{font-size:7px;letter-spacing:.08em}.loader-brand{letter-spacing:.18em}.loader-corner{width:24px;height:24px} }
+    @media(prefers-reduced-motion:reduce){.loader-frame img,.loader-color-reveal img{transform:none!important}}
 
     /* =========================================================
        04. FIXED NAVIGATION
@@ -2000,21 +1988,7 @@
       .live-dot, .scroll-wheel, .hero-scroll i, .loader-scan { animation: none !important; }
     }
 
-  
-/* FAST CINEMATIC LOADING V2 */
-#loading-screen{background:#020817;transition:opacity .32s ease,visibility .32s ease;overflow:hidden}
-.loader-core{width:min(1180px,94vw);text-align:center}
-.loader-frame{height:clamp(300px,68vh,680px);border:0;background:#020817;clip-path:none;box-shadow:none;overflow:hidden;position:relative}
-.loader-frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(2,8,23,.06),rgba(2,8,23,.14));box-shadow:inset 0 0 80px rgba(0,0,0,.36)}
-.loader-frame img{width:100%;height:100%;object-fit:contain;object-position:center;opacity:1;filter:grayscale(1) saturate(0) contrast(1.05) brightness(.78);transition:filter .08s linear;will-change:filter}
-.loader-scan{width:2px;background:rgba(255,255,255,.88);box-shadow:0 0 22px var(--cyan);animation:loaderScan .72s ease-out forwards}
-.loader-progress{width:min(620px,72vw);height:2px;margin:12px auto 0;background:rgba(255,255,255,.10)}
-.loader-progress span{transition:width .06s linear}
-.loader-text{margin-top:9px;font-size:9px;opacity:.86}
-@media(max-width:640px){.loader-core{width:96vw}.loader-frame{height:58vh;min-height:320px}.loader-progress{width:76vw}}
-@media(prefers-reduced-motion:reduce){.loader-scan{animation:none;left:100%}}
-
-</style>
+  </style>
 </head>
 <body>
   <div class="site-stars" aria-hidden="true"></div>
@@ -2025,12 +1999,15 @@
   ========================================================== -->
   <div id="loading-screen" aria-live="polite">
     <div class="loader-core">
+      <div class="loader-brand">HOSHINO KUROI // STARLOID SYSTEM</div>
       <div class="loader-frame">
-        <img loading="eager" src="HoshinoLoding.jpg" alt="Hoshino Kuroi loading visual"  decoding="async" />
-        <div class="loader-scan"></div>
+        <img loading="eager" src="HoshinoLoding.jpg" alt="Hoshino Kuroi loading visual" decoding="async" fetchpriority="high" />
+        <div class="loader-color-reveal" id="loader-reveal" aria-hidden="true"><img src="HoshinoLoding.jpg" alt="" decoding="async" /></div>
+        <div class="loader-scan" id="loader-scan" aria-hidden="true"></div>
+        <span class="loader-corner tl" aria-hidden="true"></span><span class="loader-corner br" aria-hidden="true"></span>
       </div>
+      <div class="loader-status"><span class="loader-text">INITIALIZING STARLOID LINK</span><span class="loader-percent" id="loader-percent">0%</span></div>
       <div class="loader-progress"><span id="loader-bar"></span></div>
-      <div class="loader-text">INITIALIZING STARLOID LINK // <span id="loader-percent">0%</span></div>
     </div>
   </div>
 
@@ -2604,19 +2581,19 @@
 
       const bar = document.getElementById('loader-bar');
       const pct = document.getElementById('loader-percent');
-      const loaderImage = document.querySelector('.loader-frame img');
+      const loaderImage = document.querySelector('.loader-frame > img');
+      const reveal = document.getElementById('loader-reveal');
+      const scan = document.getElementById('loader-scan');
       let progress = 0;
       const timer = setInterval(() => {
         progress = Math.min(100, progress + Math.floor(Math.random() * 18) + 14);
         bar.style.width = progress + '%';
         pct.textContent = progress + '%';
 
-        /* Loading visual: monochrome (0%) -> full colour (100%). */
-        if (loaderImage) {
-          const ratio = progress / 100;
-          loaderImage.style.filter = `grayscale(${1 - ratio}) saturate(${0.15 + ratio * 0.95}) contrast(1.08) brightness(${0.82 + ratio * 0.18})`;
-          loaderImage.style.opacity = 0.9 + ratio * 0.1;
-        }
+        /* Cinematic left-to-right reveal: grayscale image -> original full colour. */
+        if (reveal) reveal.style.width = progress + '%';
+        if (scan) scan.style.left = `calc(${progress}% - 1px)`;
+        if (loaderImage) loaderImage.style.transform = `scale(${1.025 - (progress / 100) * .025})`;
 
         if (progress >= 100) {
           clearInterval(timer);
