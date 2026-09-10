@@ -1445,18 +1445,44 @@
     :root[data-theme="light"] .bio-signature-slot { border-top-color:rgba(0,105,170,.18); }
     :root[data-theme="light"] .bio-signature-slot img { filter:drop-shadow(0 5px 12px rgba(26,72,120,.16)); }
 
-/* SHEET MESSAGE OVERLAY — V18: larger centered overlay */
+/* SHEET MESSAGE OVERLAY — V18: larger and positioned around 70% of base image */
 .sheet-side-overlay {
-  width: min(86%, 620px) !important;
-  max-width: 86% !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 70% !important;
+  width: min(82%, 720px) !important;
+  max-width: 82% !important;
   height: auto !important;
+  transform: translate(-50%, -50%) !important;
+  object-fit: contain !important;
+  z-index: 3 !important;
 }
 @media (max-width: 768px) {
   .sheet-side-overlay {
-    width: 88% !important;
-    max-width: 88% !important;
+    top: 70% !important;
+    width: 86% !important;
+    max-width: 86% !important;
   }
 }
+
+    /* PROFILE MESSAGE OVERLAY — Message1.png */
+    .portrait-message-overlay {
+      position:absolute;
+      z-index:4;
+      left:6%;
+      bottom:5%;
+      width:min(58%, 360px) !important;
+      height:auto !important;
+      object-fit:contain !important;
+      object-position:left bottom !important;
+      pointer-events:none;
+      user-select:none;
+      filter:drop-shadow(0 8px 16px rgba(0,0,0,.28));
+    }
+    @media (max-width: 768px) {
+      .portrait-message-overlay { left:5%; bottom:4%; width:min(66%, 300px) !important; }
+    }
+
 </style>
 </head>
 <body>
@@ -1565,7 +1591,7 @@
           <article class="portrait-card hud-panel">
             <span class="corner-label">VISUAL // 01</span>
             <img src="HoshinoCT2.png" alt="Hoshino Kuroi portrait" />
-            <div class="portrait-caption" data-i18n="profile-portrait-copy">More about Kuroi.</div>
+            <img class="portrait-message-overlay" src="Message1.png" alt="" loading="lazy" />
           </article>
 
           <article class="identity-table hud-panel" aria-label="Character identity">
