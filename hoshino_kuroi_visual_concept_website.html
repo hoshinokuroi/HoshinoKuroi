@@ -512,6 +512,36 @@
     .social-link i { width:18px; text-align:center; color:var(--cyan); }
 
     /* =========================================================
+       07A. LIVE / SOCIAL / SUPPORT / VOICE ENHANCEMENTS
+       Focus the community section around live streaming while
+       keeping all contact and interaction channels visible.
+    ========================================================== */
+    .stream-inner { grid-template-columns:.72fr 1.38fr .9fr; align-items:stretch; }
+    .schedule { border-color:rgba(79,214,255,.42); box-shadow:0 0 34px rgba(27,137,255,.12), inset 0 0 34px rgba(19,102,255,.05); }
+    .schedule .card-title { font-size:1rem; letter-spacing:.05em; }
+    .schedule-row { grid-template-columns:54px 1fr auto; min-height:44px; padding:9px 7px; border-radius:4px; }
+    .schedule-row.is-live { margin:5px 0; padding:11px 8px; border:1px solid rgba(57,215,255,.62); background:linear-gradient(90deg,rgba(0,210,255,.13),rgba(76,83,255,.12)); box-shadow:0 0 18px rgba(0,210,255,.13); }
+    .live-pill { display:inline-flex; align-items:center; gap:6px; padding:4px 7px; border:1px solid #ff5a75; color:#ff8295; background:rgba(255,42,78,.1); font:700 9px "JetBrains Mono",monospace; letter-spacing:.12em; }
+    .live-dot { width:7px; height:7px; border-radius:50%; background:#ff4d69; box-shadow:0 0 10px #ff4d69; animation:livePulse 1.2s ease-in-out infinite; }
+    @keyframes livePulse { 50% { opacity:.35; transform:scale(.72); } }
+    .social-list { grid-template-columns:1fr 1fr; }
+    .social-link { min-width:0; }
+    .community-extras { display:grid; grid-template-columns:1.05fr .95fr; gap:14px; margin-top:14px; }
+    .support-card,.voice-samples { padding:16px; }
+    .support-actions { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .support-action { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; min-height:112px; padding:14px 10px; border:1px solid var(--line-soft); background:rgba(16,85,190,.09); color:var(--text); text-decoration:none; transition:.2s ease; }
+    .support-action:hover { border-color:var(--cyan); transform:translateY(-2px); background:rgba(20,112,240,.16); }
+    .support-action i { font-size:1.35rem; color:var(--cyan); margin-bottom:8px; }
+    .support-action strong { font-size:.76rem; }
+    .support-action small { margin-top:4px; color:var(--muted); font-size:.65rem; line-height:1.35; }
+    .voice-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .voice-btn { min-height:112px; border:1px solid var(--line-soft); background:rgba(16,85,190,.08); color:var(--text); cursor:pointer; padding:14px 10px; transition:.2s ease; }
+    .voice-btn:hover,.voice-btn.playing { border-color:var(--cyan); background:rgba(31,139,255,.17); box-shadow:0 0 20px rgba(57,215,255,.12); }
+    .voice-btn i { display:block; color:var(--cyan); font-size:1.2rem; margin-bottom:8px; }
+    .voice-btn strong { display:block; font-size:.76rem; }
+    .voice-btn small { display:block; color:var(--muted); font:600 9px "JetBrains Mono",monospace; margin-top:4px; }
+
+    /* =========================================================
        08. CHARACTER SHEET / ACROSS THE STAR FIELD
     ========================================================== */
     .sheet-wrap { padding:14px; display:grid; grid-template-columns:1fr 260px; gap:12px; }
@@ -551,6 +581,16 @@
     .design-media img { width:100%; height:100%; object-fit:contain; }
     .credits { margin-top:12px; display:grid; gap:5px; font-size:.75rem; color:var(--muted); }
     .credits a { color:var(--cyan); text-decoration:none; }
+    .design-video { position:relative; aspect-ratio:16/9; margin-top:12px; overflow:hidden; border:1px solid var(--line-soft); background:#020817; }
+    .design-video iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .creator-credit { margin-top:12px; padding:14px; border:1px solid rgba(57,215,255,.3); background:linear-gradient(90deg,rgba(0,210,255,.08),rgba(76,83,255,.08)); display:grid; gap:3px; }
+    .creator-credit.split { grid-template-columns:1fr 1fr; gap:10px; }
+    .creator-credit.split > div { display:grid; gap:3px; padding-right:10px; border-right:1px solid var(--line-soft); }
+    .creator-credit.split > div:last-child { border-right:0; }
+    .creator-role { color:var(--yellow); font:700 9px "JetBrains Mono",monospace; letter-spacing:.1em; }
+    .creator-name { color:#fff; font-family:"Rajdhani",sans-serif; font-size:1.25rem; font-weight:700; text-decoration:none; }
+    .creator-name:hover { color:var(--cyan); }
+    .creator-credit small { color:var(--muted); font-size:.68rem; }
 
     /* =========================================================
        11. FAN ART GALLERY
@@ -663,7 +703,19 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; }
     }
-  </style>
+  
+    @media (max-width: 900px) {
+      .community-extras { grid-template-columns:1fr; }
+      .support-actions,.voice-grid { grid-template-columns:1fr 1fr 1fr; }
+      .social-list { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .support-actions,.voice-grid,.social-list { grid-template-columns:1fr; }
+      .creator-credit.split { grid-template-columns:1fr; }
+      .creator-credit.split > div { border-right:0; border-bottom:1px solid var(--line-soft); padding:0 0 9px; }
+      .creator-credit.split > div:last-child { border-bottom:0; padding-bottom:0; }
+    }
+</style>
 </head>
 <body>
   <div class="site-stars" aria-hidden="true"></div>
@@ -832,23 +884,50 @@
             <div><h2 data-i18n="section-stream">STREAM & COMMUNITY</h2><span class="jp" data-i18n="section-stream-sub">การสตรีมและคอมมูนิตี้</span></div>
           </div>
           <div class="stream-card">
+            <!-- LIVE STREAM: visual + highlighted weekly schedule + complete social channels -->
             <div class="stream-inner">
               <div class="stream-visual hud-panel"><img src="HoshinoCT1.png" alt="Hoshino Kuroi streaming visual" /></div>
               <div class="schedule hud-panel">
-                <h3 class="card-title"><i class="fa-regular fa-calendar"></i><span data-i18n="schedule">STREAM SCHEDULE</span></h3>
+                <h3 class="card-title"><i class="fa-solid fa-tower-broadcast"></i><span data-i18n="schedule">WEEKLY LIVE SCHEDULE</span></h3>
                 <div id="schedule-list"></div>
               </div>
               <div class="follow-card hud-panel">
-                <h3 class="card-title"><i class="fa-solid fa-share-nodes"></i><span data-i18n="follow">FOLLOW ME</span></h3>
+                <h3 class="card-title"><i class="fa-solid fa-share-nodes"></i><span data-i18n="follow">SOCIAL LINKS</span></h3>
                 <div class="social-list">
                   <a class="social-link" href="https://youtube.com/@hoshinokuroi440" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i>YouTube</a>
-                  <a class="social-link" href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i>X / Twitter</a>
                   <a class="social-link" href="https://www.twitch.tv/hoshino_kuroi" target="_blank" rel="noopener"><i class="fa-brands fa-twitch"></i>Twitch</a>
+                  <a class="social-link" href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i>X / Twitter</a>
                   <a class="social-link" href="https://www.tiktok.com/@hoshino440" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i>TikTok</a>
-                  <a class="social-link" href="https://discord.gg/NQjyaZtxfx" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i>Discord</a>
+                  <a class="social-link" href="https://www.facebook.com/HoshinoKuroiCh/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i>Facebook</a>
+                  <a class="social-link" href="https://bsky.app/profile/hoshinokuroi.bsky.social" target="_blank" rel="noopener"><i class="fa-solid fa-cloud"></i>BlueSky</a>
                   <a class="social-link" href="https://www.instagram.com/hoshino_kuroi/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>Instagram</a>
+                  <a class="social-link" href="https://steamcommunity.com/id/Hoshino_Kuroi/" target="_blank" rel="noopener"><i class="fa-brands fa-steam"></i>Steam</a>
+                  <a class="social-link" href="https://discord.gg/NQjyaZtxfx" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i>Discord</a>
+                  <a class="social-link" href="https://reality.app/profile/cfb2af20" target="_blank" rel="noopener"><i class="fa-solid fa-star"></i>REALITY</a>
                 </div>
               </div>
+            </div>
+
+            <!-- SUPPORT & Q&A + INTRODUCTION VOICE SAMPLES -->
+            <div class="community-extras">
+              <article class="support-card hud-panel">
+                <h3 class="card-title"><i class="fa-solid fa-hand-holding-heart"></i><span data-i18n="support-title">SUPPORT & Q&A</span></h3>
+                <p class="micro-copy" data-i18n="support-copy">สนับสนุนผลงาน ส่งคำถาม หรือส่งแฟนอาร์ตได้จากช่องทางด้านล่าง</p>
+                <div class="support-actions">
+                  <a class="support-action" href="https://ganknow.com/hoshinokuroi/tip" target="_blank" rel="noopener"><i class="fa-solid fa-circle-dollar-to-slot"></i><strong>DONATION</strong><small data-i18n="support-donate">สนับสนุนค่าขนมและสตรีม</small></a>
+                  <a class="support-action" href="https://marshmallow-qa.com/zncxf2lkkb4cmet" target="_blank" rel="noopener"><i class="fa-solid fa-comment-dots"></i><strong>MARSHMALLOW</strong><small data-i18n="support-marsh">ส่งคำถาม/พูดคุยไร้ชื่อ</small></a>
+                  <a class="support-action" href="https://forms.gle/Qk2nEGb4q1baQoHt7" target="_blank" rel="noopener"><i class="fa-solid fa-paintbrush"></i><strong>SUBMIT FANART</strong><small data-i18n="support-art">ส่งผลงานแฟนอาร์ตของคุณ</small></a>
+                </div>
+              </article>
+              <article class="voice-samples hud-panel">
+                <h3 class="card-title"><i class="fa-solid fa-microphone-lines"></i><span data-i18n="voice-title">INTRODUCTION VOICE SAMPLES</span></h3>
+                <p class="micro-copy" data-i18n="voice-copy">ฟังตัวอย่างเสียงแนะนำตัวทั้ง 3 ภาษา</p>
+                <div class="voice-grid">
+                  <button class="voice-btn" id="vbtn-th" type="button" onclick="playVoice('th')"><i class="fa-solid fa-play"></i><strong data-i18n="voice-th">THAI</strong><small>IntroductVoiceTH.m4a</small></button>
+                  <button class="voice-btn" id="vbtn-en" type="button" onclick="playVoice('en')"><i class="fa-solid fa-play"></i><strong data-i18n="voice-en">ENGLISH</strong><small>IntroductVoiceENG.m4a</small></button>
+                  <button class="voice-btn" id="vbtn-jp" type="button" onclick="playVoice('jp')"><i class="fa-solid fa-play"></i><strong data-i18n="voice-jp">JAPANESE</strong><small>IntroductVoiceJP.m4a</small></button>
+                </div>
+              </article>
             </div>
           </div>
         </article>
@@ -921,15 +1000,26 @@
           <div><h2 data-i18n="section-character-design">CHARACTER DESIGN</h2><span class="jp" data-i18n="section-character-design-sub">คาแรกเตอร์ดีไซน์</span></div>
         </div>
         <div class="design-grid">
+          <!-- ORIGINAL MODEL: sheet + YouTube showcase + prominent creator credit -->
           <article class="design-card hud-panel">
-            <h3 class="card-title"><i class="fa-regular fa-image"></i>Sheet 01 : Original Model</h3>
+            <h3 class="card-title"><i class="fa-regular fa-image"></i><span data-i18n="design-original">SHEET 01 · ORIGINAL MODEL</span></h3>
             <div class="design-media hud-panel" onclick="openLightbox('HoshinoCarSheet.jpg')" role="button" tabindex="0"><img src="HoshinoCarSheet.jpg" alt="Original character design sheet" loading="lazy" /></div>
-            <div class="credits"><span>Designer / Rigger: <a href="https://x.com/Inumaru_Atsuki" target="_blank" rel="noopener">Inumaru Atsuki</a></span></div>
+            <div class="design-video"><iframe src="https://www.youtube.com/embed/uvWG-otglbg?si=g9xUiv3iYXD1uONW" title="Original Model Showcase" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <div class="creator-credit">
+              <span class="creator-role" data-i18n="designer-role">DESIGNER / ILLUSTRATOR / RIGGER</span>
+              <a class="creator-name" href="https://x.com/Inumaru_Atsuki" target="_blank" rel="noopener">Inumaru Atsuki</a>
+              <small>@Inumaru_Atsuki</small>
+            </div>
           </article>
+          <!-- KEMONO MODEL: sheet + YouTube showcase + separate designer / rigger -->
           <article class="design-card hud-panel">
-            <h3 class="card-title"><i class="fa-regular fa-image"></i>Sheet 02 : Kemono Model</h3>
+            <h3 class="card-title"><i class="fa-regular fa-image"></i><span data-i18n="design-kemono">SHEET 02 · KEMONO MODEL</span></h3>
             <div class="design-media hud-panel" onclick="openLightbox('HoshinoCarSheet2.PNG')" role="button" tabindex="0"><img src="HoshinoCarSheet2.PNG" alt="Kemono character design sheet" loading="lazy" /></div>
-            <div class="credits"><span>Designer: <a href="https://x.com/Nemuru_Y" target="_blank" rel="noopener">ネム / Nemu</a></span><span>Rigger: <a href="https://x.com/Tempura0111" target="_blank" rel="noopener">Tempuran</a></span></div>
+            <div class="design-video"><iframe src="https://www.youtube.com/embed/xoStXkG95Kk?si=GVMmlWKAkwP0C6gR" title="Kemono Model Live2D Rigging" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <div class="creator-credit split">
+              <div><span class="creator-role" data-i18n="designer-illustrator-role">DESIGNER / ILLUSTRATOR</span><a class="creator-name" href="https://x.com/Nemuru_Y" target="_blank" rel="noopener">ネム / Nemu</a><small>@Nemuru_Y</small></div>
+              <div><span class="creator-role" data-i18n="rigger-role">LIVE2D RIGGER</span><a class="creator-name" href="https://x.com/Tempura0111" target="_blank" rel="noopener">Tempuran</a><small>@Tempura0111</small></div>
+            </div>
           </article>
         </div>
       </div>
@@ -994,11 +1084,11 @@
         'nav-home':'หน้าหลัก','nav-profile':'โปรไฟล์','nav-personality':'บุคลิก','nav-stream':'สตรีม','nav-design':'ดีไซน์','nav-archive':'แกลเลอรี',
         'hero-role':'นักสำรวจเฟนเนคแห่งอวกาศ','hero-tagline':'ออกเดินทางไปให้ไกลกว่าดวงดาวที่ยังไม่เคยพบ','hero-sub':'จาก Starloid สู่โลกใบนี้ — การเดินทางยังไม่สิ้นสุด','hero-cta':'สำรวจจักรวาลของฉัน','hero-side':'เฟนเนคผู้เดินทางข้ามดวงดาว',
         'section-profile':'CHARACTER PROFILE','section-profile-sub':'ข้อมูลตัวละคร','profile-portrait-copy':'มารู้จัก Kuroi ให้มากขึ้น','identity':'IDENTITY','name':'ชื่อ','species':'เผ่าพันธุ์','species-value':'Space Fennec','birthday':'วันเกิด','birthday-value':'23 ตุลาคม','height':'ส่วนสูง','age':'อายุ','age-value':'3000 ปี','identity-quote':'จากดวงดาวสีคราม สู่การผจญภัยที่ไม่มีวันสิ้นสุดบนโลกใบนี้','biography':'ประวัติ','likes':'ของที่ชอบ / งานอดิเรก','dislikes':'ของที่ไม่ชอบ',
-        'section-personality':'PERSONALITY','section-personality-sub':'บุคลิกและเป้าหมาย','personality-copy':'ช่างสงสัย รักเกม อาหารอร่อย และวัฒนธรรมญี่ปุ่น ชอบแบ่งปันช่วงเวลาสนุก ๆ กับทุกคน','goals':'เป้าหมาย',
-        'section-stream':'STREAM & COMMUNITY','section-stream-sub':'การสตรีมและคอมมูนิตี้','schedule':'ตารางสตรีม','follow':'ติดตาม',
+        'section-personality':'PERSONALITY & GOALS','section-personality-sub':'บุคลิก ความชอบ และเป้าหมาย','personality-copy':'ช่างสงสัย รักเกม อาหารอร่อย และวัฒนธรรมญี่ปุ่น ชอบแบ่งปันช่วงเวลาสนุก ๆ กับทุกคน','goals':'เป้าหมาย',
+        'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'ตารางไลฟ์ ช่องทางติดตาม และการสนับสนุน','schedule':'ตารางไลฟ์ประจำสัปดาห์','follow':'โซเชียลมีเดีย','support-title':'SUPPORT & Q&A','support-copy':'สนับสนุนผลงาน ส่งคำถาม หรือส่งแฟนอาร์ตได้จากช่องทางด้านล่าง','support-donate':'สนับสนุนค่าขนมและสตรีม','support-marsh':'ส่งคำถาม/พูดคุยไร้ชื่อ','support-art':'ส่งผลงานแฟนอาร์ตของคุณ','voice-title':'ตัวอย่างเสียงแนะนำตัว','voice-copy':'ฟังตัวอย่างเสียงแนะนำตัวทั้ง 3 ภาษา','voice-th':'ภาษาไทย','voice-en':'ภาษาอังกฤษ','voice-jp':'ภาษาญี่ปุ่น',
         'section-sheet':'ACROSS THE STAR FIELD','section-sheet-sub':'ดีไซน์และข้อมูลตัวละคร','expand':'คลิกเพื่อดูภาพขนาดเต็ม','sheet-side-copy':'ยังมีอีกหลายสิ่งในจักรวาลที่รอให้ค้นพบ','sheet-side-sub':'ออกสำรวจต่อไป...',
         'section-collection':'AWARDS & GOODS','section-collection-sub':'รางวัลและสินค้า','awards':'รางวัลและความสำเร็จ','award-title':'REALITY Official Award','award-desc':'กิจกรรมโปสเตอร์ชิบูยะ 【ลำดับที่ 11】','goods':'สินค้า','coming-soon':'เร็ว ๆ นี้','future-goods':'สินค้าเพิ่มเติม',
-        'section-character-design':'CHARACTER DESIGN','section-character-design-sub':'คาแรกเตอร์ดีไซน์','section-fanart':'FANART GALLERY','section-fanart-sub':'แฟนอาร์ต','footer-tag':'เฟนเนคตัวเล็ก กับจักรวาลที่กว้างกว่าเดิม',
+        'section-character-design':'CHARACTER DESIGN & CREATORS','section-character-design-sub':'เบื้องหลังการออกแบบและผู้สร้าง','design-original':'SHEET 01 · ORIGINAL MODEL','design-kemono':'SHEET 02 · KEMONO MODEL','designer-role':'DESIGNER / ILLUSTRATOR / RIGGER','designer-illustrator-role':'DESIGNER / ILLUSTRATOR','rigger-role':'LIVE2D RIGGER','section-fanart':'FANART GALLERY','section-fanart-sub':'แฟนอาร์ต','footer-tag':'เฟนเนคตัวเล็ก กับจักรวาลที่กว้างกว่าเดิม',
         bio:'จากดวงดาวสีคราม Starloid สู่การผจญภัยที่ไม่มีวันสิ้นสุดบนโลกใบนี้!\n\nณ กาแล็กซีอันไกลโพ้น จิ้งจอกทะเลทราย (Fennec fox) ผู้เปี่ยมไปด้วยความอยากรู้อยากเห็นได้ถือกำเนิดขึ้นบนดวงดาว Starloid เขาออกเดินทางข้ามจักรวาลด้วยยานลำจิ๋วเพื่อภารกิจสำคัญ: ตามหาอาหารที่อร่อยที่สุดในกาแล็กซี\n\nแต่จุดหมายปลายทางกลับหักเหเมื่อเขาลงจอดที่ดาวโลก ที่นี่ไม่ได้มีแค่ของอร่อย แต่เขายังได้พบกับขุมทรัพย์ทางจิตวิญญาณอย่างวัฒนธรรมญี่ปุ่น และความตื่นเต้นของโลกแห่งเกม ที่ทำให้เขานั่งจดจ่อได้ทั้งวันคืนจนลืมเวลานอน\n\nความหลงใหลนี้เองที่เปลี่ยนจากนักเดินทางพเนจร ให้กลายเป็น VTuber สายเกมเมอร์ ผู้คลั่งไคล้อาหารและอนิเมะ ตอนนี้เขาพร้อมแล้วที่จะแบ่งปันความสุข เสียงหัวเราะ และเรื่องราวสุดเพี้ยนจากการสำรวจโลกไปพร้อมกับทุกคน!',
         likes:['อาหารอร่อย','เพลงญี่ปุ่น','เล่นเกม','วาดภาพ','อนิเมะ','แมว และ fennec fox','นอน'],
         dislikes:['เสียงดังกะทันหัน','ฟ้าร้องฟ้าผ่า','อาหารไม่อร่อย'],
@@ -1009,11 +1099,11 @@
         'nav-home':'HOME','nav-profile':'PROFILE','nav-personality':'PERSONALITY','nav-stream':'STREAM','nav-design':'DESIGN','nav-archive':'ARCHIVE',
         'hero-role':'SPACE FENNEC EXPLORER','hero-tagline':'To the stars beyond.','hero-sub':'From Starloid to Earth — the journey continues.','hero-cta':'EXPLORE MY UNIVERSE','hero-side':'A FENNEC TRAVELING AMONG THE STARS',
         'section-profile':'CHARACTER PROFILE','section-profile-sub':'Character profile','profile-portrait-copy':'More about Kuroi.','identity':'IDENTITY','name':'Name','species':'Species','species-value':'Space Fennec','birthday':'Birthday','birthday-value':'23 October','height':'Height','age':'Age','age-value':'3000 Years','identity-quote':'From a blue star to an endless adventure on Earth.','biography':'BIOGRAPHY','likes':'LIKES / HOBBIES','dislikes':'DISLIKES',
-        'section-personality':'PERSONALITY','section-personality-sub':'Personality & goals','personality-copy':'Curious, game-loving, food-obsessed and fascinated by Japanese culture. He loves sharing fun moments with everyone.','goals':'GOALS',
-        'section-stream':'STREAM & COMMUNITY','section-stream-sub':'Streaming & community','schedule':'STREAM SCHEDULE','follow':'FOLLOW ME',
+        'section-personality':'PERSONALITY & GOALS','section-personality-sub':'Personality, interests & goals','personality-copy':'Curious, game-loving, food-obsessed and fascinated by Japanese culture. He loves sharing fun moments with everyone.','goals':'GOALS',
+        'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'Live schedule, social links & support','schedule':'WEEKLY LIVE SCHEDULE','follow':'SOCIAL LINKS','support-title':'SUPPORT & Q&A','support-copy':'Support the stream, send a question, or submit your fanart.','support-donate':'Support stream & snacks','support-marsh':'Send anonymous Q&A','support-art':'Submit your fanart','voice-title':'INTRODUCTION VOICE SAMPLES','voice-copy':'Listen to introduction samples in three languages.','voice-th':'THAI','voice-en':'ENGLISH','voice-jp':'JAPANESE',
         'section-sheet':'ACROSS THE STAR FIELD','section-sheet-sub':'Design & character data','expand':'CLICK TO VIEW FULL SIZE','sheet-side-copy':'There is still so much in the universe waiting to be discovered.','sheet-side-sub':'More to explore...',
         'section-collection':'AWARDS & GOODS','section-collection-sub':'Achievements & merchandise','awards':'AWARDS & ACHIEVEMENTS','award-title':'REALITY Official Award','award-desc':'Shibuya Poster Event — 11th place','goods':'GOODS','coming-soon':'COMING SOON','future-goods':'More Goods',
-        'section-character-design':'CHARACTER DESIGN','section-character-design-sub':'Character design','section-fanart':'FANART GALLERY','section-fanart-sub':'Fan art','footer-tag':'A SMALL FENNEC, A BIGGER UNIVERSE.',
+        'section-character-design':'CHARACTER DESIGN & CREATORS','section-character-design-sub':'Design sheets, showcase videos & creators','design-original':'SHEET 01 · ORIGINAL MODEL','design-kemono':'SHEET 02 · KEMONO MODEL','designer-role':'DESIGNER / ILLUSTRATOR / RIGGER','designer-illustrator-role':'DESIGNER / ILLUSTRATOR','rigger-role':'LIVE2D RIGGER','section-fanart':'FANART GALLERY','section-fanart-sub':'Fan art','footer-tag':'A SMALL FENNEC, A BIGGER UNIVERSE.',
         bio:'A Galactic Traveler who fell in love with Earth\'s pixels and flavors!\n\nBorn on the distant planet Starloid, a curious little Fennec Fox set out on a grand cosmic odyssey. His original goal was simple: to taste every Galaxy-class delicacy hidden across the stars.\n\nHowever, his navigation system led him to a small blue planet called Earth. Instead of just filling his stomach, he filled his heart with Japanese culture and the captivating world of gaming.\n\nNow, he has traded his spaceship for a streaming setup. As a Gamer VTuber, he explores digital realms, enjoys delicious food, and creates unforgettable memories with his new earthly friends.',
         likes:['Delicious Food','Japanese Music','Playing Games','Digital Art','Anime','Cats & Fennec Foxes','Sleeping'],
         dislikes:['Sudden Loud Noises','Thunder & Lightning','Bad Tasting Food'],
@@ -1024,11 +1114,11 @@
         'nav-home':'ホーム','nav-profile':'プロフィール','nav-personality':'性格','nav-stream':'配信','nav-design':'デザイン','nav-archive':'ギャラリー',
         'hero-role':'宇宙のフェネック探検家','hero-tagline':'まだ見ぬ星の、その先へ——','hero-sub':'Starloidから地球へ——旅はまだ続く。','hero-cta':'宇宙を探索する','hero-side':'星を旅する、フェネック。',
         'section-profile':'CHARACTER PROFILE','section-profile-sub':'キャラクタープロフィール','profile-portrait-copy':'クロイをもっと知る。','identity':'IDENTITY','name':'名前','species':'種族','species-value':'宇宙フェネック','birthday':'誕生日','birthday-value':'10月23日','height':'身長','age':'年齢','age-value':'3000歳','identity-quote':'青い星から、地球での終わりなき冒険へ。','biography':'プロフィール','likes':'好きなこと / 趣味','dislikes':'苦手なもの',
-        'section-personality':'PERSONALITY','section-personality-sub':'性格・目標','personality-copy':'好奇心旺盛で、ゲームと美味しいもの、日本文化が大好き。みんなと楽しい時間を共有することを大切にしている。','goals':'今後の目標',
-        'section-stream':'STREAM & COMMUNITY','section-stream-sub':'配信・コミュニティ','schedule':'週間配信スケジュール','follow':'SNSリンク',
+        'section-personality':'PERSONALITY & GOALS','section-personality-sub':'性格・好きなもの・目標','personality-copy':'好奇心旺盛で、ゲームと美味しいもの、日本文化が大好き。みんなと楽しい時間を共有することを大切にしている。','goals':'今後の目標',
+        'section-stream':'LIVE STREAM & COMMUNITY','section-stream-sub':'配信予定・SNS・応援','schedule':'週間ライブスケジュール','follow':'SNSリンク','support-title':'応援・Q&A','support-copy':'配信の応援、匿名質問、ファンアート投稿はこちらから。','support-donate':'配信や差し入れを応援','support-marsh':'匿名で質問・メッセージ','support-art':'ファンアートを投稿','voice-title':'自己紹介ボイスサンプル','voice-copy':'3言語の自己紹介ボイスを聴けます。','voice-th':'タイ語','voice-en':'英語','voice-jp':'日本語',
         'section-sheet':'ACROSS THE STAR FIELD','section-sheet-sub':'デザイン・設定資料','expand':'クリックして拡大','sheet-side-copy':'宇宙には、まだ見ぬものがたくさん待っている。','sheet-side-sub':'もっと探索しよう…',
         'section-collection':'AWARDS & GOODS','section-collection-sub':'実績・グッズ','awards':'受賞歴と実績','award-title':'REALITY Official Award','award-desc':'渋谷ポスターイベント【11位】','goods':'グッズ','coming-soon':'近日公開','future-goods':'その他のグッズ',
-        'section-character-design':'CHARACTER DESIGN','section-character-design-sub':'キャラクターデザイン','section-fanart':'FANART GALLERY','section-fanart-sub':'ファンアート','footer-tag':'小さなフェネック、もっと大きな宇宙へ。',
+        'section-character-design':'CHARACTER DESIGN & CREATORS','section-character-design-sub':'デザイン資料・紹介映像・クリエイター','design-original':'SHEET 01 · ORIGINAL MODEL','design-kemono':'SHEET 02 · KEMONO MODEL','designer-role':'デザイン / イラスト / Live2D','designer-illustrator-role':'デザイン / イラスト','rigger-role':'LIVE2D RIGGER','section-fanart':'FANART GALLERY','section-fanart-sub':'ファンアート','footer-tag':'小さなフェネック、もっと大きな宇宙へ。',
         bio:'遥か彼方の星から、地球のゲームと美食を求めてやってきた！\n\n遠い銀河に浮かぶ惑星Starloidで生まれた一匹のフェネックギツネ。好奇心に動かされ、宇宙一の美食を探すために銀河中を旅していた。\n\nしかし、偶然たどり着いた地球で運命が一変。未知の美味しい料理だけでなく、日本文化とゲームの世界に心を奪われた。\n\nこの楽しさをみんなと共有したい——そう決意し、ゲーマーVTuberとして新たな旅を始めた。',
         likes:['美味しい食べ物','邦楽','ゲーム','イラスト','アニメ','猫とフェネック','寝ること'],
         dislikes:['突然の大きな音','雷','美味しくない食べ物'],
@@ -1070,7 +1160,28 @@
     }
 
     function renderSchedule(rows) {
-      document.getElementById('schedule-list').innerHTML = rows.map(([day, detail]) => `<div class="schedule-row"><span class="schedule-day">${day}</span><span>${detail}</span></div>`).join('');
+      document.getElementById('schedule-list').innerHTML = rows.map(([day, detail], index) => {
+        const isLive = index === 4 || index === 5; // Friday + Saturday are live days in the source schedule.
+        return `<div class="schedule-row ${isLive ? 'is-live' : ''}"><span class="schedule-day">${day}</span><span>${detail}</span>${isLive ? '<span class="live-pill"><span class="live-dot"></span>LIVE</span>' : ''}</div>`;
+      }).join('');
+    }
+
+    /* Introduction voice player — reuses the original three audio assets. */
+    const voiceFiles = { th:'IntroductVoiceTH.m4a', en:'IntroductVoiceENG.m4a', jp:'IntroductVoiceJP.m4a' };
+    let currentVoice = null;
+    function playVoice(lang) {
+      document.querySelectorAll('.voice-btn').forEach(btn => btn.classList.remove('playing'));
+      const btn = document.getElementById(`vbtn-${lang}`);
+      const file = voiceFiles[lang];
+      if (currentVoice) {
+        if (currentVoice.dataset && currentVoice.dataset.lang === lang && !currentVoice.paused) { currentVoice.pause(); currentVoice.currentTime = 0; return; }
+        currentVoice.pause();
+      }
+      currentVoice = new Audio(file);
+      currentVoice.dataset.lang = lang;
+      btn.classList.add('playing');
+      currentVoice.play().catch(() => btn.classList.remove('playing'));
+      currentVoice.onended = () => btn.classList.remove('playing');
     }
 
     /* =========================================================
