@@ -983,6 +983,120 @@
       drop-shadow(0 8px 16px rgba(0, 119, 255, .24));
   }
 }
+
+
+/* ============================================================
+   HERO V10 — COSMIC STARFIELD BACKGROUND
+   Rebuilds the top hero atmosphere to match the supplied space
+   reference: deep starfield, blue nebula, orbital lines, and an
+   Earth-like glowing horizon in the lower-left corner.
+============================================================ */
+.hero {
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 76% 24%, rgba(74,145,255,.26) 0 8%, transparent 28%),
+    radial-gradient(ellipse at 62% 11%, rgba(117,77,255,.28) 0 10%, transparent 34%),
+    radial-gradient(ellipse at 44% 44%, rgba(0,188,255,.13) 0 8%, transparent 34%),
+    radial-gradient(circle at 13% 18%, rgba(82,179,255,.16), transparent 22%),
+    linear-gradient(135deg,#020817 0%,#041a43 46%,#07163a 70%,#03091a 100%) !important;
+}
+
+/* Dense star field + broad Milky-Way-like nebula */
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:var(--nav-h) 0 0;
+  z-index:0;
+  pointer-events:none;
+  opacity:1;
+  background:
+    radial-gradient(ellipse at 70% 18%, transparent 0 12%, rgba(78,150,255,.12) 18%, transparent 42%),
+    radial-gradient(ellipse at 64% 26%, rgba(100,165,255,.20) 0 4%, transparent 24%),
+    radial-gradient(circle at 12% 22%, #fff 0 1px, transparent 1.7px),
+    radial-gradient(circle at 38% 16%, rgba(135,221,255,.95) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 72% 38%, #fff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 91% 13%, rgba(155,215,255,.9) 0 1.3px, transparent 2px),
+    radial-gradient(circle at 56% 72%, rgba(255,255,255,.75) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 27% 68%, rgba(96,202,255,.9) 0 1px, transparent 1.7px);
+  background-size:100% 100%,100% 100%,90px 90px,137px 137px,181px 181px,223px 223px,157px 157px,116px 116px;
+}
+
+/* Replace the old seigaiha block with a soft nebula veil. */
+.hero-pattern {
+  display:block;
+  inset:var(--nav-h) 0 0 !important;
+  width:auto !important;
+  opacity:1 !important;
+  background:
+    radial-gradient(ellipse at 59% 20%, rgba(89,147,255,.18), transparent 26%),
+    radial-gradient(ellipse at 81% 58%, rgba(66,99,221,.13), transparent 30%),
+    linear-gradient(116deg,rgba(1,10,28,.18),transparent 45%,rgba(2,7,24,.12)) !important;
+  mask-image:none !important;
+  -webkit-mask-image:none !important;
+  z-index:1;
+}
+
+/* Earth-like planet rising from the lower left. */
+.hero-pattern::after {
+  content:"";
+  position:absolute;
+  left:-15vw;
+  bottom:-33vw;
+  width:55vw;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 62% 26%, rgba(225,249,255,.95) 0 1%, rgba(91,204,255,.82) 2%, transparent 4%),
+    radial-gradient(circle at 56% 35%, rgba(39,156,245,.72) 0 4%, transparent 18%),
+    radial-gradient(circle at 44% 28%, rgba(18,75,162,.9) 0 10%, rgba(4,31,89,.98) 48%, #020917 74%);
+  border:2px solid rgba(145,231,255,.62);
+  box-shadow:
+    0 0 12px rgba(143,232,255,.95),
+    0 0 40px rgba(64,190,255,.65),
+    0 0 95px rgba(38,126,255,.35),
+    inset -55px -45px 90px rgba(0,0,0,.72);
+  transform:rotate(-8deg);
+}
+
+/* Fine orbital / constellation lines. */
+.hero-space-glow {
+  inset:var(--nav-h) 0 0 !important;
+  z-index:2;
+  pointer-events:none;
+  opacity:.9;
+  background:
+    linear-gradient(28deg, transparent 0 37%, rgba(81,190,255,.12) 37.2% 37.35%, transparent 37.55%),
+    linear-gradient(151deg, transparent 0 60%, rgba(126,171,255,.10) 60.2% 60.35%, transparent 60.55%),
+    radial-gradient(ellipse at 67% 35%, transparent 0 36%, rgba(94,181,255,.14) 36.2% 36.5%, transparent 36.8%),
+    radial-gradient(circle at 74% 34%, rgba(96,213,255,.28), transparent 16%) !important;
+}
+
+/* Keep copy and artwork above the new atmosphere. */
+.hero-left{z-index:7;}
+.hero-art-wrap{z-index:4;background:transparent !important;}
+.hero-side-copy,.hero-stars,.hero-scroll{z-index:8;}
+
+/* Make the diagonal character cutout cleaner against the galaxy. */
+.hero-art-wrap::after{
+  background:linear-gradient(90deg,rgba(3,15,41,.15),transparent 18% 86%,rgba(25,91,192,.08)) !important;
+}
+
+/* Navigation gets a darker glass backdrop, matching the reference. */
+.site-nav{
+  background:linear-gradient(180deg,rgba(2,12,34,.96),rgba(4,20,53,.88)) !important;
+  border-bottom-color:rgba(63,197,255,.36) !important;
+  box-shadow:0 8px 36px rgba(0,5,22,.28),0 1px 0 rgba(52,185,255,.18);
+}
+
+@media (max-width:900px){
+  .hero{
+    background:
+      radial-gradient(circle at 78% 18%,rgba(70,129,255,.20),transparent 27%),
+      linear-gradient(145deg,#020817,#08234f 55%,#040c22) !important;
+  }
+  .hero-pattern::after{left:-38vw;bottom:-25vw;width:92vw;}
+  .hero-space-glow{opacity:.55;}
+}
 </style>
 </head>
 <body>
