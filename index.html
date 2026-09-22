@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-3nSS6p1xPAjJbbQ/U+Xbkl9PHHr2jo8A4CB1juHRBdg='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; form-action 'self' https://forms.gle; worker-src 'none'; upgrade-insecure-requests" />
   <title>HOSHINO KUROI | OFFICIAL PROFILE</title>
   <meta name="description" content="Official profile of Hoshino Kuroi — Space Fennec Explorer." />
   <meta property="og:title" content="HOSHINO KUROI | OFFICIAL PROFILE" />
@@ -533,6 +535,7 @@
     .personality-traits .likes-card li { padding:7px 0; font-size:clamp(.72rem,.9vw,.82rem); line-height:1.45; }
     .goal-list { margin:16px 0 0; padding:0; list-style:none; display:grid; gap:8px; }
     .goal-list li { display:flex; gap:10px; align-items:flex-start; padding:11px 12px; background:rgba(25,105,255,.07); border-left:2px solid var(--cyan); font-size:clamp(.76rem,.95vw,.86rem); line-height:1.5; }
+    .goal-star { color: var(--yellow); }
     /* PERSONALITY content spacing: keep Likes / Dislikes / Goals readable and balanced */
     .personality-copy { min-width:0; }
     .personality-copy > p { margin:0 0 18px; line-height:1.75; }
@@ -2182,16 +2185,16 @@
               <div class="follow-card hud-panel">
                 <h3 class="card-title"><i class="fa-solid fa-share-nodes"></i><span data-i18n="follow">SOCIAL LINKS</span></h3>
                 <div class="social-list">
-                  <a class="social-link" href="https://youtube.com/@hoshinokuroi440" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i>YouTube</a>
-                  <a class="social-link" href="https://www.twitch.tv/hoshino_kuroi" target="_blank" rel="noopener"><i class="fa-brands fa-twitch"></i>Twitch</a>
-                  <a class="social-link" href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i>X / Twitter</a>
-                  <a class="social-link" href="https://www.tiktok.com/@hoshino440" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i>TikTok</a>
-                  <a class="social-link" href="https://www.facebook.com/HoshinoKuroiCh/" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i>Facebook</a>
-                  <a class="social-link" href="https://bsky.app/profile/hoshinokuroi.bsky.social" target="_blank" rel="noopener"><i class="fa-solid fa-cloud"></i>BlueSky</a>
-                  <a class="social-link" href="https://www.instagram.com/hoshino_kuroi/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>Instagram</a>
-                  <a class="social-link" href="https://steamcommunity.com/id/Hoshino_Kuroi/" target="_blank" rel="noopener"><i class="fa-brands fa-steam"></i>Steam</a>
-                  <a class="social-link" href="https://discord.gg/NQjyaZtxfx" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i>Discord</a>
-                  <a class="social-link" href="https://reality.app/profile/cfb2af20" target="_blank" rel="noopener"><i class="fa-solid fa-star"></i>REALITY</a>
+                  <a class="social-link" href="https://youtube.com/@hoshinokuroi440" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i>YouTube</a>
+                  <a class="social-link" href="https://www.twitch.tv/hoshino_kuroi" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-twitch"></i>Twitch</a>
+                  <a class="social-link" href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i>X / Twitter</a>
+                  <a class="social-link" href="https://www.tiktok.com/@hoshino440" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i>TikTok</a>
+                  <a class="social-link" href="https://www.facebook.com/HoshinoKuroiCh/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i>Facebook</a>
+                  <a class="social-link" href="https://bsky.app/profile/hoshinokuroi.bsky.social" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-cloud"></i>BlueSky</a>
+                  <a class="social-link" href="https://www.instagram.com/hoshino_kuroi/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i>Instagram</a>
+                  <a class="social-link" href="https://steamcommunity.com/id/Hoshino_Kuroi/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-steam"></i>Steam</a>
+                  <a class="social-link" href="https://discord.gg/NQjyaZtxfx" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i>Discord</a>
+                  <a class="social-link" href="https://reality.app/profile/cfb2af20" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-star"></i>REALITY</a>
                 </div>
               </div>
             </div>
@@ -2208,18 +2211,18 @@
                 <h3 class="card-title"><i class="fa-solid fa-hand-holding-heart"></i><span data-i18n="support-title">SUPPORT & Q&A</span></h3>
                 <p class="micro-copy" data-i18n="support-copy">สนับสนุนผลงาน ส่งคำถาม หรือส่งแฟนอาร์ตได้จากช่องทางด้านล่าง</p>
                 <div class="support-actions">
-                  <a class="support-action" href="https://ganknow.com/hoshinokuroi/tip" target="_blank" rel="noopener"><i class="fa-solid fa-circle-dollar-to-slot"></i><strong>DONATION</strong><small data-i18n="support-donate">สนับสนุนค่าขนมและสตรีม</small></a>
-                  <a class="support-action" href="https://marshmallow-qa.com/zncxf2lkkb4cmet" target="_blank" rel="noopener"><i class="fa-solid fa-comment-dots"></i><strong>MARSHMALLOW</strong><small data-i18n="support-marsh">ส่งคำถาม/พูดคุยไร้ชื่อ</small></a>
-                  <a class="support-action" href="https://forms.gle/Qk2nEGb4q1baQoHt7" target="_blank" rel="noopener"><i class="fa-solid fa-paintbrush"></i><strong>SUBMIT FANART</strong><small data-i18n="support-art">ส่งผลงานแฟนอาร์ตของคุณ</small></a>
+                  <a class="support-action" href="https://ganknow.com/hoshinokuroi/tip" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-circle-dollar-to-slot"></i><strong>DONATION</strong><small data-i18n="support-donate">สนับสนุนค่าขนมและสตรีม</small></a>
+                  <a class="support-action" href="https://marshmallow-qa.com/zncxf2lkkb4cmet" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-comment-dots"></i><strong>MARSHMALLOW</strong><small data-i18n="support-marsh">ส่งคำถาม/พูดคุยไร้ชื่อ</small></a>
+                  <a class="support-action" href="https://forms.gle/Qk2nEGb4q1baQoHt7" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-paintbrush"></i><strong>SUBMIT FANART</strong><small data-i18n="support-art">ส่งผลงานแฟนอาร์ตของคุณ</small></a>
                 </div>
               </article>
               <article class="voice-samples hud-panel">
                 <h3 class="card-title"><i class="fa-solid fa-microphone-lines"></i><span data-i18n="voice-title">INTRODUCTION VOICE SAMPLES</span></h3>
                 <p class="micro-copy" data-i18n="voice-copy">ฟังตัวอย่างเสียงแนะนำตัวทั้ง 3 ภาษา</p>
                 <div class="voice-grid">
-                  <button class="voice-btn" id="vbtn-th" type="button" onclick="playVoice('th')"><i class="fa-solid fa-play"></i><strong data-i18n="voice-th">THAI</strong><small>IntroductVoiceTH.m4a</small></button>
-                  <button class="voice-btn" id="vbtn-en" type="button" onclick="playVoice('en')"><i class="fa-solid fa-play"></i><strong data-i18n="voice-en">ENGLISH</strong><small>IntroductVoiceENG.m4a</small></button>
-                  <button class="voice-btn" id="vbtn-jp" type="button" onclick="playVoice('jp')"><i class="fa-solid fa-play"></i><strong data-i18n="voice-jp">JAPANESE</strong><small>IntroductVoiceJP.m4a</small></button>
+                  <button class="voice-btn" id="vbtn-th" type="button" data-voice-lang="th"><i class="fa-solid fa-play"></i><strong data-i18n="voice-th">THAI</strong><small>IntroductVoiceTH.m4a</small></button>
+                  <button class="voice-btn" id="vbtn-en" type="button" data-voice-lang="en"><i class="fa-solid fa-play"></i><strong data-i18n="voice-en">ENGLISH</strong><small>IntroductVoiceENG.m4a</small></button>
+                  <button class="voice-btn" id="vbtn-jp" type="button" data-voice-lang="jp"><i class="fa-solid fa-play"></i><strong data-i18n="voice-jp">JAPANESE</strong><small>IntroductVoiceJP.m4a</small></button>
                 </div>
               </article>
             </div>
@@ -2238,7 +2241,7 @@
           <div><h2 data-i18n="section-sheet">ACROSS THE STAR FIELD</h2><span class="jp" data-i18n="section-sheet-sub">ดีไซน์และข้อมูลตัวละคร</span></div>
         </div>
         <div class="sheet-wrap">
-          <div class="sheet-main hud-panel" onclick="openLightbox('HoshinoCarSheet.jpg')" role="button" tabindex="0" aria-label="Open character sheet">
+          <div class="sheet-main hud-panel" data-lightbox-src="HoshinoCarSheet.jpg" role="button" tabindex="0" aria-label="Open character sheet">
             <img src="HoshinoCarSheet.jpg" alt="Hoshino Kuroi original character sheet" loading="lazy"  decoding="async" />
             <span class="expand-hint" data-i18n="expand">CLICK TO VIEW FULL SIZE</span>
           </div>
@@ -2265,7 +2268,7 @@
           <article class="award-card hud-panel">
             <h3 class="card-title"><i class="fa-solid fa-trophy" style="color:var(--yellow)"></i><span data-i18n="awards">AWARDS & ACHIEVEMENTS</span></h3>
             <div class="award-showcase">
-              <div class="award-image hud-panel" onclick="openLightbox('REALITYPOSTER.jpg')" role="button" tabindex="0"><img src="REALITYPOSTER.jpg" alt="REALITY official award poster" loading="lazy"  decoding="async" /></div>
+              <div class="award-image hud-panel" data-lightbox-src="REALITYPOSTER.jpg" role="button" tabindex="0"><img src="REALITYPOSTER.jpg" alt="REALITY official award poster" loading="lazy"  decoding="async" /></div>
               <div class="award-copy">
                 <h3 data-i18n="award-title">REALITY Official Award</h3>
                 <p data-i18n="award-desc">渋谷ポスターイベント【11位】</p>
@@ -2276,7 +2279,7 @@
           <article class="goods-card hud-panel">
             <h3 class="card-title"><i class="fa-solid fa-bag-shopping"></i><span data-i18n="goods">GOODS</span></h3>
             <div class="goods-grid">
-              <a class="good-card" href="https://store.line.me/themeshop/product/11be9ad5-4499-4331-8db7-0895c91bdcec/ja" target="_blank" rel="noopener"><img src="GoodsLine.png" alt="LINE Theme" loading="lazy"  decoding="async" /><strong>LINE Theme</strong><small>DIGITAL CONTENT</small></a>
+              <a class="good-card" href="https://store.line.me/themeshop/product/11be9ad5-4499-4331-8db7-0895c91bdcec/ja" target="_blank" rel="noopener noreferrer"><img src="GoodsLine.png" alt="LINE Theme" loading="lazy"  decoding="async" /><strong>LINE Theme</strong><small>DIGITAL CONTENT</small></a>
               <div class="good-card"><img src="Acrylickeychain2.jpg" alt="Acrylic keychain standee ver.2" loading="lazy"  decoding="async" /><strong>Acrylic keychain standee ver.2</strong><small data-i18n="coming-soon">COMING SOON</small></div>
               <div class="good-card"><img src="Coming soon.png" alt="Hoshino Kuroi logo goods placeholder" loading="lazy"  decoding="async" /><strong data-i18n="future-goods">More Goods</strong><small data-i18n="coming-soon">COMING SOON</small></div>
             </div>
@@ -2298,22 +2301,22 @@
           <!-- ORIGINAL MODEL: sheet + YouTube showcase + prominent creator credit -->
           <article class="design-card hud-panel">
             <h3 class="card-title"><i class="fa-regular fa-image"></i><span data-i18n="design-original">SHEET 01 · ORIGINAL MODEL</span></h3>
-            <div class="design-media hud-panel" onclick="openLightbox('HoshinoCarSheet.jpg')" role="button" tabindex="0"><img src="HoshinoCarSheet.jpg" alt="Original character design sheet" loading="lazy"  decoding="async" /></div>
-            <div class="design-video"><iframe src="https://www.youtube.com/embed/uvWG-otglbg?si=g9xUiv3iYXD1uONW" title="Original Model Showcase" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <div class="design-media hud-panel" data-lightbox-src="HoshinoCarSheet.jpg" role="button" tabindex="0"><img src="HoshinoCarSheet.jpg" alt="Original character design sheet" loading="lazy"  decoding="async" /></div>
+            <div class="design-video"><iframe src="https://www.youtube.com/embed/uvWG-otglbg?si=g9xUiv3iYXD1uONW" title="Original Model Showcase" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe></div>
             <div class="creator-credit">
               <span class="creator-role" data-i18n="designer-role">DESIGNER / ILLUSTRATOR / RIGGER</span>
-              <a class="creator-name" href="https://x.com/Inumaru_Atsuki" target="_blank" rel="noopener">Inumaru Atsuki</a>
+              <a class="creator-name" href="https://x.com/Inumaru_Atsuki" target="_blank" rel="noopener noreferrer">Inumaru Atsuki</a>
               <small>@Inumaru_Atsuki</small>
             </div>
           </article>
           <!-- KEMONO MODEL: sheet + YouTube showcase + separate designer / rigger -->
           <article class="design-card hud-panel">
             <h3 class="card-title"><i class="fa-regular fa-image"></i><span data-i18n="design-kemono">SHEET 02 · KEMONO MODEL</span></h3>
-            <div class="design-media hud-panel" onclick="openLightbox('HoshinoCarSheet2.PNG')" role="button" tabindex="0"><img src="HoshinoCarSheet2.PNG" alt="Kemono character design sheet" loading="lazy"  decoding="async" /></div>
-            <div class="design-video"><iframe src="https://www.youtube.com/embed/xoStXkG95Kk?si=GVMmlWKAkwP0C6gR" title="Kemono Model Live2D Rigging" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+            <div class="design-media hud-panel" data-lightbox-src="HoshinoCarSheet2.PNG" role="button" tabindex="0"><img src="HoshinoCarSheet2.PNG" alt="Kemono character design sheet" loading="lazy"  decoding="async" /></div>
+            <div class="design-video"><iframe src="https://www.youtube.com/embed/xoStXkG95Kk?si=GVMmlWKAkwP0C6gR" title="Kemono Model Live2D Rigging" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe></div>
             <div class="creator-credit split">
-              <div><span class="creator-role" data-i18n="designer-illustrator-role">DESIGNER / ILLUSTRATOR</span><a class="creator-name" href="https://x.com/Nemuru_Y" target="_blank" rel="noopener">ネム / Nemu</a><small>@Nemuru_Y</small></div>
-              <div><span class="creator-role" data-i18n="rigger-role">LIVE2D RIGGER</span><a class="creator-name" href="https://x.com/Tempura0111" target="_blank" rel="noopener">Tempuran</a><small>@Tempura0111</small></div>
+              <div><span class="creator-role" data-i18n="designer-illustrator-role">DESIGNER / ILLUSTRATOR</span><a class="creator-name" href="https://x.com/Nemuru_Y" target="_blank" rel="noopener noreferrer">ネム / Nemu</a><small>@Nemuru_Y</small></div>
+              <div><span class="creator-role" data-i18n="rigger-role">LIVE2D RIGGER</span><a class="creator-name" href="https://x.com/Tempura0111" target="_blank" rel="noopener noreferrer">Tempuran</a><small>@Tempura0111</small></div>
             </div>
           </article>
         </div>
@@ -2345,16 +2348,16 @@
         <a href="#home" data-i18n="nav-home">HOME</a><a href="#profile" data-i18n="nav-profile">PROFILE</a><a href="#personality" data-i18n="nav-personality">PERSONALITY</a><a href="#stream" data-i18n="nav-stream">STREAM</a><a href="#design" data-i18n="nav-design">DESIGN</a><a href="#archive" data-i18n="nav-archive">ARCHIVE</a>
       </nav>
       <div class="footer-social">
-        <a href="https://youtube.com/@hoshinokuroi440" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.twitch.tv/hoshino_kuroi" target="_blank" rel="noopener" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-        <a href="https://discord.gg/NQjyaZtxfx" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://youtube.com/@hoshinokuroi440" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://x.com/HoshinoKuroi" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.twitch.tv/hoshino_kuroi" target="_blank" rel="noopener noreferrer" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+        <a href="https://discord.gg/NQjyaZtxfx" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
       </div>
     </div>
   </footer>
 
   <!-- Full-screen lightbox used by character sheets / artwork. -->
-  <div id="lightbox" onclick="closeLightbox()" role="dialog" aria-modal="true" aria-label="Image preview"><img loading="lazy" id="lightbox-image" src="" alt="Expanded artwork"  decoding="async" /></div>
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview"><img loading="lazy" id="lightbox-image" src="" alt="Expanded artwork"  decoding="async" /></div>
   <button id="back-to-top" type="button" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
 
   <script>
@@ -2446,19 +2449,64 @@
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
     }
 
+    function clearElement(el) {
+      while (el.firstChild) el.removeChild(el.firstChild);
+    }
+
     function renderIconList(id, items, icon) {
-      document.getElementById(id).innerHTML = items.map(item => `<li><i class="fa-solid ${icon}"></i>${item}</li>`).join('');
+      const list = document.getElementById(id);
+      clearElement(list);
+      items.forEach(item => {
+        const li = document.createElement('li');
+        const iconEl = document.createElement('i');
+        iconEl.classList.add('fa-solid', icon);
+        iconEl.setAttribute('aria-hidden', 'true');
+        li.append(iconEl, document.createTextNode(String(item)));
+        list.appendChild(li);
+      });
     }
 
     function renderGoals(items) {
-      document.getElementById('goals-list').innerHTML = items.map(item => `<li><i class="fa-solid fa-star" style="color:var(--yellow)"></i><span>${item}</span></li>`).join('');
+      const list = document.getElementById('goals-list');
+      clearElement(list);
+      items.forEach(item => {
+        const li = document.createElement('li');
+        const iconEl = document.createElement('i');
+        iconEl.className = 'fa-solid fa-star goal-star';
+        iconEl.setAttribute('aria-hidden', 'true');
+        const span = document.createElement('span');
+        span.textContent = String(item);
+        li.append(iconEl, span);
+        list.appendChild(li);
+      });
     }
 
     function renderSchedule(rows) {
-      document.getElementById('schedule-list').innerHTML = rows.map(([day, detail], index) => {
-        const isLive = index === 4 || index === 5; // Friday + Saturday are live days in the source schedule.
-        return `<div class="schedule-row ${isLive ? 'is-live' : ''}"><span class="schedule-day">${day}</span><span>${detail}</span>${isLive ? '<span class="live-pill"><span class="live-dot"></span>LIVE</span>' : ''}</div>`;
-      }).join('');
+      const list = document.getElementById('schedule-list');
+      clearElement(list);
+      rows.forEach(([day, detail], index) => {
+        const isLive = index === 4 || index === 5;
+        const row = document.createElement('div');
+        row.className = `schedule-row${isLive ? ' is-live' : ''}`;
+
+        const dayEl = document.createElement('span');
+        dayEl.className = 'schedule-day';
+        dayEl.textContent = String(day);
+        const detailEl = document.createElement('span');
+        detailEl.textContent = String(detail);
+        row.append(dayEl, detailEl);
+
+        if (isLive) {
+          const pill = document.createElement('span');
+          pill.className = 'live-pill';
+          const dot = document.createElement('span');
+          dot.className = 'live-dot';
+          dot.setAttribute('aria-hidden', 'true');
+          pill.append(dot, document.createTextNode('LIVE'));
+          row.appendChild(pill);
+        }
+        list.appendChild(row);
+      });
     }
 
     /* Introduction voice player — reuses the original three audio assets. */
@@ -2482,19 +2530,46 @@
     /* =========================================================
        03. FAN ART RENDERER
     ========================================================== */
-    function renderFanart() {
-      document.getElementById('fanart-grid').innerHTML = fanartData.map(item => `
-        <div class="fanart-item" role="button" tabindex="0" data-image="${item.url}" aria-label="Fanart by ${item.artist}">
-          <div class="fanart-image-frame">
-            <img src="${item.url}" alt="Fanart by ${item.artist}" loading="lazy"  decoding="async" />
-          </div>
-          <span class="fanart-credit">ARTIST: ${item.artist}</span>
-        </div>
-      `).join('');
+    function isSafeLocalImage(value) {
+      return typeof value === 'string' && /^[A-Za-z0-9 _().-]+\.(?:png|jpe?g|webp|gif)$/i.test(value);
+    }
 
-      document.querySelectorAll('.fanart-item').forEach(item => {
-        item.addEventListener('click', () => openLightbox(item.dataset.image));
-        item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLightbox(item.dataset.image); });
+    function renderFanart() {
+      const grid = document.getElementById('fanart-grid');
+      clearElement(grid);
+
+      fanartData.forEach(item => {
+        if (!isSafeLocalImage(item.url)) return;
+
+        const card = document.createElement('div');
+        card.className = 'fanart-item';
+        card.setAttribute('role', 'button');
+        card.tabIndex = 0;
+        card.dataset.image = item.url;
+        card.setAttribute('aria-label', `Fanart by ${String(item.artist)}`);
+
+        const frame = document.createElement('div');
+        frame.className = 'fanart-image-frame';
+        const img = document.createElement('img');
+        img.src = item.url;
+        img.alt = `Fanart by ${String(item.artist)}`;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        frame.appendChild(img);
+
+        const credit = document.createElement('span');
+        credit.className = 'fanart-credit';
+        credit.textContent = `ARTIST: ${String(item.artist)}`;
+        card.append(frame, credit);
+
+        card.addEventListener('click', () => openLightbox(card.dataset.image));
+        card.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openLightbox(card.dataset.image);
+          }
+        });
+        grid.appendChild(card);
       });
     }
 
@@ -2502,8 +2577,10 @@
        04. LIGHTBOX
     ========================================================== */
     function openLightbox(src) {
+      if (!isSafeLocalImage(src)) return;
       const box = document.getElementById('lightbox');
-      document.getElementById('lightbox-image').src = src;
+      const image = document.getElementById('lightbox-image');
+      image.src = src;
       box.style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
@@ -2570,9 +2647,24 @@
       navSections.forEach(section => sectionObserver.observe(section));
     }
 
-    /* Keyboard support for image panels that use role=button. */
-    document.querySelectorAll('[role="button"][onclick]').forEach(el => {
-      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') el.click(); });
+    /* Event wiring without inline JavaScript handlers. */
+    document.querySelectorAll('[data-voice-lang]').forEach(btn => {
+      btn.addEventListener('click', () => playVoice(btn.dataset.voiceLang));
+    });
+
+    document.querySelectorAll('[data-lightbox-src]').forEach(el => {
+      const activate = () => openLightbox(el.dataset.lightboxSrc);
+      el.addEventListener('click', activate);
+      el.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          activate();
+        }
+      });
+    });
+
+    document.getElementById('lightbox').addEventListener('click', event => {
+      if (event.target === event.currentTarget || event.target.id === 'lightbox-image') closeLightbox();
     });
 
     /* =========================================================
